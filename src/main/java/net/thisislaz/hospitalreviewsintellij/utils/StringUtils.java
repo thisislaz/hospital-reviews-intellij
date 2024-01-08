@@ -175,7 +175,7 @@ public class StringUtils {
     }
 
     /**
-     * Calculate the time difference between teh eprovided timestamp and the current time.
+     * Calculate the time difference between teh provided timestamp and the current time.
      * It returns a relatvie description of the time difference, e.g., " 5 minutes ago"
      *
      * @param past The time to be compared with the current time
@@ -209,7 +209,13 @@ public class StringUtils {
         return agoText;
     }
 
-
+    public static List<String> timeSincePosted(List<Review> reviews ){
+        List<String> reviewsWithNewTimes = new ArrayList<>();
+        for (Review review : reviews) {
+            reviewsWithNewTimes.add(net.thisislaz.hospitalreviewsintellij.utils.StringUtils.timeAgo(review.getCreatedAt()));
+        }
+        return reviewsWithNewTimes;
+    }
 
 
 

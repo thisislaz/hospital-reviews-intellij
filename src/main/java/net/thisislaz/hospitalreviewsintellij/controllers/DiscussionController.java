@@ -54,7 +54,10 @@ public class DiscussionController {
     }
 
     @PostMapping("/allDiscussions")
-    public String createDiscussion(Discussion discussion) {
+    public String createDiscussion(Discussion discussion, HttpSession session) {
+        if(session.getAttribute("userId") == null) {
+            return "redirect:/discussion/allDiscussions";
+        }
         discussionService.createDiscussion(discussion);
 
         return "redirect:/discussion/allDiscussions";

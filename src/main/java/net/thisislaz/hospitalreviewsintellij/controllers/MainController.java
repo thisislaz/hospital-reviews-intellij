@@ -85,10 +85,10 @@ public class MainController {
     @GetMapping("/")
     public String indexLandingPage(Model model, HttpSession session) {
         List<String> formattedDates = StringUtils.fortmatCreatedAtDates(reviewService.getAll());
+        List<String> timeSincePosted = StringUtils.timeSincePosted(reviewService.getAll());
         model.addAttribute("fortmattedDates" , formattedDates);
-
         model.addAttribute("reviewList", reviewService.getAll());
-
+        model.addAttribute("timeSincePosted", timeSincePosted);
 
         return "views/index";
     }
