@@ -10,7 +10,7 @@
 <head>
 	<meta charset="ISO-8859-1" name="viewport" content="width=device-width initial-scale=1.0">
 	<title>NurseBulletin </title>
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/styles/css/style.css" />
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/styles/css/main.css" />
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
@@ -187,11 +187,114 @@
 		</div>
 	</nav>
 </header>
+<main>
+	<div class="bg-white dark:bg-gray-900">
+		<div class="flex justify-center h-screen">
+			<div class="hidden bg-cover lg:block lg:w-2/3" style="background-image: url('/assets/pexels-karolina-grabowska-stethoscope.jpg')">
+				<div class="flex items-center h-full px-20 bg-gray-900 bg-opacity-40">
+					<div>
+						<h2 class="text-2xl font-bold text-white sm:text-3xl">Meraki UI</h2>
 
-</footer>
-<script src="https://kit.fontawesome.com/eb2c2d28d2.js" crossorigin="anonymous"></script>
+						<p class="max-w-xl mt-3 text-gray-300">
+							Lorem ipsum dolor sit, amet consectetur adipisicing elit. In
+							autem ipsa, nulla laboriosam dolores, repellendus perferendis libero suscipit nam temporibus
+							molestiae
+						</p>
+					</div>
+				</div>
+			</div>
+
+			<div class="flex items-center w-full max-w-md px-6 mx-auto lg:w-2/6">
+				<div class="flex-1">
+					<div class="text-center">
+						<div class="flex justify-center mx-auto ">
+							<img class="w-22 h-22 sm:h-8 " src="/assets/hamster_no_name.png" alt="">
+						</div>
+
+						<p class="mt-3 text-gray-500 dark:text-gray-300">Sign in to access your account</p>
+					</div>
+
+					<div class="mt-8">
+						<form>
+							<div>
+								<label for="email" class="block mb-2 text-sm text-gray-600 dark:text-gray-200">Email Address</label>
+								<input type="email" name="email" id="email" placeholder="example@example.com" class="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
+							</div>
+
+							<div class="mt-6">
+								<div class="flex justify-between mb-2">
+									<label for="password" class="text-sm text-gray-600 dark:text-gray-200">Password</label>
+									<a href="#" class="text-sm text-gray-400 focus:text-blue-500 hover:text-blue-500 hover:underline">Forgot password?</a>
+								</div>
+
+								<input type="password" name="password" id="password" placeholder="Your Password" class="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
+							</div>
+
+							<div class="mt-6">
+								<button class="w-full px-4 py-2 tracking-wide text-white transition-colors duration-300 transform bg-blue-500 rounded-lg hover:bg-blue-400 focus:outline-none focus:bg-blue-400 focus:ring focus:ring-blue-300 focus:ring-opacity-50">
+									Sign in
+								</button>
+							</div>
+
+						</form>
+
+						<p class="mt-6 text-sm text-center text-gray-400">Don&#x27;t have an account yet? <a href="/user/register" class="text-blue-500 focus:outline-none focus:underline hover:underline">Sign up</a>.</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</main>
+
 <script src="${pageContext.request.contextPath}../node_modules/preline/dist/preline.js"></script>
 <script src="/js/script.js"></script>
-</body>
+<script src="https://kit.fontawesome.com/eb2c2d28d2.js" crossorigin="anonymous"></script>
+<footer class="bg-white dark:bg-gray-900">
+	<div class="container px-6 py-8 mx-auto">
+		<div class="flex flex-col items-center text-center">
+			<a href="#">
+				<h2 class=" px-3 py-2 text-white text-2xl transition-colors duration-300 transform rounded-md lg:mt-0 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700" href="/" >NurseBulletin</h2>
+			</a>
 
+			<div class="flex flex-wrap justify-center mt-6 -mx-4">
+				<a href="/" class="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700" aria-label="Reddit"> Home </a>
+
+				<a href="/review/allReviews" class="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700" aria-label="Reddit"> Reviews </a>
+
+				<a href="hospitals/allHospitals" class="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700" aria-label="Reddit"> Hospitals </a>
+
+				<a href="/discussion/allDiscussions" class="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700" aria-label="Reddit"> Forums </a>
+
+				<a href="#" class="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700" aria-label="Reddit"> Terms of use </a>
+			</div>
+
+		</div>
+
+		<hr class="my-6 border-gray-200 md:my-10 dark:border-gray-700" />
+
+		<div class="flex flex-col items-center sm:flex-row sm:justify-between">
+			<p class="text-sm text-gray-500 dark:text-gray-300">© Copyright 2024. All Rights Reserved.</p>
+
+			<div class="flex -mx-2">
+				<a href="https://www.tiktok.com/@itsthejourneylak" class="mx-2 text-gray-600 transition-colors duration-300 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400" aria-label="Tiktok">
+					<svg fill="none" class="w-9 h-9 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" xml:space="preserve"><path d="M19.589 6.686a4.793 4.793 0 0 1-3.77-4.245V2h-3.445v13.672a2.896 2.896 0 0 1-5.201 1.743l-.002-.001.002.001a2.895 2.895 0 0 1 3.183-4.51v-3.5a6.329 6.329 0 0 0-5.394 10.692 6.33 6.33 0 0 0 10.857-4.424V8.687a8.182 8.182 0 0 0 4.773 1.526V6.79a4.831 4.831 0 0 1-1.003-.104z"/></svg>
+				</a>
+
+				<a href="https://www.linkedin.com/in/laz-alvarez/" class="mx-2 text-gray-600 transition-colors duration-300 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400" aria-label="Linkedin">
+					<i class="fa-brands fa-linkedin-in text-4xl  fill-current"></i>
+				</a>
+
+				<a href="https://github.com/thisislaz" class="mx-2 text-gray-600 transition-colors duration-300 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400" aria-label="Github">
+					<svg class="w-9 h-9 fill-current" viewBox="0 0 24 24" fill="none"
+						 xmlns="http://www.w3.org/2000/svg">
+						<path
+								d="M12.026 2C7.13295 1.99937 2.96183 5.54799 2.17842 10.3779C1.395 15.2079 4.23061 19.893 8.87302 21.439C9.37302 21.529 9.55202 21.222 9.55202 20.958C9.55202 20.721 9.54402 20.093 9.54102 19.258C6.76602 19.858 6.18002 17.92 6.18002 17.92C5.99733 17.317 5.60459 16.7993 5.07302 16.461C4.17302 15.842 5.14202 15.856 5.14202 15.856C5.78269 15.9438 6.34657 16.3235 6.66902 16.884C6.94195 17.3803 7.40177 17.747 7.94632 17.9026C8.49087 18.0583 9.07503 17.99 9.56902 17.713C9.61544 17.207 9.84055 16.7341 10.204 16.379C7.99002 16.128 5.66202 15.272 5.66202 11.449C5.64973 10.4602 6.01691 9.5043 6.68802 8.778C6.38437 7.91731 6.42013 6.97325 6.78802 6.138C6.78802 6.138 7.62502 5.869 9.53002 7.159C11.1639 6.71101 12.8882 6.71101 14.522 7.159C16.428 5.868 17.264 6.138 17.264 6.138C17.6336 6.97286 17.6694 7.91757 17.364 8.778C18.0376 9.50423 18.4045 10.4626 18.388 11.453C18.388 15.286 16.058 16.128 13.836 16.375C14.3153 16.8651 14.5612 17.5373 14.511 18.221C14.511 19.555 14.499 20.631 14.499 20.958C14.499 21.225 14.677 21.535 15.186 21.437C19.8265 19.8884 22.6591 15.203 21.874 10.3743C21.089 5.54565 16.9181 1.99888 12.026 2Z">
+						</path>
+					</svg>
+				</a>
+			</div>
+		</div>
+	</div>
+</footer>
+</body>
 </html>
