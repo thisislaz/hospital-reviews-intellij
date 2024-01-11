@@ -193,13 +193,22 @@
 			<div class="hidden bg-cover lg:block lg:w-2/3" style="background-image: url('/assets/pexels-karolina-grabowska-stethoscope.jpg')">
 				<div class="flex items-center h-full px-20 bg-gray-900 bg-opacity-40">
 					<div>
-						<h2 class="text-2xl font-bold text-white sm:text-3xl">Meraki UI</h2>
-
-						<p class="max-w-xl mt-3 text-gray-300">
-							Lorem ipsum dolor sit, amet consectetur adipisicing elit. In
-							autem ipsa, nulla laboriosam dolores, repellendus perferendis libero suscipit nam temporibus
-							molestiae
-						</p>
+							<h2 class="text-2xl font-bold dark:text-gray-200 sm:text-3xl">Welcome Back to NurseBulletin</h2>
+							<p class="max-w-xl mt-3 text-lg text-white">
+								Discover new insights from fellow nurses. Our review section is constantly updated
+								with fresh experiences and evaluations from across the country.
+							</p>
+							<p class="max-w-xl mt-3 text-lg text-white">
+								Engage in meaningful discussions. Whether you're seeking advice, sharing stories,
+								or staying connected, our forums are buzzing with active conversations.
+							</p>
+							<p class="max-w-xl mt-3 text-lg text-white">
+								Your experiences are invaluable. Keep sharing your reviews to help the community grow stronger.
+							</p>
+							<p class="max-w-xl mt-3 text-lg text-white">
+								NurseBulletin is more than a platform; it's a community. Keep in touch with
+								fellow nurses and stay updated on the latest in healthcare.
+							</p>
 					</div>
 				</div>
 			</div>
@@ -215,10 +224,11 @@
 					</div>
 
 					<div class="mt-8">
-						<form>
+						<form:form action="/user/login" method="post" modelAttribute="loginUser">
 							<div>
 								<label for="email" class="block mb-2 text-sm text-gray-600 dark:text-gray-200">Email Address</label>
-								<input type="email" name="email" id="email" placeholder="example@example.com" class="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
+								<form:input path="email" type="email" name="email" id="email" placeholder="example@example.com" class="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
+								<form:errors class="login-errors" path="email" />
 							</div>
 
 							<div class="mt-6">
@@ -227,16 +237,18 @@
 									<a href="#" class="text-sm text-gray-400 focus:text-blue-500 hover:text-blue-500 hover:underline">Forgot password?</a>
 								</div>
 
-								<input type="password" name="password" id="password" placeholder="Your Password" class="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
+								<form:input path="password" type="password" name="password" id="password" placeholder="Your Password" class="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
 							</div>
-
+							<div class="mt-6">
+								<form:errors path="password" class="login-errors"/>
+							</div>
 							<div class="mt-6">
 								<button class="w-full px-4 py-2 tracking-wide text-white transition-colors duration-300 transform bg-blue-500 rounded-lg hover:bg-blue-400 focus:outline-none focus:bg-blue-400 focus:ring focus:ring-blue-300 focus:ring-opacity-50">
 									Sign in
 								</button>
 							</div>
 
-						</form>
+						</form:form>
 
 						<p class="mt-6 text-sm text-center text-gray-400">Don&#x27;t have an account yet? <a href="/user/register" class="text-blue-500 focus:outline-none focus:underline hover:underline">Sign up</a>.</p>
 					</div>

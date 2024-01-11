@@ -2713,10 +2713,6 @@ details.collapse summary::-webkit-details-marker {
   max-width: 28rem;
 }
 
-.max-w-xl {
-  max-width: 36rem;
-}
-
 .flex-1 {
   flex: 1 1 0%;
 }
@@ -2757,6 +2753,10 @@ details.collapse summary::-webkit-details-marker {
 
 .resize {
   resize: both;
+}
+
+.list-disc {
+  list-style-type: disc;
 }
 
 .grid-cols-1 {
@@ -3000,6 +3000,10 @@ details.collapse summary::-webkit-details-marker {
   padding-bottom: 2rem;
 }
 
+.ps-5 {
+  padding-inline-start: 1.25rem;
+}
+
 .pt-12 {
   padding-top: 3rem;
 }
@@ -3112,11 +3116,6 @@ details.collapse summary::-webkit-details-marker {
 .text-blue-500 {
   --tw-text-opacity: 1;
   color: rgb(59 130 246 / var(--tw-text-opacity));
-}
-
-.text-gray-300 {
-  --tw-text-opacity: 1;
-  color: rgb(209 213 219 / var(--tw-text-opacity));
 }
 
 .text-gray-400 {
@@ -3247,6 +3246,14 @@ details.collapse summary::-webkit-details-marker {
 
 .ease-out {
   transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
+}
+
+.marker\:text-blue-600 *::marker {
+  color: rgb(37 99 235 );
+}
+
+.marker\:text-blue-600::marker {
+  color: rgb(37 99 235 );
 }
 
 .hover\:bg-blue-400:hover {
