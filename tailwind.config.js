@@ -19,5 +19,6 @@ module.exports = {
       require("daisyui"),
       require('@tailwindcss/forms'),
       require('preline/plugin'),
+      require("tailgrids/plugin")
   ],
 }

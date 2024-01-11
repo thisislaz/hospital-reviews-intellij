@@ -190,7 +190,7 @@
 	<section class="p-6 dark:dark:bg-gray-800 dark:dark:text-gray-100 ">
 		<div class="container grid gap-6 mx-auto text-center lg:grid-cols-2 xl:grid-cols-5">
 			<div class="w-full px-6 py-16 rounded-md sm:px-12 md:px-16 xl:col-span-2 dark:dark:bg-gray-900">
-				<span class="block mb-2 dark:dark:text-violet-400">Hospital Reviewing System</span>
+				<span class="block text-lg mb-2 dark:dark:text-violet-400">Hospital Reviewing System</span>
 				<h1 class="text-5xl font-extrabold dark:dark:text-gray-50">Join now and review your latest assignment!!</h1>
 				<p class="my-8">
 					<span class="font-medium dark:dark:text-gray-50">Help fellow traveling nurses get a heads up on the situation they are heading into.</span> Don't worry we're on your side! The hospitals/agencies won't know who you are.
@@ -198,8 +198,8 @@
 				<a href="user/register" type="button" class="w-full py-4 px-6 font-semibold rounded dark:dark:bg-violet-400 dark:dark:text-gray-900 duration-300 hover:bg-violet-300">Join the nurse revolution</a>
 				<p class="my-8">
 					<span class="font-medium dark:dark:text-gray-50">Already joined?</span>
+					<a href="user/login" class="link link-info">Log in</a>
 				</p>
-				<a href="user/login" class="link link-info">Log in</a>
 			</div>
 			<img src="${pageContext.request.contextPath}/assets/nurse_khan.jpg" alt="" class="object-cover w-full rounded-md xl:col-span-3 dark:dark:bg-gray-500">
 		</div>
@@ -208,12 +208,13 @@
 		<main>
 			<section class="bg-white dark:bg-gray-900">
 				<div class="container px-6 py-10 mx-auto">
-					<h2 class="text-2xl font-semibold text-center text-gray-800 capitalize lg:text-3xl dark:text-white"> The best way to know facts about the hospital you can't find anywhere else!! </h2>
+					<h2 class="text-2xl font-semibold text-center text-gray-800 capitalize lg:text-3xl dark:text-white"> The best way to know facts about hospitals you have worked at that are not found anywhere else. </h2>
 
 					<p class="mt-4 text-center text-gray-500 dark:text-gray-300">
 						Here at the NurseBulletin, we listen to our nurses,
-						and let you inform others on certain things about the hospital,
-						so you don't have to wait a week to hear it from your recruiter.
+						and let you inform others on certain topics about the hospital,
+						so you don't have to wait an extended amount of time to hear it from your recruiter, allowing you
+						to make quick decisions.
 					</p>
 
 
@@ -266,7 +267,7 @@
 						</div>
 					</div>
 					<div class="relative items-center w-full mx-auto mt-12">
-						<section class="h-max p-6 dark:dark:bg-gray-800 dark:dark:text-gray-100">
+						<section class="h-max sm:h-160 p-6 dark:dark:bg-gray-800 dark:dark:text-gray-100">
 								<div class="relative h-56 overflow-scroll rounded-lg md:h-96 flex flex-col gap-6">
 									<c:forEach var="eachReview" items="${ reviewList }" varStatus="status">
 											<div class="container flex flex-col w-full max-w-lg p-6 mx-auto divide-y rounded-md dark:divide-gray-700 dark:bg-gray-900 dark:text-gray-100">
@@ -274,25 +275,21 @@
 													<span class="text-xl font-thin"> <c:out value="${eachReview.hospital.hospitalName}"></c:out> - <c:out value="${eachReview.hospital.city}, ${eachReview.hospital.state}"></c:out> </span>
 												</div>
 												<div class="flex justify-between p-4">
-													<div class="flex space-x-4 justify-center algin-items-center">
-														<div>
+													<div class="flex space-x-4 items-center">
 															<c:choose>
 																<c:when test="${fn:length(eachReview.author.profilePicture) != 2 && not empty eachReview.author.profilePicture }">
 																	<i class="fa-solid text-xl <c:out value="${ eachReview.author.profilePicture }"></c:out> "></i>
 																</c:when>
 																<c:when test="${fn:length(eachReview.author.profilePicture) == 2 || eachReview.author.profilePicture == null}">
-																	<p>
+																	<p class="text-xl">
 																		<c:out value="${ fn:substring(eachReview.author.firstName, 0, 1).toUpperCase() }${ fn:substring(eachReview.author.lastName, 0,1).toUpperCase()}"></c:out>
 																	</p>
 																</c:when>
 															</c:choose>
-														</div>
-														<h4 class="font-bold text-xl font-light">  <c:out value="${eachReview.author.username}"></c:out> </h4>
-														<div>
+														<h4 class="font-bold text-xl font-light">  <c:out value="${fn:toUpperCase(eachReview.author.username)}"></c:out> </h4>
 															<span class="text-xs dark:text-gray-400">
 																 <c:out value="${timeSincePosted[reviewList.indexOf(eachReview)]}"></c:out>
 															</span>
-														</div>
 													</div>
 
 													<div class="flex items-center space-x-2 dark:text-yellow-500 ">
@@ -308,6 +305,7 @@
 													<p><b>Summary:</b> <c:out value="${ eachReview.content }"></c:out> </p>
 													<p><b>Posted:</b> <c:out value="${ eachReview.formattedDate }"></c:out> </p>
 												</div>
+												<a class="px-6 py-2 ml-3 md:w-1/2 sm:w-26 lg:w-1/3 font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-600 rounded-lg hover:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80" href="/review/view/<c:out value="${eachReview.id}"></c:out> " >View Review</a>
 											</div>
 									</c:forEach>
 								</div>
@@ -373,7 +371,9 @@
 	<div class="container px-6 py-8 mx-auto">
 		<div class="flex flex-col items-center text-center">
 			<a href="#">
-				<h2 class=" px-3 py-2 text-white text-2xl transition-colors duration-300 transform rounded-md lg:mt-0 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700" href="/" >NurseBulletin</h2>
+				<h2 class=" px-3 py-2 text-white text-2xl transition-colors duration-300 transform rounded-md lg:mt-0 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700" href="/" >
+					<img class="w-22 h-22 sm:h-8 " src="/assets/nursebulletin-transparent.png" alt="">
+				</h2>
 			</a>
 
 			<div class="flex flex-wrap justify-center mt-6 -mx-4">
