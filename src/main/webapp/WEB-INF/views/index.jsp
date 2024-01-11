@@ -22,7 +22,7 @@
 			<div class="lg:flex lg:items-center lg:justify-between ">
 				<div class="flex items-center justify-between">
 					<a class=" px-3 py-2 text-white text-2xl transition-colors duration-300 transform rounded-md lg:mt-0 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700" href="/">
-						NurseBulletin
+						<img class="w-22 h-22 sm:h-8 " src="/assets/nursebulletin-transparent.png" alt="">
 					</a>
 
 					<!-- Mobile menu button -->

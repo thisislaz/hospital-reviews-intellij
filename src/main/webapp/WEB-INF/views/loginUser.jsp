@@ -22,7 +22,7 @@
 			<div class="lg:flex lg:items-center lg:justify-between ">
 				<div class="flex items-center justify-between">
 					<a class=" px-3 py-2 text-white text-2xl transition-colors duration-300 transform rounded-md lg:mt-0 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700" href="/">
-						NurseBulletin
+						<img class="w-22 h-22 sm:h-8 " src="/assets/nursebulletin-transparent.png" alt="">
 					</a>
 
 					<!-- Mobile menu button -->
@@ -208,7 +208,7 @@
 				<div class="flex-1">
 					<div class="text-center">
 						<div class="flex justify-center mx-auto ">
-							<img class="w-22 h-22 sm:h-8 " src="/assets/hamster_no_name.png" alt="">
+							<img class="w-22 h-22 sm:h-8 " src="/assets/nursebulletin-transparent.png" alt="">
 						</div>
 
 						<p class="mt-3 text-gray-500 dark:text-gray-300">Sign in to access your account</p>
