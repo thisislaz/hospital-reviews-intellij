@@ -198,7 +198,7 @@
 				<a href="user/register" type="button" class="w-full py-4 px-6 font-semibold rounded dark:dark:bg-violet-400 dark:dark:text-gray-900 duration-300 hover:bg-violet-300">Join the nurse revolution</a>
 				<p class="my-8">
 					<span class="font-medium dark:dark:text-gray-50">Already joined?</span>
-					<a href="user/login" class="link link-info">Log in</a>
+					<a href="user/login" class="link link-info ml-2 hover:border-2 hover:border-blue-500 hover:rounded hover:py-2 hover:px-7 hover:text-blue-500 ">Log in</a>
 				</p>
 			</div>
 			<img src="${pageContext.request.contextPath}/assets/nurse_khan.jpg" alt="" class="object-cover w-full rounded-md xl:col-span-3 dark:dark:bg-gray-500">

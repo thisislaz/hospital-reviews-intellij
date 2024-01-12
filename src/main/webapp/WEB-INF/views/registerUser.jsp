@@ -221,19 +221,13 @@
 						<div>
 							<label class="block mb-2 text-sm text-gray-600 dark:text-gray-200">Email address</label>
 							<form:input path="email" type="email" placeholder="johnsnow@example.com" class="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
-							<form:errors path="email" class="alert alert-error" role="alert" />
+							<form:errors path="email" class="text-white"></form:errors>
 						</div>
 						<div>
 							<label class="block mb-2 text-sm text-gray-600 dark:text-gray-200">Password</label>
 							<form:input path="password" type="password" placeholder="Enter your password" class="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
-							<div role="alert" class="alert alert-error text-white flex ">
-								<svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-								<form:errors path="password" >
-									<c:forEach var="error" items="${result.allErrors}">
-											<span> ${error} </span>
-									</c:forEach>
-								</form:errors>
-							</div>
+
+							<form:errors path="password" class="text-white"></form:errors>
 
 						</div>
 
