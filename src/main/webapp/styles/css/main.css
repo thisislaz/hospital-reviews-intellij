@@ -2556,10 +2556,6 @@ details.collapse summary::-webkit-details-marker {
   top: 100%;
 }
 
-.left-0 {
-  left: 0px;
-}
-
 .z-10 {
   z-index: 10;
 }
@@ -3490,6 +3486,14 @@ details.collapse summary::-webkit-details-marker {
 }
 
 @media (min-width: 640px) {
+  .sm\:absolute {
+    position: absolute;
+  }
+
+  .sm\:left-0 {
+    left: 0px;
+  }
+
   .sm\:left-full {
     left: 100%;
   }
@@ -3498,8 +3502,8 @@ details.collapse summary::-webkit-details-marker {
     top: 0px;
   }
 
-  .sm\:left-0 {
-    left: 0px;
+  .sm\:right-0 {
+    right: 0px;
   }
 
   .sm\:my-4 {
@@ -3513,6 +3517,10 @@ details.collapse summary::-webkit-details-marker {
 
   .sm\:flex-row {
     flex-direction: row;
+  }
+
+  .sm\:flex-col {
+    flex-direction: column;
   }
 
   .sm\:justify-between {
@@ -3573,12 +3581,20 @@ details.collapse summary::-webkit-details-marker {
 }
 
 @media (min-width: 1024px) {
+  .lg\:absolute {
+    position: absolute;
+  }
+
   .lg\:relative {
     position: relative;
   }
 
   .lg\:left-0 {
     left: 0px;
+  }
+
+  .lg\:right-0 {
+    right: 0px;
   }
 
   .lg\:top-0 {
@@ -3589,8 +3605,8 @@ details.collapse summary::-webkit-details-marker {
     top: 100%;
   }
 
-  .lg\:right-0 {
-    right: 0px;
+  .lg\:left-auto {
+    left: auto;
   }
 
   .lg\:mx-8 {
@@ -3704,8 +3720,16 @@ details.collapse summary::-webkit-details-marker {
 }
 
 @media (min-width: 1280px) {
+  .xl\:absolute {
+    position: absolute;
+  }
+
   .xl\:right-0 {
     right: 0px;
+  }
+
+  .xl\:left-0 {
+    left: 0px;
   }
 
   .xl\:col-span-2 {
