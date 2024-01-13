@@ -19,6 +19,7 @@
     "flowbite": "^2.2.1",
     "preline": "^2.0.3",
     "tailgrids": "^2.1.0",
+    "tailwind-scrollbar-hide": "^1.1.7",
     "tw-elements": "^1.1.0"
   }
 }

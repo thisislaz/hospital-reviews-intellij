@@ -53,7 +53,7 @@
 											<a href="/discussion/allDiscussions" class="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Forums</a>
 											<div x-data="{ isOpen: false }" class="relative inline-block">
 												<!-- Dropdown toggle button -->
-												<button @click="isOpen = !isOpen" class=" ml-5 relative z-10 flex items-center p-2 text-sm text-gray-600 bg-white border border-transparent rounded-md focus:border-blue-500 focus:ring-opacity-40 dark:focus:ring-opacity-40 focus:ring-blue-300 dark:focus:ring-blue-400 focus:ring dark:text-white dark:bg-gray-800 focus:outline-none">
+												<button @click="isOpen = !isOpen" class="ml-3 relative z-10 flex items-center p-2 text-sm text-gray-600 bg-white border border-transparent rounded-md focus:border-blue-500 focus:ring-opacity-40 dark:focus:ring-opacity-40 focus:ring-blue-300 dark:focus:ring-blue-400 focus:ring dark:text-white dark:bg-gray-800 focus:outline-none">
 													<span class="mx-1"> <i class="fa-solid  <c:out value="${ user.profilePicture }"></c:out>"></i>  </span>
 													<svg class="w-5 h-5 mx-1" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
 														<path d="M12 15.713L18.01 9.70299L16.597 8.28799L12 12.888L7.40399 8.28799L5.98999 9.70199L12 15.713Z" fill="currentColor"></path>
@@ -69,7 +69,7 @@
 													 x-transition:leave="transition ease-in duration-100"
 													 x-transition:leave-start="opacity-100 scale-100"
 													 x-transition:leave-end="opacity-0 scale-90"
-													 class="absolute sm:left-full sm:top-0 md:left-0 md:top-full lg:left-0 lg:top-full z-20 w-56 py-2 mt-2 origin-top-right bg-white rounded-md shadow-xl dark:bg-gray-800"
+													 class="absolute right-0 z-20 w-56 py-2 mt-2 overflow-hidden origin-top-right bg-white rounded-md shadow-xl dark:bg-gray-800"
 												>
 													<a href="/dashboard" class="flex items-center p-3 -mt-2 text-sm text-gray-600 transition-colors duration-300 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white">
 														<span class="mx-3"> <i class="fa-solid  <c:out value="${ user.profilePicture }"></c:out>"></i>  </span>
@@ -106,16 +106,11 @@
 										<a href="/review/allReviews" class="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Reviews</a>
 										<a href="/hospitals/allHospitals" class="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Hospitals</a>
 										<a href="/discussion/allDiscussions" class="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Forums</a>
-									</div>
-									<div x-data="{ isOpen: false }" class="relative inline-block ">
+										<div x-data="{ isOpen: false }" class="relative inline-block ">
 											<!-- Dropdown toggle button -->
-											<button @click="isOpen = !isOpen" class="relative z-10 flex items-center p-2 text-sm text-gray-600 bg-white border border-transparent rounded-md focus:border-blue-500 focus:ring-opacity-40 dark:focus:ring-opacity-40 focus:ring-blue-300 dark:focus:ring-blue-400 focus:ring dark:text-white dark:bg-gray-800 focus:outline-none">
+											<button @click="isOpen = !isOpen" class="ml-3 relative z-10 flex items-center p-2 text-sm text-gray-600 bg-white border border-transparent rounded-md focus:border-blue-500 focus:ring-opacity-40 dark:focus:ring-opacity-40 focus:ring-blue-300 dark:focus:ring-blue-400 focus:ring dark:text-white dark:bg-gray-800 focus:outline-none">
 												<span class="mx-1">
-													<div class="flex items-center gap-x-6">
-														<p class="">
-															<c:out value="${ fn:substring(sessionScope.cappedFirstNameUser.firstName, 0, 1).toUpperCase() }${ fn:substring(sessionScope.cappedFirstNameUser.lastName, 0,1).toUpperCase()}"></c:out>
-														</p>
-													</div>
+													<c:out value="${ fn:substring(sessionScope.cappedFirstNameUser.firstName, 0, 1).toUpperCase() }${ fn:substring(sessionScope.cappedFirstNameUser.lastName, 0,1).toUpperCase()}"></c:out>
 												</span>
 												<svg class="w-5 h-5 mx-1" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
 													<path d="M12 15.713L18.01 9.70299L16.597 8.28799L12 12.888L7.40399 8.28799L5.98999 9.70199L12 15.713Z" fill="currentColor"></path>
@@ -131,8 +126,8 @@
 												 x-transition:leave="transition ease-in duration-100"
 												 x-transition:leave-start="opacity-100 scale-100"
 												 x-transition:leave-end="opacity-0 scale-90"
-												 class="absolute right-0 z-20 w-56 py-2 mt-2 overflow-hidden origin-top-right bg-white rounded-md shadow-xl dark:bg-gray-800"
-											>
+												 class="absolute 2xl:right-0 xl:right-0 lg:right-0 sm:left-0 z-20 w-56 py-2 mt-2 overflow-hidden origin-top-right bg-white rounded-md shadow-xl dark:bg-gray-800"
+												>
 												<a href="/dashboard" class="flex items-center p-3 -mt-2 text-sm text-gray-600 transition-colors duration-300 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white">
 													<c:if test="${fn:length(user.profilePicture) == 2 || empty user.profilePicture}">
 														<p>
@@ -165,6 +160,8 @@
 												</a>
 											</div>
 										</div>
+									</div>
+
 									</c:otherwise>
 								</c:choose>
 							</c:when>
@@ -267,7 +264,7 @@
 						</div>
 					</div>
 					<div class="relative items-center w-full mx-auto mt-12">
-						<section class="h-max sm:h-160 p-6 dark:dark:bg-gray-800 dark:dark:text-gray-100">
+						<section class="h-max p-6 dark:dark:bg-gray-800 dark:dark:text-gray-100">
 								<div class="relative h-56 overflow-scroll rounded-lg md:h-96 flex flex-col gap-6">
 									<c:forEach var="eachReview" items="${ reviewList }" varStatus="status">
 											<div class="container flex flex-col w-full max-w-lg p-6 mx-auto divide-y rounded-md dark:divide-gray-700 dark:bg-gray-900 dark:text-gray-100">
@@ -286,7 +283,7 @@
 																	</p>
 																</c:when>
 															</c:choose>
-														<h4 class="font-bold text-xl font-light">  <c:out value="${fn:toUpperCase(eachReview.author.username)}"></c:out> </h4>
+														<h4 class="font-bold text-xl font-light">  <c:out value="${fn:toLowerCase(eachReview.author.username)}"></c:out> </h4>
 															<span class="text-xs dark:text-gray-400">
 																 <c:out value="${timeSincePosted[reviewList.indexOf(eachReview)]}"></c:out>
 															</span>
@@ -393,9 +390,9 @@
 		<hr class="my-6 border-gray-200 md:my-10 dark:border-gray-700" />
 
 		<div class="flex flex-col items-center sm:flex-row sm:justify-between">
-			<p class="text-sm text-gray-500 dark:text-gray-300">© Copyright 2024. All Rights Reserved.</p>
+			<p class="text-sm text-gray-500 dark:text-gray-300 ">© Copyright 2024. All Rights Reserved.</p>
 
-			<div class="flex -mx-2">
+			<div class="flex -mx-2 sm:my-4">
 				<a href="https://www.tiktok.com/@itsthejourneylak" class="mx-2 text-gray-600 transition-colors duration-300 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400" aria-label="Tiktok">
 					<svg fill="none" class="w-9 h-9 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" xml:space="preserve"><path d="M19.589 6.686a4.793 4.793 0 0 1-3.77-4.245V2h-3.445v13.672a2.896 2.896 0 0 1-5.201 1.743l-.002-.001.002.001a2.895 2.895 0 0 1 3.183-4.51v-3.5a6.329 6.329 0 0 0-5.394 10.692 6.33 6.33 0 0 0 10.857-4.424V8.687a8.182 8.182 0 0 0 4.773 1.526V6.79a4.831 4.831 0 0 1-1.003-.104z"/></svg>
 				</a>
