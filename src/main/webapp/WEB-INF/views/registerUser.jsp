@@ -40,20 +40,22 @@
 				</div>
 
 				<!-- Mobile Menu open: "block", Menu closed: "hidden" -->
-				<div x-cloak :class="[isOpen ? 'translate-x-0 opacity-100 ' : 'opacity-0 -translate-x-full']" class="absolute inset-x-0 z-20 w-full px-6 py-4 transition-all duration-300 ease-in-out bg-white dark:bg-gray-800 lg:mt-0 lg:p-0 lg:top-0 lg:relative lg:bg-transparent lg:w-auto lg:opacity-100 lg:translate-x-0 lg:flex lg:items-center">
-					<div class="flex items-center mt-4 lg:mt-0">
+
+				<c:choose>
+					<c:when test="${not empty sessionScope.userId}">
 						<c:choose>
-							<c:when test="${not empty sessionScope.userId}">
-								<c:choose>
-									<c:when test="${not empty user.profilePicture and fn:length(user.profilePicture) != 2 }">
-										<div class="flex flex-col -mx-6 lg:flex-row lg:items-center lg:mx-8">
+							<c:when test="${not empty user.profilePicture and fn:length(user.profilePicture) != 2 }">
+								<!-- large screens -->
+								<div x-cloak :class="[isOpen ? 'translate-x-0 opacity-100 ' : 'opacity-0 -translate-x-full']" class="absolute inset-x-0 z-20 w-full px-6 py-4 transition-all duration-300 ease-in-out bg-white dark:bg-gray-800 lg:mt-0 lg:p-0 lg:top-0 lg:relative lg:bg-transparent lg:w-auto lg:opacity-100 lg:translate-x-0 lg:flex lg:items-center">
+									<div class="flex items-center mt-4 lg:mt-0">
+										<div class="flex flex-col -mx-6 lg:flex-row lg:items-center lg:mx-8 lg:relative">
 											<a href="/" class="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Home</a>
 											<a href="/review/allReviews" class="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Reviews</a>
 											<a href="/hospitals/allHospitals" class="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Hospitals</a>
 											<a href="/discussion/allDiscussions" class="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Forums</a>
 											<div x-data="{ isOpen: false }" class="relative inline-block">
 												<!-- Dropdown toggle button -->
-												<button @click="isOpen = !isOpen" class=" ml-5 relative z-10 flex items-center p-2 text-sm text-gray-600 bg-white border border-transparent rounded-md focus:border-blue-500 focus:ring-opacity-40 dark:focus:ring-opacity-40 focus:ring-blue-300 dark:focus:ring-blue-400 focus:ring dark:text-white dark:bg-gray-800 focus:outline-none">
+												<button @click="isOpen = !isOpen" class="ml-3 relative z-10 flex items-center p-2 text-sm text-gray-600 bg-white border border-transparent rounded-md focus:border-blue-500 focus:ring-opacity-40 dark:focus:ring-opacity-40 focus:ring-blue-300 dark:focus:ring-blue-400 focus:ring dark:text-white dark:bg-gray-800 focus:outline-none">
 													<span class="mx-1"> <i class="fa-solid  <c:out value="${ user.profilePicture }"></c:out>"></i>  </span>
 													<svg class="w-5 h-5 mx-1" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
 														<path d="M12 15.713L18.01 9.70299L16.597 8.28799L12 12.888L7.40399 8.28799L5.98999 9.70199L12 15.713Z" fill="currentColor"></path>
@@ -69,7 +71,7 @@
 													 x-transition:leave="transition ease-in duration-100"
 													 x-transition:leave-start="opacity-100 scale-100"
 													 x-transition:leave-end="opacity-0 scale-90"
-													 class="absolute sm:left-full sm:top-0 md:left-0 md:top-full lg:left-0 lg:top-full z-20 w-56 py-2 mt-2 origin-top-right bg-white rounded-md shadow-xl dark:bg-gray-800"
+													 class="absolute z-20 w-56 py-2 mt-2 overflow-hidden origin-top-right bg-white rounded-md shadow-xl dark:bg-gray-800 sm:left-0 md:left-0 lg:left-auto lg:right-0 xl:right-0 2xl:right-0"
 												>
 													<a href="/dashboard" class="flex items-center p-3 -mt-2 text-sm text-gray-600 transition-colors duration-300 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white">
 														<span class="mx-3"> <i class="fa-solid  <c:out value="${ user.profilePicture }"></c:out>"></i>  </span>
@@ -99,76 +101,80 @@
 												</div>
 											</div>
 										</div>
-									</c:when>
-									<c:otherwise>
-										<div class="flex flex-col -mx-6 lg:flex-row lg:items-center lg:mx-8">
+									</div>
+								</div>
+							</c:when>
+							<c:otherwise>
+								<div x-cloak :class="[isOpen ? 'translate-x-0 opacity-100 ' : 'opacity-0 -translate-x-full']" class="absolute inset-x-0 z-20 w-full px-6 py-4 transition-all duration-300 ease-in-out bg-white dark:bg-gray-800 lg:mt-0 lg:p-0 lg:top-0 lg:relative lg:bg-transparent lg:w-auto lg:opacity-100 lg:translate-x-0 lg:flex lg:items-center">
+									<div class="flex items-center mt-4 lg:mt-0 lg:relative">
+										<div class="flex flex-col -mx-6 lg:flex-row lg:items-center lg:mx-8 lg:relative">
 											<a href="/" class="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Home</a>
 											<a href="/review/allReviews" class="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Reviews</a>
 											<a href="/hospitals/allHospitals" class="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Hospitals</a>
 											<a href="/discussion/allDiscussions" class="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Forums</a>
-										</div>
-										<div x-data="{ isOpen: false }" class="relative inline-block ">
-											<!-- Dropdown toggle button -->
-											<button @click="isOpen = !isOpen" class="relative z-10 flex items-center p-2 text-sm text-gray-600 bg-white border border-transparent rounded-md focus:border-blue-500 focus:ring-opacity-40 dark:focus:ring-opacity-40 focus:ring-blue-300 dark:focus:ring-blue-400 focus:ring dark:text-white dark:bg-gray-800 focus:outline-none">
-												<span class="mx-1">
-													<div class="flex items-center gap-x-6">
-														<p class="">
-															<c:out value="${ fn:substring(sessionScope.cappedFirstNameUser.firstName, 0, 1).toUpperCase() }${ fn:substring(sessionScope.cappedFirstNameUser.lastName, 0,1).toUpperCase()}"></c:out>
-														</p>
-													</div>
-												</span>
-												<svg class="w-5 h-5 mx-1" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-													<path d="M12 15.713L18.01 9.70299L16.597 8.28799L12 12.888L7.40399 8.28799L5.98999 9.70199L12 15.713Z" fill="currentColor"></path>
-												</svg>
-											</button>
+											<div x-data="{ isOpen: false }" class="relative inline-block ">
+												<!-- Dropdown toggle button -->
+												<button @click="isOpen = !isOpen" class="ml-3 relative z-10 flex items-center p-2 text-sm text-gray-600 bg-white border border-transparent rounded-md focus:border-blue-500 focus:ring-opacity-40 dark:focus:ring-opacity-40 focus:ring-blue-300 dark:focus:ring-blue-400 focus:ring dark:text-white dark:bg-gray-800 focus:outline-none">
+																<span class="mx-1">
+																	<c:out value="${ fn:substring(sessionScope.cappedFirstNameUser.firstName, 0, 1).toUpperCase() }${ fn:substring(sessionScope.cappedFirstNameUser.lastName, 0,1).toUpperCase()}"></c:out>
+																</span>
+													<svg class="w-5 h-5 mx-1" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+														<path d="M12 15.713L18.01 9.70299L16.597 8.28799L12 12.888L7.40399 8.28799L5.98999 9.70199L12 15.713Z" fill="currentColor"></path>
+													</svg>
+												</button>
 
-											<!-- Dropdown menu -->
-											<div x-show="isOpen"
-												 @click.away="isOpen = false"
-												 x-transition:enter="transition ease-out duration-100"
-												 x-transition:enter-start="opacity-0 scale-90"
-												 x-transition:enter-end="opacity-100 scale-100"
-												 x-transition:leave="transition ease-in duration-100"
-												 x-transition:leave-start="opacity-100 scale-100"
-												 x-transition:leave-end="opacity-0 scale-90"
-												 class="absolute right-0 z-20 w-56 py-2 mt-2 overflow-hidden origin-top-right bg-white rounded-md shadow-xl dark:bg-gray-800"
-											>
-												<a href="/dashboard" class="flex items-center p-3 -mt-2 text-sm text-gray-600 transition-colors duration-300 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white">
-													<c:if test="${fn:length(user.profilePicture) == 2 || empty user.profilePicture}">
-														<p>
-															<c:out value="${ fn:substring(sessionScope.cappedFirstNameUser.firstName, 0, 1).toUpperCase() }${ fn:substring(sessionScope.cappedFirstNameUser.lastName, 0,1).toUpperCase()}"></c:out>
-														</p>
-													</c:if>
-													<span class="mx-3"> <i class="fa-solid  <c:out value="${ user.profilePicture }"></c:out>"></i>  </span>
-													<div class="mx-1">
-														<h1 class="text-sm font-semibold text-gray-700 dark:text-gray-200"> <c:out value="${ user.firstName } ${ user.lastName }"></c:out> </h1>
-														<p class="text-sm text-gray-500 dark:text-gray-400"> <c:out value="${user.email}"></c:out> </p>
-													</div>
-												</a>
-												<hr class="border-gray-200 dark:border-gray-700 ">
-												<a href="/dashboard" class="block px-4 py-3 text-sm text-gray-600 capitalize transition-colors duration-300 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white">
-													Dashboard
-												</a>
-												<a href="/discussion/allDiscussions" class="block px-4 py-3 text-sm text-gray-600 capitalize transition-colors duration-300 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white">
-													Forums
-												</a>
-												<hr class="border-gray-200 dark:border-gray-700 ">
-												<a href="/review/new" class="block px-4 py-3 text-sm text-gray-600 capitalize transition-colors duration-300 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white">
-													Add review
-												</a>
-												<a href="/user/edit/<c:out value="${user.id}"></c:out> " class="block px-4 py-3 text-sm text-gray-600 capitalize transition-colors duration-300 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white">
-													Edit profile
-												</a>
-												<hr class="border-gray-200 dark:border-gray-700 ">
-												<a href="/user/logout" class="block px-4 py-3 text-sm text-gray-600 capitalize transition-colors duration-300 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white">
-													Sign Out
-												</a>
+												<!-- Dropdown menu -->
+												<div x-show="isOpen"
+													 @click.away="isOpen = false"
+													 x-transition:enter="transition ease-out duration-100"
+													 x-transition:enter-start="opacity-0 scale-90"
+													 x-transition:enter-end="opacity-100 scale-100"
+													 x-transition:leave="transition ease-in duration-100"
+													 x-transition:leave-start="opacity-100 scale-100"
+													 x-transition:leave-end="opacity-0 scale-90"
+													 class="absolute z-20 w-56 py-2 mt-2 overflow-hidden origin-top-right bg-white rounded-md shadow-xl dark:bg-gray-800 sm:left-0 md:left-0 lg:left-auto lg:right-0 xl:right-0 2xl:right-0"
+												>
+													<a href="/dashboard" class="flex items-center p-3 -mt-2 text-sm text-gray-600 transition-colors duration-300 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white">
+														<c:if test="${fn:length(user.profilePicture) == 2 || empty user.profilePicture}">
+															<p>
+																<c:out value="${ fn:substring(sessionScope.cappedFirstNameUser.firstName, 0, 1).toUpperCase() }${ fn:substring(sessionScope.cappedFirstNameUser.lastName, 0,1).toUpperCase()}"></c:out>
+															</p>
+														</c:if>
+														<span class="mx-3"> <i class="fa-solid  <c:out value="${ user.profilePicture }"></c:out>"></i>  </span>
+														<div class="mx-1">
+															<h1 class="text-sm font-semibold text-gray-700 dark:text-gray-200"> <c:out value="${ user.firstName } ${ user.lastName }"></c:out> </h1>
+															<p class="text-sm text-gray-500 dark:text-gray-400"> <c:out value="${user.email}"></c:out> </p>
+														</div>
+													</a>
+													<hr class="border-gray-200 dark:border-gray-700 ">
+													<a href="/dashboard" class="block px-4 py-3 text-sm text-gray-600 capitalize transition-colors duration-300 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white">
+														Dashboard
+													</a>
+													<a href="/discussion/allDiscussions" class="block px-4 py-3 text-sm text-gray-600 capitalize transition-colors duration-300 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white">
+														Forums
+													</a>
+													<hr class="border-gray-200 dark:border-gray-700 ">
+													<a href="/review/new" class="block px-4 py-3 text-sm text-gray-600 capitalize transition-colors duration-300 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white">
+														Add review
+													</a>
+													<a href="/user/edit/<c:out value="${user.id}"></c:out> " class="block px-4 py-3 text-sm text-gray-600 capitalize transition-colors duration-300 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white">
+														Edit profile
+													</a>
+													<hr class="border-gray-200 dark:border-gray-700 ">
+													<a href="/user/logout" class="block px-4 py-3 text-sm text-gray-600 capitalize transition-colors duration-300 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white">
+														Sign Out
+													</a>
+												</div>
 											</div>
 										</div>
-									</c:otherwise>
-								</c:choose>
-							</c:when>
-							<c:otherwise>
+									</div>
+								</div>
+							</c:otherwise>
+						</c:choose>
+					</c:when>
+					<c:otherwise>
+						<div x-cloak :class="[isOpen ? 'translate-x-0 opacity-100 ' : 'opacity-0 -translate-x-full']" class="absolute inset-x-0 z-20 w-full px-6 py-4 transition-all duration-300 ease-in-out bg-white dark:bg-gray-800 lg:mt-0 lg:p-0 lg:top-0 lg:relative lg:bg-transparent lg:w-auto lg:opacity-100 lg:translate-x-0 lg:flex lg:items-center">
+							<div class="flex items-center mt-4 lg:mt-0 lg:relative">
 								<div class="flex flex-col -mx-6 lg:flex-row lg:items-center lg:mx-8">
 									<a href="/" class="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Home</a>
 									<a href="/review/allReviews" class="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Reviews</a>
@@ -179,11 +185,13 @@
 										<a class="px-6 py-2 font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-600 rounded-lg hover:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80"  href="/user/register" >Join NurseBulletin</a>
 									</div>
 								</div>
-							</c:otherwise>
-						</c:choose>
-					</div>
-				</div>
+							</div>
+						</div>
+					</c:otherwise>
+				</c:choose>
 			</div>
+		</div>
+		</div>
 		</div>
 	</nav>
 </header>
@@ -206,35 +214,34 @@
 						<div>
 							<label class="block mb-2 text-sm text-gray-600 dark:text-gray-200">First Name</label>
 							<form:input path="firstName" type="text" placeholder="John" class="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
-							<form:errors path="firstName" class="alert alert-error" role="alert" />
+							<form:errors path="firstName" class="ml-2 text-white" />
 						</div>
 						<div>
 							<label class="block mb-2 text-sm text-gray-600 dark:text-gray-200">Last name</label>
 							<form:input path="lastName" type="text" placeholder="Snow" class="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
-							<form:errors path="lastName" class="alert alert-error" role="alert" />
+							<form:errors path="lastName" class="ml-2 text-white" />
 						</div>
 						<div>
 							<label class="block mb-2 text-sm text-gray-600 dark:text-gray-200">Username</label>
 							<form:input path="username" type="text" placeholder="johnny_snow" class="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
-							<form:errors path="username" class="alert alert-error" role="alert" />
+							<form:errors path="username" class="ml-2 text-white" />
 						</div>
 						<div>
 							<label class="block mb-2 text-sm text-gray-600 dark:text-gray-200">Email address</label>
 							<form:input path="email" type="email" placeholder="johnsnow@example.com" class="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
-							<form:errors path="email" class="text-white"></form:errors>
+							<form:errors path="email" class="ml-2 text-white"></form:errors>
 						</div>
 						<div>
 							<label class="block mb-2 text-sm text-gray-600 dark:text-gray-200">Password</label>
 							<form:input path="password" type="password" placeholder="Enter your password" class="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
-
-							<form:errors path="password" class="text-white"></form:errors>
+							<form:errors path="password" class="ml-2 text-white"></form:errors>
 
 						</div>
 
 						<div>
 							<label class="block mb-2 text-sm text-gray-600 dark:text-gray-200">Confirm password</label>
 							<form:input path="confirm" type="password" placeholder="Enter your password" class="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
-							<form:errors path="confirm" class="alert alert-error" role="alert" />
+							<form:errors path="confirm" class="ml-2 text-white" />
 						</div>
 						<button
 								class="flex items-center justify-between w-full px-6 py-3 text-sm tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-lg hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50">
@@ -249,7 +256,7 @@
 					</form:form>
 					<p class="my-8">
 						<span class="font-medium dark:dark:text-gray-50">Already have an account?</span>
-						<a href="/user/login" class="link link-info text-white ml-4 hover:text-white hover:border-2 hover:border-white hover:p-2 hover:rounded">Click here to log in</a>
+						<a href="/user/login" class="link link-info ml-2 text-blue-500 hover:text-blue-300 focus:outline-none focus:underline hover:underline">Log in</a>
 					</p>
 				</div>
 			</div>

@@ -2568,6 +2568,10 @@ details.collapse summary::-webkit-details-marker {
   z-index: 1;
 }
 
+.m-3 {
+  margin: 0.75rem;
+}
+
 .-mx-2 {
   margin-left: -0.5rem;
   margin-right: -0.5rem;
@@ -3410,6 +3414,21 @@ details.collapse summary::-webkit-details-marker {
   color: rgb(255 255 255 / var(--tw-text-opacity));
 }
 
+.hover\:text-blue-800:hover {
+  --tw-text-opacity: 1;
+  color: rgb(30 64 175 / var(--tw-text-opacity));
+}
+
+.hover\:text-blue-200:hover {
+  --tw-text-opacity: 1;
+  color: rgb(191 219 254 / var(--tw-text-opacity));
+}
+
+.hover\:text-blue-300:hover {
+  --tw-text-opacity: 1;
+  color: rgb(147 197 253 / var(--tw-text-opacity));
+}
+
 .hover\:underline:hover {
   text-decoration-line: underline;
 }
@@ -3486,10 +3505,6 @@ details.collapse summary::-webkit-details-marker {
 }
 
 @media (min-width: 640px) {
-  .sm\:absolute {
-    position: absolute;
-  }
-
   .sm\:left-0 {
     left: 0px;
   }
@@ -3500,10 +3515,6 @@ details.collapse summary::-webkit-details-marker {
 
   .sm\:top-0 {
     top: 0px;
-  }
-
-  .sm\:right-0 {
-    right: 0px;
   }
 
   .sm\:my-4 {
@@ -3517,10 +3528,6 @@ details.collapse summary::-webkit-details-marker {
 
   .sm\:flex-row {
     flex-direction: row;
-  }
-
-  .sm\:flex-col {
-    flex-direction: column;
   }
 
   .sm\:justify-between {
@@ -3581,16 +3588,16 @@ details.collapse summary::-webkit-details-marker {
 }
 
 @media (min-width: 1024px) {
-  .lg\:absolute {
-    position: absolute;
-  }
-
   .lg\:relative {
     position: relative;
   }
 
   .lg\:left-0 {
     left: 0px;
+  }
+
+  .lg\:left-auto {
+    left: auto;
   }
 
   .lg\:right-0 {
@@ -3603,10 +3610,6 @@ details.collapse summary::-webkit-details-marker {
 
   .lg\:top-full {
     top: 100%;
-  }
-
-  .lg\:left-auto {
-    left: auto;
   }
 
   .lg\:mx-8 {
@@ -3720,16 +3723,8 @@ details.collapse summary::-webkit-details-marker {
 }
 
 @media (min-width: 1280px) {
-  .xl\:absolute {
-    position: absolute;
-  }
-
   .xl\:right-0 {
     right: 0px;
-  }
-
-  .xl\:left-0 {
-    left: 0px;
   }
 
   .xl\:col-span-2 {
@@ -3760,10 +3755,6 @@ details.collapse summary::-webkit-details-marker {
 @media (min-width: 1536px) {
   .\32xl\:right-0 {
     right: 0px;
-  }
-
-  .\32xl\:left-0 {
-    left: 0px;
   }
 }
 
