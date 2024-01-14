@@ -206,48 +206,61 @@
 			</p>
 			<section class="flex flex-col mt-8 space-y-3 sm:space-y-0 sm:flex-row sm:justify-center sm:-mx-2 center-form specific-edit">
 					<form action="/review/allReviews" method="get" >
-						<select name="searchType" class="lg:inline block w-full lg:w-auto px-2 py-2 text-gray-700 bg-white border rounded-md sm:mx-2 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40" >
-							<option value="" selected disabled  >Choose from the following...</option>
+						<select name="searchType" class="md:inline md:w-80 lg:inline lg:w-80 block w-full px-2 mb-3 py-2 text-gray-700 bg-white border rounded-md sm:mx-2 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40" >
+							<option value="" selected disabled  >Choose from...</option>
 							<option value="state">Search by State Abbreviation</option>
 							<option value="hospitalName">Search by Hospital Name</option>
 							<option value="city">Search by City</option>
 							<option value="recent" >Most Recent</option>
 						</select>
-						<input id="search-review-input" type="text" name="searchValue" class="lg:inline lg:w-auto block w-full my-6 px-4 py-2 text-gray-700 bg-white border rounded-md sm:mx-2 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40" placeholder="Enter search value...">
-						<input id="search-review-submit" class="lg:w-auto lg:inline block w-full cursor-pointer px-4 py-2 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-700 rounded-md sm:mx-2 hover:bg-blue-600 focus:outline-none focus:bg-blue-600" type="submit" value="Search" >
+						<input id="search-review-input" type="text" name="searchValue" class="md:inline md:w-80 lg:inline lg:w-80 block w-full px-2 py-2 text-gray-700 bg-white border rounded-md sm:mx-2 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40" placeholder="Enter search value...">
+						<input id="search-review-submit" class=" block w-full cursor-pointer my-6 px-4 py-2 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-700 rounded-md sm:mx-2 hover:bg-blue-600 focus:outline-none focus:bg-blue-600" type="submit" value="Search" >
 					</form>
 			</section>
-			<section>
-				<!-- Results section -->
-					<h2>Search Results</h2>
-					<hr>
-					<br>
-				<div id="resultsSection">
+			<!-- Results Section -->
+			<span class="relative flex justify-center ">
+			  <div class="absolute inset-x-0 top-1/2 h-px -translate-y-1/2 bg-transparent bg-gradient-to-r from-transparent via-gray-500 to-transparent opacity-75"></div>
+			  <span class="relative z-10 dark:bg-gray-900 px-6 text-xl my-6">Search Results</span>
+			</span>
+				<span class="text-sm font-light text-gray-600 dark:text-gray-400 ">
+					There were <c:out value="${fn:length(reviewList)}"></c:out> results matching your criteria.
+				</span>
+			<section class="max-w-3xl px-6 mx-auto text-center h-96 overflow-scroll my-6">
 					<c:choose>
 						<c:when test="${ not empty reviewList }">
 						   <c:forEach items="${ reviewList }" var="review">
-								<div class=" review-card">
-								<div class="hospitalname-city">
-									<h2><c:out value="${ review.hospital.hospitalName }"></c:out> </h2>
-									<h3><c:out value="${ review.hospital.city }, ${ review.hospital.state }"></c:out>  </h3>
-								</div>
-									<p>"${ review.title.toUpperCase() }"</p>
-									<p><b>Unit:</b> ${ review.unitWorkedAt.toUpperCase() }</p>
-									<p><b>Summary: </b>"${ review.content }"</p>
-									<p><b>Created:</b> ${ review.getFormattedDate() } </p>
-									<br>
-									<div class="center-container">
-										<a class="custom-btn-sq" href="/review/view/${review.id}" >View Review</a>
-										<a class="custom-btn-sq" href="/hospitals/view/${review.hospital.id }">View Hospital Details</a>
+							   <div id="resultsSection" class="max-w-2xl px-8 py-4 my-6 bg-white rounded-lg shadow-md dark:bg-gray-800">
+									<div class=" review-card">
+										<div class="flex items-center justify-between hospitalname-city">
+											<h2 class="text-xl text-left font-bold dark:dark:text-violet-400"><c:out value="${ review.hospital.hospitalName }"></c:out> </h2>
+											<h3 class="text-sm font-light text-gray-600 dark:text-gray-400" ><c:out value="${ review.hospital.city }, ${ review.hospital.state }"></c:out>  </h3>
+										</div>
+										<div class="mt-2">
+											<p class="text-left text-lg text-gray-700 dark:text-white">"${ review.title.toUpperCase() }"</p>
+										</div>
+										<p class="text-left mt-2">
+											<b>Unit:</b> ${ review.unitWorkedAt.toUpperCase() }
+										</p>
+										<p class="text-left mt-2">
+											<b>Summary: </b>"${ review.content }"
+										</p>
+										<div class="block md:flex items-center justify-between mt-4">
+											<p class="block text-left">
+												<b>Created:</b> ${ review.getFormattedDate() }
+											</p>
+											<div class="block md:flex items-center center-container">
+												<a type="button" class="block md:mx-2 lg:mx-2 my-2 py-2 px-4 font-semibold rounded dark:dark:bg-violet-400 dark:dark:text-gray-900 duration-300 hover:bg-violet-300" href="/review/view/${review.id}" >More Info</a>
+												<a type="button" class="block py-2 px-4 font-semibold rounded dark:dark:bg-violet-400 dark:dark:text-gray-900 duration-300 hover:bg-violet-300" href="/hospitals/view/${review.hospital.id }">Hospital Info</a>
+											</div>
+										</div>
+
 									</div>
-								</div>
+							   </div>
 							</c:forEach>
 						</c:when>
 						<c:otherwise>
-							<p>No reviews found for the provided criteria.</p>
 						</c:otherwise>
 					</c:choose>
-				</div>
 			</section>
 		</div>
 

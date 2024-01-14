@@ -275,7 +275,7 @@
 					</div>
 					<div class="relative items-center w-full mx-auto mt-12">
 						<section class="h-max p-6 dark:dark:bg-gray-800 dark:dark:text-gray-100">
-								<div class="relative h-56 overflow-scroll rounded-lg md:h-96 flex flex-col gap-6">
+								<div class="relative h-96 overflow-scroll rounded-lg md:h-96 flex flex-col gap-6">
 									<c:forEach var="eachReview" items="${ reviewList }" varStatus="status">
 											<div class="container flex flex-col w-full max-w-lg p-6 mx-auto divide-y rounded-md dark:divide-gray-700 dark:bg-gray-900 dark:text-gray-100">
 												<div class="flex justify-between p-4">
@@ -312,7 +312,7 @@
 													<p><b>Summary:</b> <c:out value="${ eachReview.content }"></c:out> </p>
 													<p><b>Posted:</b> <c:out value="${ eachReview.formattedDate }"></c:out> </p>
 												</div>
-												<a class="px-6 py-2 ml-3 md:w-1/2 sm:w-26 lg:w-1/3 font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-600 rounded-lg hover:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80" href="/review/view/<c:out value="${eachReview.id}"></c:out> " >View Review</a>
+												<a class="inline px-6 py-2 ml-3 md:w-1/2  lg:w-1/3 font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-600 rounded-lg hover:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80" href="/review/view/<c:out value="${eachReview.id}"></c:out> " >View Review</a>
 											</div>
 									</c:forEach>
 								</div>
