@@ -225,7 +225,13 @@
 				<span class="text-sm font-light text-gray-600 dark:text-gray-400 ">
 					There were <c:out value="${fn:length(reviewList)}"></c:out> results matching your criteria.
 				</span>
-			<section class="max-w-3xl px-6 mx-auto text-center h-96 overflow-scroll my-6">
+			<section class="max-w-3xl px-6 mx-auto text-center h-auto max-h-96 overflow-scroll my-6 overflow-x-auto [&::-webkit-scrollbar]:w-2
+		  [&::-webkit-scrollbar-track]:rounded-full
+		  [&::-webkit-scrollbar-track]:bg-gray-100
+		  [&::-webkit-scrollbar-thumb]:rounded-full
+		  [&::-webkit-scrollbar-thumb]:bg-gray-300
+		  dark:[&::-webkit-scrollbar-track]:bg-slate-700
+		  dark:[&::-webkit-scrollbar-thumb]:bg-slate-500"">
 					<c:choose>
 						<c:when test="${ not empty reviewList }">
 						   <c:forEach items="${ reviewList }" var="review">
