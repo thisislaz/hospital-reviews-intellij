@@ -275,7 +275,13 @@
 					</div>
 					<div class="relative items-center w-full mx-auto mt-12">
 						<section class="h-max p-6 dark:dark:bg-gray-800 dark:dark:text-gray-100">
-								<div class="relative h-96 overflow-scroll rounded-lg md:h-96 flex flex-col gap-6">
+								<div class="relative h-96 rounded-lg md:h-96 flex flex-col gap-6 overflow-scroll overflow-x-auto [&::-webkit-scrollbar]:w-2
+						[&::-webkit-scrollbar-track]:rounded-full
+						[&::-webkit-scrollbar-track]:bg-gray-100
+						[&::-webkit-scrollbar-thumb]:rounded-full
+						[&::-webkit-scrollbar-thumb]:bg-gray-300
+						dark:[&::-webkit-scrollbar-track]:bg-slate-700
+						dark:[&::-webkit-scrollbar-thumb]:bg-slate-500">
 									<c:forEach var="eachReview" items="${ reviewList }" varStatus="status">
 											<div class="container flex flex-col w-full max-w-lg p-6 mx-auto divide-y rounded-md dark:divide-gray-700 dark:bg-gray-900 dark:text-gray-100">
 												<div class="flex justify-between p-4">

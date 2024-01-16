@@ -237,9 +237,9 @@
 						   <c:forEach items="${ reviewList }" var="review">
 							   <div id="resultsSection" class="max-w-2xl px-8 py-4 my-6 bg-white rounded-lg shadow-md dark:bg-gray-800">
 									<div class=" review-card">
-										<div class="flex items-center justify-between hospitalname-city">
-											<h2 class="text-xl text-left font-bold dark:dark:text-violet-400"><c:out value="${ review.hospital.hospitalName }"></c:out> </h2>
-											<h3 class="text-sm font-light text-gray-600 dark:text-gray-400" ><c:out value="${ review.hospital.city }, ${ review.hospital.state }"></c:out>  </h3>
+										<div class="md:flex items-center justify-between hospitalname-city">
+											<h2 class="block md:inline text-xl text-left font-bold dark:dark:text-violet-400"><c:out value="${ review.hospital.hospitalName }"></c:out> </h2>
+											<h3 class="block md:inline text-sm text-left font-light text-gray-600 dark:text-gray-400" ><c:out value="${ review.hospital.city }, ${ review.hospital.state }"></c:out>  </h3>
 										</div>
 										<div class="mt-2">
 											<p class="text-left text-lg text-gray-700 dark:text-white">"${ review.title.toUpperCase() }"</p>

@@ -5,6 +5,7 @@ import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 
@@ -164,6 +165,12 @@ public class StringUtils {
         return fortmattedDate;
     }
 
+    public static String formattedDiscussionDate(Discussion discussion) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd yyyy");
+        String formattedDate = discussion.getCreatedAt().toLocalDate().format(formatter);
+
+        return formattedDate;
+    }
 
     public final boolean containsHospitalByName(List<Hospital> list, String hospitalName) {
         for (Hospital hospital : list) {

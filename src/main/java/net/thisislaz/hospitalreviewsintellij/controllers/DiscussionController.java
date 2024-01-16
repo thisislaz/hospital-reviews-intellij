@@ -45,10 +45,12 @@ public class DiscussionController {
         List<Discussion> discussions = discussionService.getAllDiscussions();
         List<Category> categories = categoryService.getAllCategories();
         Map<Long, CommentDetails> latestCommentDetails = discussionService.getLatestCommentDetails(discussions);
+        Map<Long, String> discussionDateMap = discussionService.formatDiscussionCreatedAtDates(discussions) ;
 
         model.addAttribute("discussions", discussions);
         model.addAttribute("categoriesList", categories);
         model.addAttribute("latestCommentDetails", latestCommentDetails );
+        model.addAttribute("discussionDateMap", discussionDateMap);
 
         return "views/discussions";
     }

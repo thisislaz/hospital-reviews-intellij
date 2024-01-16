@@ -1,0 +1,93 @@
+<div id="confirmModal" class="delete-modal">
+    <div class="delete-modal-content">
+        <span class="close">&times;</span>
+        <p>Are you sure you want to delete?</p>
+        <!-- Use a hidden form to send the delete request -->
+        <div class="d-flex">
+            <button class="delete-modal-button cancel convert-to-button" onclick="location.href='/discussion/allDiscussions';">
+                Cancel
+            </button>
+            <form id="deleteForm" action="" method="post">
+                <input type="hidden" name="_method" value="DELETE">
+                <button class="delete-modal-button confirm-delete" type="submit">Confirm Delete</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<fieldset class="discussion-card">
+								<legend class="right-aligned-legend" align="right"><c:out value="${ discussion.category.name }"></c:out> </legend>
+								<div class="fieldset-left-col">
+									<c:choose>
+										<c:when test="${not empty discussion.author.profilePicture and fn:length(discussion.author.profilePicture) != 2}">
+											<span class="profile-image"> <i class="fa-solid <c:out value="${ discussion.author.profilePicture }"></c:out>" ></i> </span>
+										</c:when>
+										<c:otherwise>
+											<h3 class="profile-image">
+												<c:out value="${ fn:substring(discussion.author.firstName, 0, 1).toUpperCase()  }${ fn:substring(discussion.author.lastName, 0,1).toUpperCase() }"></c:out>
+											</h3>
+										</c:otherwise>
+									</c:choose>
+									<h2>
+										<c:out value="${ discussion.author.username }"></c:out>
+									</h2>
+									<c:choose>
+										<c:when test="${ sessionScope.userId == discussion.author.id }">
+											<a class="blue-font-hover-blue" href="javascript:void(0);" onclick="confirmDiscussionDelete(${ discussion.id })">delete</a>
+										</c:when>
+									</c:choose>
+									<div>
+									</div>
+								</div>
+								<div class="fieldset-middle-col">
+									<h3>
+										<a href="<c:url value='/discussion/allDiscussions/${discussion.id}'/>">${discussion.title} </a>
+									</h3>
+									<span>
+				        				<i class="fa-solid fa-reply fa-flip-vertical fa-xs" style="color: #000000;"></i>
+				        				<c:choose>
+											<c:when test="${not empty latestCommentDetails[discussion.id].timeAgo }">
+												Latest reply by <c:out value="@${latestCommentDetails[discussion.id].authorFirstName }"></c:out>
+												${ latestCommentDetails[discussion.id].timeAgo }
+											</c:when>
+											<c:otherwise>
+												No comments yet
+											</c:otherwise>
+										</c:choose>
+				        			</span>
+									<p> <c:out value="${ latestCommentDetails[discussion.id].latestComment.content }"></c:out> </p>
+								</div>
+								<div class="fieldset-right-col">
+									<div class="fieldset-right-col-list">
+										<c:forEach var="comment" items="${ discussion.comments }" varStatus="status">
+											<c:choose>
+												<c:when test="${status.index < 4}">
+													<c:choose>
+														<c:when test="${not empty comment.author.profilePicture and fn:length(comment.author.profilePicture) != 2}">
+															<div class="profile-image" style="z-index:${4 - status.index};">
+																<i class="fa-solid ${comment.author.profilePicture}"></i>
+															</div>
+														</c:when>
+														<c:otherwise>
+															<div class="profile-image alt-image" style="z-index:${4 - status.index};">
+																<h3> ${fn:substring(comment.author.firstName, 0, 1).toUpperCase()}${fn:substring(comment.author.lastName, 0,1).toUpperCase()} </h3>
+															</div>
+														</c:otherwise>
+													</c:choose>
+												</c:when>
+												<c:when test="${status.index == 4}">
+													<div class="profile-image more-indicator" style="z-index:0;">
+														...
+													</div>
+												</c:when>
+											</c:choose>
+										</c:forEach>
+									</div>
+									<a href="/discussion/allDiscussions/${ discussion.id }" >
+										<i class="fa-regular fa-comments"></i>
+										<c:out value=" ${ discussion.comments.size() } Comments"></c:out>
+									</a>
+								</div>
+
+							</fieldset>

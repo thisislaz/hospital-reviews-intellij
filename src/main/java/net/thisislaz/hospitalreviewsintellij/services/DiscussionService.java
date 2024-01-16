@@ -1,9 +1,7 @@
 package net.thisislaz.hospitalreviewsintellij.services;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.time.format.DateTimeFormatter;
+import java.util.*;
 
 import org.springframework.stereotype.Service;
 
@@ -88,6 +86,17 @@ public class DiscussionService {
 
     public List<Discussion> findByCategoryId(Long categoryId) {
         return discussionRepository.findByCategoryId(categoryId);
+    }
+
+    public static Map<Long, String> formatDiscussionCreatedAtDates(List<Discussion> discussions) {
+        Map<Long, String> discussionDatesMap = new HashMap<>();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd yyyy");
+
+        for (Discussion discussion : discussions) {
+            String formattedDate = discussion.getCreatedAt().toLocalDate().format(formatter);
+            discussionDatesMap.put(discussion.getId(), formattedDate);
+        }
+        return discussionDatesMap;
     }
 
     public Map<Long, CommentDetails> getLatestCommentDetails(List<Discussion> discussions) {
