@@ -195,7 +195,7 @@
 		</div>
 	</nav>
 </header>
-		<main>
+		<main class="flex flex-col md:flex-row">
 			<section class="bg-white dark:bg-gray-900 text-white">
 				<div class="items-center w-full px-5 py-24 mx-auto md:px-12 lg:px-16 max-w-7xl discussions-bottom">
 					<div class="flex justify-between text-center">
@@ -292,39 +292,41 @@
 								</div>
 							</div>
 						</c:forEach>
-					<div class="discussions-right">
-						<h1>Create new discussion</h1>
-						<div class="mid-container" >
-							<form:form action="/discussion/allDiscussions" method="post" modelAttribute="allDiscussions">
-								<!-- Category Dropdown and Description -->
-								<div >
-									<form:label path="category">Category:</form:label>
-									<form:select path="category" id="categoryDropdown" >
-										<form:option value="" disabled="true" selected="true">Please select a category</form:option>
-										<!-- Assuming you have a list of categories available as `categoriesList` -->
-										<form:options items="${categoriesList}" itemValue="id" itemLabel="name" />
-									</form:select>
-								</div>
+				</div>
+			</section>
+			<section class="bg-white dark:bg-gray-900 text-white order-first md:order-none">
+				<div class="max-w-3xl px-6 py-16 mx-auto text-center">
+					<h1>Create new discussion</h1>
+					<div class="mid-container" >
+						<form:form action="/discussion/allDiscussions" method="post" modelAttribute="allDiscussions">
+							<!-- Category Dropdown and Description -->
+							<div >
+								<form:label path="category">Category:</form:label>
+								<form:select path="category" id="categoryDropdown" >
+									<form:option value="" disabled="true" selected="true">Please select a category</form:option>
+									<!-- Assuming you have a list of categories available as `categoriesList` -->
+									<form:options items="${categoriesList}" itemValue="id" itemLabel="name" />
+								</form:select>
+							</div>
 
-								<div >
-									<form:label path="title">Title:</form:label>
-									<form:input path="title" type="text"/>
-									<form:errors path="title" />
-								</div>
-								<div >
-									<form:label path="description">Description: </form:label>
-									<form:textarea rows="5" path="description" id="reviewContent"/>
-									<span id="charCount">0</span><span>/ 500 characters</span>
-									<form:errors path="description" />
-								</div>
+							<div >
+								<form:label path="title">Title:</form:label>
+								<form:input path="title" type="text"/>
+								<form:errors path="title" />
+							</div>
+							<div >
+								<form:label path="description">Description: </form:label>
+								<form:textarea rows="5" path="description" id="reviewContent"/>
+								<span id="charCount">0</span><span>/ 500 characters</span>
+								<form:errors path="description" />
+							</div>
 
-								<form:hidden path="author" value="${ userId }" />
+							<form:hidden path="author" value="${ userId }" />
 
-								<div class="login-row">
-									<input type="submit" value="Start Discussion" />
-								</div>
-							</form:form>
-						</div>
+							<div class="login-row">
+								<input type="submit" value="Start Discussion" />
+							</div>
+						</form:form>
 					</div>
 				</div>
 			</section>
