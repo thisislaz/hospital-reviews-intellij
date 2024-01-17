@@ -9,10 +9,12 @@
 <!DOCTYPE html>
 <html>
 <!-- header -->
-<title>NurseBulletin</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/styles/css/main.css" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+<head>
+	<meta charset="ISO-8859-1" name="viewport" content="width=device-width initial-scale=1.0">
+	<title>NurseBulletin</title>
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/styles/css/main.css" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </head>
 
 <body >
@@ -196,21 +198,72 @@
 	</nav>
 </header>
 		<main class="flex flex-col md:flex-row">
-			<section class="bg-white dark:bg-gray-900 text-white">
-				<div class="items-center w-full px-5 py-24 mx-auto md:px-12 lg:px-16 max-w-7xl discussions-bottom">
-					<div class="flex justify-between text-center">
-						<h1 class="flex items-center text-3xl dark:dark:text-violet-400">Discussion Threads</h1>
-							<div class="lg:ml-auto text-end">
-								<a type="button" class="block md:mx-2 lg:mx-2 my-2 py-2 px-4 font-semibold rounded dark:dark:bg-violet-400 dark:dark:text-gray-900 duration-300 hover:bg-violet-300" href="/discussion/searchedDiscussions">
-									Search discussions
-									<i class="fa-solid fa-magnifying-glass" ></i>
-								</a>
-							</div>
+			<section class="bg-white dark:bg-gray-900 text-white order-first md:order-last">
+				<div  class="items-center px-4 py-24 mx-auto md:px-12 lg:px-16 max-w-7xl discussions-bottom">
+					<div class="max-w-4xl mx-auto text-center">
+						<div class="flex justify-between text-center">
+							<h1 class="flex items-center whitespace-nowrap text-4xl dark:dark:text-violet-400 pb-2 mb-2 px-2">Create New Discussion</h1>
+						</div>
 					</div>
 					<hr>
 					<br>
+					<div class="mid-container my-4 shadow-md rounded-lg dark:bg-gray-800" >
+						<form:form action="/discussion/allDiscussions" method="post" modelAttribute="allDiscussions" class="py-4">
+							<!-- Category Dropdown and Description -->
+							<div >
+								<form:label path="category">Category:</form:label>
+								<form:select path="category" id="categoryDropdown" >
+									<form:option value="" disabled="true" selected="true">Please select a category</form:option>
+									<!-- Assuming you have a list of categories available as `categoriesList` -->
+									<form:options items="${categoriesList}" itemValue="id" itemLabel="name" />
+								</form:select>
+							</div>
+
+							<div >
+								<form:label path="title">Title:</form:label>
+								<form:input path="title" type="text"/>
+								<form:errors path="title" />
+							</div>
+							<div >
+								<form:label path="description">Description: </form:label>
+								<form:textarea rows="5" path="description" id="reviewContent"/>
+								<span id="charCount">0</span><span>/ 500 characters</span>
+								<form:errors path="description" />
+							</div>
+
+							<form:hidden path="author" value="${ userId }" />
+
+							<div class="login-row">
+								<input type="submit" value="Start Discussion" />
+							</div>
+						</form:form>
+					</div>
+				</div>
+			</section>
+			<section class="bg-white dark:bg-gray-900 text-white ">
+				<div class="items-center w-full px-5 py-24 md:px-12 lg:px-12 max-w-7xl discussions-bottom">
+					<div class="flex justify-between text-center">
+						<h1 class="flex items-center text-3xl dark:dark:text-violet-400">Discussion Threads</h1>
+						<div class="lg:ml-auto text-end">
+							<a type="button" class="block md:mx-2 lg:mx-2 my-2 py-2 px-4 font-semibold rounded dark:dark:bg-violet-400 dark:dark:text-gray-900 duration-300 hover:bg-violet-300" href="/discussion/searchedDiscussions">
+								Search discussions
+								<i class="fa-solid fa-magnifying-glass" ></i>
+							</a>
+						</div>
+					</div>
+					<hr>
+					<br>
+					<section class="max-w-3xl px-6 mx-auto h-auto max-h-96 overflow-scroll my-6 overflow-x-auto [&::-webkit-scrollbar]:w-2
+						  [&::-webkit-scrollbar-track]:rounded-full
+						  [&::-webkit-scrollbar-track]:bg-gray-100
+						  [&::-webkit-scrollbar-thumb]:rounded-full
+						  [&::-webkit-scrollbar-thumb]:bg-gray-300
+						  dark:[&::-webkit-scrollbar-track]:bg-slate-700
+						  dark:[&::-webkit-scrollbar-thumb]:bg-slate-500">
+
+
 						<c:forEach var="discussion" items="${discussions}">
-							<div class="w-full my-4 overflow-hidden bg-white rounded-lg shadow-md dark:bg-gray-800">
+							<div class="w-full my-4 overflow-hidden bg-white rounded-lg shadow-md dark:bg-gray-800 ">
 								<div class="p-4">
 									<div>
 										<span class="text-xs font-medium text-blue-600 uppercase dark:text-blue-400">
@@ -292,46 +345,10 @@
 								</div>
 							</div>
 						</c:forEach>
+					</section>
 				</div>
 			</section>
-			<section class="bg-white dark:bg-gray-900 text-white order-first md:order-none">
-				<div class="max-w-3xl px-6 py-16 mx-auto text-center">
-					<h1>Create new discussion</h1>
-					<div class="mid-container" >
-						<form:form action="/discussion/allDiscussions" method="post" modelAttribute="allDiscussions">
-							<!-- Category Dropdown and Description -->
-							<div >
-								<form:label path="category">Category:</form:label>
-								<form:select path="category" id="categoryDropdown" >
-									<form:option value="" disabled="true" selected="true">Please select a category</form:option>
-									<!-- Assuming you have a list of categories available as `categoriesList` -->
-									<form:options items="${categoriesList}" itemValue="id" itemLabel="name" />
-								</form:select>
-							</div>
-
-							<div >
-								<form:label path="title">Title:</form:label>
-								<form:input path="title" type="text"/>
-								<form:errors path="title" />
-							</div>
-							<div >
-								<form:label path="description">Description: </form:label>
-								<form:textarea rows="5" path="description" id="reviewContent"/>
-								<span id="charCount">0</span><span>/ 500 characters</span>
-								<form:errors path="description" />
-							</div>
-
-							<form:hidden path="author" value="${ userId }" />
-
-							<div class="login-row">
-								<input type="submit" value="Start Discussion" />
-							</div>
-						</form:form>
-					</div>
-				</div>
-			</section>
-	</main>
-
+		</main>
 <!-- footer -->
 
 <!-- ========== END MAIN CONTENT ========== -->
