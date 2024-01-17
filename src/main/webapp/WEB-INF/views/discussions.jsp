@@ -197,9 +197,9 @@
 		</div>
 	</nav>
 </header>
-		<main class="flex flex-col md:flex-row">
-			<section class="bg-white dark:bg-gray-900 text-white order-first md:order-last">
-				<div  class="items-center px-4 py-24 mx-auto md:px-12 lg:px-16 max-w-7xl discussions-bottom">
+		<main class="flex flex-col md:flex-row relative container">
+			<section class="bg-gray-900 dark:bg-gray-900 text-white order-first md:order-last">
+				<div  class="items-center px-4 py-12 mx-auto md:py-24 md:px-12 lg:px-16 max-w-7xl discussions-bottom">
 					<div class="max-w-4xl mx-auto text-center">
 						<div class="flex justify-between text-center">
 							<h1 class="flex items-center whitespace-nowrap text-4xl dark:dark:text-violet-400 pb-2 mb-2 px-2">Create New Discussion</h1>
@@ -207,12 +207,12 @@
 					</div>
 					<hr>
 					<br>
-					<div class="mid-container my-4 shadow-md rounded-lg dark:bg-gray-800" >
+					<div class="my-4 shadow-md rounded-lg dark:bg-gray-800 w-full max-w-md mx-auto px-6" >
 						<form:form action="/discussion/allDiscussions" method="post" modelAttribute="allDiscussions" class="py-4">
 							<!-- Category Dropdown and Description -->
 							<div >
-								<form:label path="category">Category:</form:label>
-								<form:select path="category" id="categoryDropdown" >
+								<form:label path="category" class="block mb-2 text-md text-gray-600 dark:text-gray-200" >Category:</form:label>
+								<form:select path="category" id="categoryDropdown" class="md:inline md:w-80 lg:inline lg:w-80 block w-full px-2 mb-3 py-2 text-gray-700 bg-white border rounded-md sm:mx-2 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40">
 									<form:option value="" disabled="true" selected="true">Please select a category</form:option>
 									<!-- Assuming you have a list of categories available as `categoriesList` -->
 									<form:options items="${categoriesList}" itemValue="id" itemLabel="name" />
@@ -220,31 +220,30 @@
 							</div>
 
 							<div >
-								<form:label path="title">Title:</form:label>
-								<form:input path="title" type="text"/>
+								<form:label path="title" class="block mb-2 text-md text-gray-600 dark:text-gray-200" >Title:</form:label>
+								<form:input path="title" placeholder="Title..." type="text" class="mb-2 md:inline md:w-80 lg:inline lg:w-80 block w-full px-2 py-2 text-gray-700 bg-white border rounded-md sm:mx-2 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40" />
 								<form:errors path="title" />
 							</div>
 							<div >
-								<form:label path="description">Description: </form:label>
-								<form:textarea rows="5" path="description" id="reviewContent"/>
-								<span id="charCount">0</span><span>/ 500 characters</span>
+								<form:label path="description" class="block mb-2 text-md text-gray-600 dark:text-gray-200">Description: </form:label>
+								<form:textarea rows="5" placeholder="What is this dicussion about?" path="description" id="reviewContent" class="md:inline md:w-80 lg:inline lg:w-80 block w-full px-2 py-2 text-gray-700 bg-white border rounded-md sm:mx-2 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40" />
+								<span id="charCount" class="mx-2">0</span><span>/ 500 characters</span>
 								<form:errors path="description" />
 							</div>
 
 							<form:hidden path="author" value="${ userId }" />
 
-							<div class="login-row">
-								<input type="submit" value="Start Discussion" />
-							</div>
+							<input type="submit" class="block md:mx-2 lg:mx-2 my-2 py-2 px-4 font-semibold rounded dark:dark:bg-violet-400 dark:dark:text-gray-900 duration-300 hover:cursor-pointer hover:bg-violet-300" value="Start Discussion" />
+
 						</form:form>
 					</div>
 				</div>
 			</section>
 			<section class="bg-white dark:bg-gray-900 text-white ">
 				<div class="items-center w-full px-5 py-24 md:px-12 lg:px-12 max-w-7xl discussions-bottom">
-					<div class="flex justify-between text-center">
+					<div class="flex flex-col md:flex-row justify-between text-center">
 						<h1 class="flex items-center text-3xl dark:dark:text-violet-400">Discussion Threads</h1>
-						<div class="lg:ml-auto text-end">
+						<div class="lg:ml-auto w-fit text-start md:text-end">
 							<a type="button" class="block md:mx-2 lg:mx-2 my-2 py-2 px-4 font-semibold rounded dark:dark:bg-violet-400 dark:dark:text-gray-900 duration-300 hover:bg-violet-300" href="/discussion/searchedDiscussions">
 								Search discussions
 								<i class="fa-solid fa-magnifying-glass" ></i>
@@ -253,13 +252,7 @@
 					</div>
 					<hr>
 					<br>
-					<section class="max-w-3xl px-6 mx-auto h-auto max-h-96 overflow-scroll my-6 overflow-x-auto [&::-webkit-scrollbar]:w-2
-						  [&::-webkit-scrollbar-track]:rounded-full
-						  [&::-webkit-scrollbar-track]:bg-gray-100
-						  [&::-webkit-scrollbar-thumb]:rounded-full
-						  [&::-webkit-scrollbar-thumb]:bg-gray-300
-						  dark:[&::-webkit-scrollbar-track]:bg-slate-700
-						  dark:[&::-webkit-scrollbar-thumb]:bg-slate-500">
+
 
 
 						<c:forEach var="discussion" items="${discussions}">
@@ -345,7 +338,7 @@
 								</div>
 							</div>
 						</c:forEach>
-					</section>
+
 				</div>
 			</section>
 		</main>

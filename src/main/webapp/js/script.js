@@ -219,7 +219,7 @@ document.addEventListener("DOMContentLoaded", function () {
         reviewContent.addEventListener("input", function () {
             const currentLength = reviewContent.value.length;
             charCount.textContent = currentLength;
-            charCount.style.color = currentLength > 500 ? "red" : "initial";
+            charCount.style.color = currentLength > 500 ? "red" : "white";
         });
     }
 });
