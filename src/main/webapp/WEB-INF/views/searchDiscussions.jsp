@@ -199,27 +199,18 @@
 	</nav>
 </header>
 <body>
-		<main class="center-form specific-edit">
-			<div class="mid-container">
-				<div class="discussion-top">
-					<h2>Search discussions by...</h2>
-					<div id="confirmModal" class="delete-modal">
-						<div class="delete-modal-content">
-							<span class="close">&times;</span>
-							<p>Are you sure you want to delete?</p>
-						 	<!-- Use a hidden form to send the delete request -->
-						 	<div class="d-flex">
-								<button class="delete-modal-button cancel convert-to-button" onclick="location.href='/discussion/allDiscussions';" >Cancel</button>
-								<form id="deleteForm" action="" method="post">
-									<input type="hidden" name="_method" value="DELETE">
-									<button class="delete-modal-button confirm-delete" type="submit">Confirm Delete</button>
-								</form>
-						 	</div>
-						</div>
-					</div>
-					<div class="search-reviews-form" id="defaultForm">
-						<form action="/discussion/searchedDiscussions" method="get">
-							<select name="searchType" id="searchTypeDropdown">
+		<main>
+			<section class="bg-white dark:bg-gray-900 text-white">
+				<div class="max-w-3xl px-6 py-16 mx-auto text-center">
+					<h1 class="text-3xl font-semibold text-gray-800 dark:text-gray-100">Search discussions by...</h1>
+					<p class="max-w-md mx-auto mt-5 text-gray-500 dark:text-gray-400">
+						You can search for discussions by their attributes. First, choose a search option, then type in its value.
+						A table of search results will appear at the bottom of the page, if any discussion is to match your search criteria.
+					</p>
+					<!-- all search options except the category dropdown -->
+					<section class="flex flex-col mt-8 space-y-3 sm:space-y-0 sm:flex-row sm:justify-center sm:-mx-2 center-form search-reviews-form" id="defaultForm">
+						<form action="/discussion/searchedDiscussions" method="get" class="items-center flex flex-col mt-8 space-y-3 sm:space-y-0 sm:flex-row sm:justify-center sm:-mx-2 center-form search-reviews-form">
+							<select name="searchType" id="searchTypeDropdown" class="md:inline md:w-80 lg:inline lg:w-80 w-full px-2 py-2 text-gray-700 bg-white border rounded-md sm:mx-2 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40">
 								<option value="" selected disabled>Please choose from the following...</option>
 								<option value="title">Search by Discussion Title</option>
 								<option value="description">Search by Discussion Description</option>
@@ -227,13 +218,17 @@
 								<option value="category">Search by Category</option>
 								<option value="recent">Most Recent</option>
 							</select>
-							<input id="search-review-input" type="text" name="searchValue" placeholder="Enter search value...">
-							<input class="custom-btn-sq" type="submit" value="Search">
+							<input id="search-review-input" type="text" name="searchValue" placeholder="Enter search value..."
+								   class="md:inline md:w-80 lg:inline lg:w-80 w-full px-2 py-2 text-gray-700 bg-white border rounded-md sm:mx-2 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40">
+							<input type="submit" value="Search"
+								   class="w-full md:w-fit md:inline md:mx-2 lg:mx-2 my-2 py-2 px-4 font-semibold rounded dark:dark:bg-violet-400 dark:dark:text-gray-900 duration-300 hover:bg-violet-300 hover:cursor-pointer">
 						</form>
-					</div>
-					<div id="selectedCategory" class="search-reviews-form" >
-						<form:form action="/discussion/searchedDiscussions" method="get" modelAttribute="category">
-							<select name="searchType" id="searchTypeDropdown">
+					</section>
+					<!-- if the user selects to search via the categories dropdown -->
+					<section id="selectedCategory" class="flex flex-col mt-8 space-y-3 sm:space-y-0 sm:flex-row sm:justify-center sm:-mx-2 center-form search-reviews-form" >
+						<form:form action="/discussion/searchedDiscussions" method="get" modelAttribute="category"  class="items-center flex flex-col mt-8 space-y-3 sm:space-y-0 sm:flex-row sm:justify-center sm:-mx-2 center-form search-reviews-form">
+							<select name="searchType" id="searchTypeDropdown"
+									class="md:inline md:w-80 lg:inline lg:w-80 block w-full px-2 py-2 text-gray-700 bg-white border rounded-md sm:mx-2 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40">
 								<option value=""  disabled>Please choose from the following...</option>
 								<option value="title">Search by Discussion Title</option>
 								<option value="description">Search by Discussion Description</option>
@@ -241,103 +236,119 @@
 								<option selected value="category">Search by Category</option>
 								<option value="recent">Most Recent</option>
 							</select>
-							<form:select path="id" id="categoryDropdown">
+							<form:select path="id" id="categoryDropdown"
+										 class="md:inline md:w-80 lg:inline lg:w-80 block w-full px-2 mb-3 py-2 text-gray-700 bg-white border rounded-md sm:mx-2 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40">
 								<form:option value="" disabled="true" selected="true">Please select a category</form:option>
 								<form:options items="${categoriesList }" itemValue="id" itemLabel="name" />
 							</form:select>
-							<input class="custom-btn-sq" type="submit" value="Search">
+							<input class="block md:inline md:mx-2 lg:mx-2 my-2 py-2 px-4 font-semibold rounded dark:dark:bg-violet-400 dark:dark:text-gray-900 duration-300 hover:bg-violet-300 hover:cursor-pointer" type="submit" value="Search">
 						</form:form>
-					</div>
-				</div>
-				<!-- Results section -->
-			    <div id="resultsSection">
-			        <h2>Search Results</h2>
-			        <hr>
-			        <br>
-			        <c:choose>
-			            <c:when test="${ not empty searchedDiscussionsList }">
-			                <c:forEach items="${ searchedDiscussionsList }" var="discussion">
-			                <fieldset class="discussion-card" >
-			                <legend class="right-aligned-legend" align="right"> <c:out value="${ discussion.category.name }"></c:out> </legend>
-			                   <div class="fieldset-left-col">
-					        		<c:choose>
-					        			<c:when test="${not empty discussion.author.profilePicture and fn:length(discussion.author.profilePicture) != 2 }">
-						        			<span class="profile-image"> <i class="fa-solid <c:out value="${ discussion.author.profilePicture }"></c:out>" ></i> </span>
-					        			</c:when>
-					        			<c:otherwise>
-					        				<h3 class="profile-image">
-					        					<c:out value="${ fn:substring(discussion.author.firstName, 0, 1).toUpperCase()  }${ fn:substring(discussion.author.lastName, 0,1).toUpperCase() }"></c:out>
-					        				</h3>
-					        			</c:otherwise>
-					        		</c:choose>
-				        			<h2>
-				        				<c:out value="${ discussion.author.username }"></c:out>
-				        			</h2>
-				        			<c:choose>
-				        				<c:when test="${ sessionScope.userId == discussion.author.id }">
-					        				<a class="blue-font-hover-blue" href="javascript:void(0);" onclick="confirmDiscussionDelete(${ discussion.id })">delete</a>
-				        				</c:when>
-				        			</c:choose>
-				        		</div>
-				        		<div class="fieldset-middle-col">
-					        		<h3>
-					        			<a href="<c:url value='/discussion/allDiscussions/${discussion.id}'/>">${discussion.title} </a>
-					        		</h3>
-				        			<span>
-				        				<i class="fa-solid fa-reply fa-flip-vertical fa-xs" style="color: #000000;"></i> 
-				        				<c:choose>
-				        					<c:when test="${not empty latestCommentDetails[discussion.id].timeAgo }">
-				        						Latest reply by <c:out value="@${latestCommentDetails[discussion.id].authorFirstName }"></c:out>
-				        						${ latestCommentDetails[discussion.id].timeAgo }
-				        					</c:when>
-				        					<c:otherwise>
-				        						No comments yet
-				        					</c:otherwise>
-				        				</c:choose>
-				        			</span>
-				        			<p> <c:out value="${ latestCommentDetails[discussion.id].latestComment.content }"></c:out> </p>
-				        		</div>
-				        		<div class="fieldset-right-col">
-					        		<div class="fieldset-right-col-list">
-					        			<c:forEach var="comment" items="${ discussion.comments }" varStatus="status">
+					</sectio>
+				</section>
+					<!-- Results Section -->
+				<span class="relative flex justify-center ">
+				    <div class="absolute inset-x-0 top-1/2 h-px -translate-y-1/2 bg-transparent bg-gradient-to-r from-transparent via-gray-500 to-transparent opacity-75"></div>
+					<span class="relative z-10 dark:bg-gray-900 px-6 text-xl my-6">Search Results</span>
+				</span>
+				<span class="text-sm font-light text-gray-600 dark:text-gray-400 ">
+					There were <c:out value="${fn:length(searchedDiscussionsList)}"></c:out> results matching your criteria.
+				</span>
+			    <section id="resultsSection" class="max-w-3xl px-6 mx-auto text-left h-auto max-h-96 overflow-scroll my-6 overflow-x-auto [&::-webkit-scrollbar]:w-2
+					[&::-webkit-scrollbar-track]:rounded-full
+					[&::-webkit-scrollbar-track]:bg-gray-100
+					[&::-webkit-scrollbar-thumb]:rounded-full
+					[&::-webkit-scrollbar-thumb]:bg-gray-300
+					dark:[&::-webkit-scrollbar-track]:bg-slate-700
+					dark:[&::-webkit-scrollbar-thumb]:bg-slate-500" >
+
+					<c:forEach var="discussion" items="${searchedDiscussionsList}">
+						<div class="w-full my-4 overflow-hidden bg-white rounded-lg shadow-md dark:bg-gray-800 ">
+							<div class="p-4">
+								<div>
+										<span class="text-xs font-medium text-blue-600 uppercase dark:text-blue-400">
+											<c:out value="${ discussion.category.name }"></c:out>
+										</span>
+									<a href="<c:url value='/discussion/allDiscussions/${discussion.id}' />" class="block mt-2 text-xl font-semibold text-gray-800 transition-colors duration-300 transform dark:text-white hover:text-gray-600 hover:underline" tabindex="0" role="link">
+										<c:out value="${ discussion.title }"></c:out>
+									</a>
+									<span>
+											<i class="fa-solid fa-reply fa-flip-vertical fa-xs " style="color: darkviolet;"></i>
+											<c:choose>
+												<c:when test="${not empty latestCommentDetails[discussion.id].timeAgo }">
+													Latest reply by @<span class="dark:dark:text-violet-400"><c:out value="${latestCommentDetails[discussion.id].authorFirstName }"></c:out> </span>
+													${ latestCommentDetails[discussion.id].timeAgo }
+												</c:when>
+												<c:otherwise>
+													No comments yet.
+												</c:otherwise>
+											</c:choose>
+										</span>
+									<p class="mt-2 text-sm text-gray-600 dark:text-gray-400">
+										<c:out value="${ discussion.description }"></c:out>
+									</p>
+									<a href="<c:url value='/discussion/allDiscussions/${ discussion.id }' />" class="block mt-2 transition-colors duration-300 transform dark:text-white hover:dark:text-violet-400 hover:underline">
+										<i class="fa-regular fa-comments"></i>
+										<c:out value=" ${ discussion.comments.size() } Comments"></c:out>
+									</a>
+									<div class="flex items-center gap-2 mt-2">
+										<span class="text-center text-sm text-gray-600 dark:text-gray-400 mr-2">Commentators: </span>
+										<c:forEach var="comment" items="${ discussion.comments }" varStatus="status">
 											<c:choose>
 												<c:when test="${status.index < 4}">
-												    <c:choose>
-												        <c:when test="${not empty comment.author.profilePicture and fn:length(comment.author.profilePicture) != 2}">
-												            <div class="profile-image" style="z-index:${4 - status.index};">
-												                <i class="fa-solid ${comment.author.profilePicture}"></i>
-												            </div>
-												        </c:when>
-												        <c:otherwise>
-												            <div class="profile-image alt-image" style="z-index:${4 - status.index};">
-												               <h3> ${fn:substring(comment.author.firstName, 0, 1).toUpperCase()}${fn:substring(comment.author.lastName, 0,1).toUpperCase()} </h3>
-												            </div>
-												        </c:otherwise>
-												    </c:choose>
+													<c:choose>
+														<c:when test="${not empty comment.author.profilePicture and fn:length(comment.author.profilePicture) != 2}">
+															<div class="dark:dark:text-violet-400 object-cover h-8 w-8 flex justify-center rounded-full items-center -mx-1.5 ring-2 ring-white dark:bg-gray-800">
+																<i class="fa-solid ${comment.author.profilePicture}"></i>
+															</div>
+														</c:when>
+														<c:otherwise>
+															<div class="dark:dark:text-violet-400 object-cover h-8 w-8 flex justify-center rounded-full items-center dark:bg-gray-800 -mx-1.5 ring-2 ring-white">
+																<h3> ${fn:substring(comment.author.firstName, 0, 1).toUpperCase()}${fn:substring(comment.author.lastName, 0,1).toUpperCase()} </h3>
+															</div>
+														</c:otherwise>
+													</c:choose>
 												</c:when>
 												<c:when test="${status.index == 4}">
-												    <div class="profile-image more-indicator" style="z-index:0;">
-												        ...
-												    </div>
+													<div class="dark:dark:text-violet-400 object-cover h-8 w-8 flex justify-center rounded-full items-center dark:bg-gray-800 -mx-1.5 ring-2 ring-white">
+														...
+													</div>
 												</c:when>
 											</c:choose>
 										</c:forEach>
-					        		</div>
-				        			<a href="/discussion/allDiscussions/${ discussion.id }" >	 
-				        				<i class="fa-regular fa-comments"></i>
-				        				<c:out value=" ${ discussion.comments.size() } Comments"></c:out>  
-				        			</a>
-				        		</div>
-				       		 
-			                </fieldset>
-			                </c:forEach>
-			            </c:when>
-			            <c:otherwise>
-			                <p>No discussions found for the provided criteria.</p>
-			            </c:otherwise>
-			        </c:choose>
-			    </div>	
+									</div>
+								</div>
+								<div class="mt-4">
+									<div class="flex items-center">
+										<div class="flex items-center">
+											<c:choose>
+												<c:when test="${not empty discussion.author.profilePicture and fn:length(discussion.author.profilePicture) != 2}">
+													<span class="profile-image "> <i class="fa-solid <c:out value="${ discussion.author.profilePicture }"></c:out>" ></i> </span>
+												</c:when>
+												<c:otherwise>
+													<h3 class="profile-image">
+														<c:out value="${ fn:substring(discussion.author.firstName, 0, 1).toUpperCase()  }${ fn:substring(discussion.author.lastName, 0,1).toUpperCase() }"></c:out>
+													</h3>
+												</c:otherwise>
+											</c:choose>
+											<p class="mx-2 font-semibold text-gray-700 dark:text-gray-200">
+												<c:out value="${ discussion.author.username }"></c:out>
+											</p>
+										</div>
+										<span class="mx-1 text-xs text-gray-600 dark:text-gray-300 ">
+												<c:if test="${ discussionDateMap.containsKey(discussion.getId()) }">
+													<c:out value="${ discussionDateMap[discussion.getId()] }"></c:out>
+												</c:if>
+											</span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</c:forEach>
+
+				</section>
 			</div>
+			</div>
+
 		</main>
 
 		<!-- footer -->

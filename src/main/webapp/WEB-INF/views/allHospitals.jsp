@@ -236,29 +236,29 @@
 						<div class="flex flex-col">
 							<div class="-m-1.5 overflow-x-auto">
 								<div class="p-1.5 min-w-full inline-block align-middle">
-									<table class=" min-w-full divide-y divide-gray-200 dark:divide-gray-700">
-										<thead>
-											<tr>
-												<th scope="col" class="md:px-6 md:py-3 text-start text-xs font-medium text-gray-500 uppercase">Result #</th>
-												<th scope="col" class="md:px-6 md:py-3 text-start text-xs font-medium text-gray-500 uppercase">Hospital Name</th>
-												<th scope="col" class="md:px-6 md:py-3 text-start text-xs font-medium text-gray-500 uppercase">City, State</th>
-												<th scope="col" class="md:px-6 md:py-3 text-start text-xs font-medium text-gray-500 uppercase">Action</th>
+									<table class="table-auto min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+										<thead >
+											<tr >
+												<th scope="col" class="text-nowrap md:px-6 md:py-3 text-start text-xs font-medium text-gray-500 uppercase ">Result #</th>
+												<th scope="col" class="ml-4 md:px-6 md:py-3 text-start text-xs font-medium text-gray-500 uppercase">Hospital Name</th>
+												<th scope="col" class="mx-4 md:px-6 md:py-3 text-start text-xs font-medium text-gray-500 uppercase">City, State</th>
+												<th scope="col" class="mx-4 md:px-6 md:py-3 text-start text-xs font-medium text-gray-500 uppercase">Action</th>
 											</tr>
-											</thead>
-											<tbody class="divide-y divide-gray-200 dark:divide-gray-700">
+										</thead>
+										<tbody class="divide-y divide-gray-200 dark:divide-gray-700">
 											<c:forEach items="${ hospitalList }" var="hospital" varStatus="status">
-												<tr class="hover:bg-gray-100 dark:hover:bg-gray-700">
-													<td class="md:px-6 md:py-4 whitespace-nowrap text-left text-sm text-gray-800 dark:text-gray-200"><c:out value="${ status.count }"></c:out></td>
-													<td class="md:px-6 md:py-4 whitespace-nowrap text-left text-sm text-gray-800 dark:text-gray-200"><c:out value="${ hospital.hospitalName }"></c:out></td>
-													<td class="md:px-6 md:py-4 whitespace-nowrap text-left text-sm text-gray-800 dark:text-gray-200"><c:out value="${ hospital.city }, ${ hospital.state }"></c:out></td>
-													<td class="md:px-6 md:py-4 whitespace-nowrap text-left text-sm font-medium">
-														<a type="button" class="text-center inline py-2 px-4 font-semibold rounded dark:dark:bg-violet-400 dark:dark:text-gray-900 duration-300 hover:bg-violet-300" href="/hospitals/view/${hospital.id}" >
+												<tr class="hover:bg-gray-100 dark:hover:bg-gray-700 py-4">
+													<td class="mx-4 md:mx-0 md:px-6 md:py-4 whitespace-nowrap text-left text-sm text-gray-800 dark:text-gray-200"><c:out value="${ status.count }"></c:out></td>
+													<td class="mx-4 md:mx-0 md:px-6 md:py-4 whitespace-nowrap text-left text-sm text-gray-800 dark:text-gray-200"><c:out value="${ hospital.hospitalName }"></c:out></td>
+													<td class="mx-4 md:mx-0 md:px-6 md:py-4 whitespace-nowrap text-left text-sm text-gray-800 dark:text-gray-200"><c:out value="${ hospital.city }, ${ hospital.state }"></c:out></td>
+													<td class="mx-4 md:mx-0 md:px-6 md:py-4 whitespace-nowrap text-left text-sm font-medium">
+														<a type="button" class="text-center inline mx-2 md:mx-0 my-2 md:my-0 py-2 px-4 font-semibold rounded dark:dark:bg-violet-400 dark:dark:text-gray-900 duration-300 hover:bg-violet-300" href="/hospitals/view/${hospital.id}" >
 															View Hospital's Details
 														</a>
 													</td>
 												</tr>
 											</c:forEach>
-											</tbody>
+										</tbody>
 									</table>
 								</div>
 							</div>

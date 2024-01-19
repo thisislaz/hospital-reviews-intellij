@@ -243,8 +243,11 @@ public class DiscussionController {
                     break;
             }
         }
+        Map<Long, String> discussionDateMap = discussionService.formatDiscussionCreatedAtDates(discussions) ;
 
         model.addAttribute("searchedDiscussionsList", discussions);
+        model.addAttribute("discussionDateMap", discussionDateMap);
+
 
         return "views/searchDiscussions" ;
     }
