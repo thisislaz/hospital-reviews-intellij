@@ -221,8 +221,16 @@
 							<div id=reviewed-hospitals-div class="reviews-col">
 								<c:forEach var="eachHospitalName" items="${ noDuplicates }">
 									<div>
-										<ul class="custom-list">
-											<li><c:out value="${ eachHospitalName.hospitalName}  |  ${ eachHospitalName.city }, ${ eachHospitalName.state }"></c:out></li>
+										<ul class="list-inside transition-colors duration-300 transform hover:text-blue-500 focus:underline focus:ring focus:ring-blue-300 focus:ring-opacity-80">
+
+											<li>
+												<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-4 h-4 inline-flex">
+													<path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+												</svg>
+												<a href="/hospitals/view/<c:out value="${eachHospitalName.id}"></c:out> ">
+													<c:out value="${ eachHospitalName.hospitalName}  |  ${ eachHospitalName.city }, ${ eachHospitalName.state }"></c:out>
+												</a>
+											</li>
 										</ul>
 									</div>
 								</c:forEach>
@@ -239,8 +247,8 @@
 							</a>
 						</c:otherwise>
 					</c:choose>
-					<a rel="noopener noreferrer" href="/hospitals/allHospitals" class="inline-flex items-center py-2 space-x-2 text-sm dark:text-violet-400">
-						<span>Search all hospitals</span>
+					<a rel="noopener noreferrer" href="/hospitals/allHospitals" class="inline-flex items-center py-2 space-x-2 text-sm dark:text-violet-400 transition-colors hover:dark:text-blue-500 duration-300 transform focus:underline focus:ring focus:ring-blue-300 focus:ring-opacity-80">
+						<span class="">Search all hospitals</span>
 						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-4 h-4">
 							<path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd"></path>
 						</svg>
@@ -263,7 +271,7 @@
 							</ul>
 						</c:forEach>
 					</div>
-					<a rel="noopener noreferrer" href="/hospitals/allHospitals" class="inline-flex items-center py-2 space-x-2 text-sm dark:text-violet-400">
+					<a rel="noopener noreferrer" href="/hospitals/allHospitals" class="inline-flex items-center py-2 space-x-2 text-sm dark:text-violet-400 transition-colors hover:dark:text-blue-500 duration-300 transform focus:underline focus:ring focus:ring-blue-300 focus:ring-opacity-80">
 						<span>Search all hospitals</span>
 						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-4 h-4">
 							<path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd"></path>
@@ -277,7 +285,7 @@
 									[&::-webkit-scrollbar-track]:bg-gray-100
 									[&::-webkit-scrollbar-thumb]:rounded-full
 									[&::-webkit-scrollbar-thumb]:bg-gray-300
-									dark:[&::-webkit-scrollbar-track]:bg-slate-700
+									dark:[&::-webkit-scrollbar-track]:bg-gray-800
 									dark:[&::-webkit-scrollbar-thumb]:bg-slate-500">
 						<c:choose>
 							<c:when test="${ not empty userReviews }">
@@ -322,7 +330,7 @@
 								</a>
 							</c:otherwise>
 						</c:choose>
-						<a rel="noopener noreferrer" href="/review/allReviews" class="mx-2 md:mx-0 inline-flex items-center py-2 space-x-2 text-sm dark:text-violet-400">
+						<a rel="noopener noreferrer" href="/review/allReviews" class="mx-2 md:mx-0 inline-flex items-center py-2 space-x-2 text-sm dark:text-violet-400 transition-colors hover:dark:text-blue-500 duration-300 transform focus:underline focus:ring focus:ring-blue-300 focus:ring-opacity-80">
 							<span>Search all reviews</span>
 							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-4 h-4">
 								<path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd"></path>
@@ -332,6 +340,97 @@
 				</div>
 			</div>
 		</div>
+<%--		<section class="py-6 dark:bg-gray-800 dark:text-gray-50">--%>
+<%--			<div class="container grid grid-cols-2 gap-4 p-4 mx-auto md:grid-cols-4">--%>
+<%--				<img src="https://source.unsplash.com/random/301x301/" alt="" class="w-full h-full col-span-2 row-span-2 rounded shadow-sm min-h-96 md:col-start-3 md:row-start-1 dark:bg-gray-500 aspect-square">--%>
+<%--				<div class="w-full h-full rounded shadow-sm min-h-48 dark:bg-gray-500 aspect-square" src="https://source.unsplash.com/random/200x200/?0">--%>
+<%--					<h3>test</h3>--%>
+<%--				</div>--%>
+<%--				<img alt="" class="w-full h-full rounded shadow-sm min-h-48 dark:bg-gray-500 aspect-square" src="https://source.unsplash.com/random/200x200/?1">--%>
+<%--				<img alt="" class="w-full h-full rounded shadow-sm min-h-48 dark:bg-gray-500 aspect-square" src="https://source.unsplash.com/random/200x200/?2">--%>
+<%--				<img alt="" class="w-full h-full rounded shadow-sm min-h-48 dark:bg-gray-500 aspect-square" src="https://source.unsplash.com/random/200x200/?7">--%>
+<%--				<img src="https://source.unsplash.com/random/302x302/" alt="" class="w-full h-full col-span-2 row-span-2 rounded shadow-sm min-h-96 md:col-start-1 md:row-start-3 dark:bg-gray-500 aspect-square">--%>
+<%--			</div>--%>
+<%--		</section>--%>
+		<section class="dark:bg-gray-800 dark:text-gray-100">
+			<div class="container px-6 py-12 mx-auto">
+				<h2 class="py-4 text-5xl font-bold dark:dark:text-violet-400 text-center mb-2">Most recent reviews posted by others</h2>
+				<div class="grid items-center gap-4 xl:grid-cols-5">
+					<div class="xl:col-span-3">
+						<div class="grid gap-4 md:grid-cols-2">
+							<div class="grid content-center gap-4">
+								<div class="p-6 rounded shadow-md dark:bg-gray-900">
+									<p>An audire commodo habemus cum. Ne sed corrumpit repudiandae. Tota aliquip democritum pro in, nec democritum intellegam ne. Propriae volutpat dissentiet ea sit, nec at lorem inani tritani, an ius populo perfecto vituperatoribus. Eu cum case modus salutandi, ut eum vocent sensibus reprehendunt.</p>
+									<div class="flex items-center mt-4 space-x-4">
+										<img src="https://source.unsplash.com/50x50/?portrait?1" alt="" class="w-12 h-12 bg-center bg-cover rounded-full dark:bg-gray-500">
+										<div>
+											<p class="text-lg font-semibold">Leroy Jenkins</p>
+											<p class="text-sm dark:text-gray-400">CTO of Company Co.</p>
+										</div>
+									</div>
+								</div>
+								<div class="p-6 rounded shadow-md dark:bg-gray-900">
+									<p>Sit wisi sapientem ut, pri civibus temporibus voluptatibus et, ius cu hinc fabulas. Nam meliore minimum et, regione convenire cum id. Ex pro eros mucius consectetuer, pro magna nulla nonumy ne, eam putent iudicabit consulatu cu.</p>
+									<div class="flex items-center mt-4 space-x-4">
+										<img src="https://source.unsplash.com/50x50/?portrait?2" alt="" class="w-12 h-12 bg-center bg-cover rounded-full dark:bg-gray-500">
+										<div>
+											<p class="text-lg font-semibold">Leroy Jenkins</p>
+											<p class="text-sm dark:text-gray-400">CTO of Company Co.</p>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="grid content-center gap-4">
+								<div class="p-6 rounded shadow-md dark:bg-gray-900">
+									<p>Putant omnium elaboraret per ut. Id dicta tritani nominavi quo, mea id justo errem elaboraret. Agam mollis scripserit ea his, ut nec postea verear persecuti. Ea noster senserit eam, ferri omittantur ei nec. Id mel solet libris efficiantur, commune explicari et eos. Case movet ad est, sed tota vocent appetere ea.</p>
+									<div class="flex items-center mt-4 space-x-4">
+										<img src="https://source.unsplash.com/50x50/?portrait?3" alt="" class="w-12 h-12 bg-center bg-cover rounded-full dark:bg-gray-500">
+										<div>
+											<p class="text-lg font-semibold">Leroy Jenkins</p>
+											<p class="text-sm dark:text-gray-400">CTO of Company Co.</p>
+										</div>
+									</div>
+								</div>
+								<div class="p-6 rounded shadow-md dark:bg-gray-900">
+									<p>Te omnes virtute volutpat sed. Ei esse eros interesset vel, ei populo denique ocurreret vix, eu cum pertinax mandamus vituperatoribus. Solum nihil luptatum per ex, ei amet viderer eos. Ea illum labitur mnesarchum pro. Eius meis salutandi ei nam, alterum expetenda et nec. Expetenda intellegat at eum, per mazim sanctus honestatis ad. Ei noluisse invenire vix. Te ancillae patrioque qui, probo bonorum vivendum ex vim.</p>
+									<div class="flex items-center mt-4 space-x-4">
+										<img src="https://source.unsplash.com/50x50/?portrait?4" alt="" class="w-12 h-12 bg-center bg-cover rounded-full dark:bg-gray-500">
+										<div>
+											<p class="text-lg font-semibold">Leroy Jenkins</p>
+											<p class="text-sm dark:text-gray-400">CTO of Company Co.</p>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="xl:col-span-2">
+						<div class="grid gap-4 md:grid-cols-1 ">
+							<!-- this one -->
+							<div class="container grid grid-cols-1 mx-auto">
+								<div class="w-full justify-center align-middle bg-no-repeat bg-cover dark:bg-gray-700 lg:col-span-6 lg:h-auto" style="background-image: url('https://source.unsplash.com/random/640x480/?nature'); background-position: center center; background-blend-mode: multiply; background-size: cover;">
+									<div class="flex flex-col items-center p-8 py-12 text-center">
+										<h2 class="text-4xl font-bold mb-4">Did you know?</h2>
+										<p class="dark:text-gray-400 text-lg">
+											These are the most recent reviews added to the site excluding your own reviews. Why did we do this? In case you needed inspiration
+											to determine where you might want to travel to next, maybe someone's review could help you in that decision.
+										</p>
+										<a rel="noopener noreferrer" href="#" class="mt-4 inline-flex items-center space-x-2 text-lg dark:text-violet-400 transition-colors hover:dark:text-blue-500 duration-300 transform focus:underline focus:ring focus:ring-violet-400 focus:ring-opacity-80">
+											<span>To your reviews</span>
+											<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-4 h-4">
+												<path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+											</svg>
+										</a>
+									</div>
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- last line is the one above -->
 	</section>
 </main>
 <!-- footer -->
