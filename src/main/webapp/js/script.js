@@ -1,3 +1,23 @@
+// script.js
+document.addEventListener('DOMContentLoaded', () => {
+    window.setIcon = function(iconName) {
+        document.getElementById('profilePicture').value = iconName;
+        if(iconName=="") {
+            iconName = "Default (Initials)";
+        }
+        // Update the display text with the chosen icon
+        document.getElementById('chosenIconDisplay').innerText = iconName;
+
+
+        // Close the modal
+        let modalComponent = document.getElementById('modalContainer');
+        if (modalComponent) {
+            let modalData = Alpine.$data(modalComponent);
+            modalData.isOpen = false;
+        }
+    };
+});
+
 
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -368,51 +388,51 @@ icons.forEach(icon => {
     });
 });
 
-function togglePasswordVisibility() {
-    var passwordInput = document.getElementsByClassName("passwordInput")[0];
-    var togglePasswordIcon = document.getElementsByClassName("togglePassword")[0];
-
-    if (passwordInput.type === "password") {
-        passwordInput.type = "text";
-        togglePasswordIcon.classList.remove("fa-eye");
-        togglePasswordIcon.classList.add("fa-eye-slash");
-    } else {
-        passwordInput.type = "password";
-        togglePasswordIcon.classList.remove("fa-eye-slash");
-        togglePasswordIcon.classList.add("fa-eye");
-    }
-}
-
-function toggleConfirmPasswordVisibility() {
-    var confirmPasswordInput = document.getElementsByClassName("confirmPasswordInput")[0];
-    var toggleConfirmPasswordIcon = document.getElementsByClassName("toggleConfirmPassword")[0];
-
-    if (confirmPasswordInput.type === "password") {
-        confirmPasswordInput.type = "text";
-        toggleConfirmPasswordIcon.classList.remove("fa-eye");
-        toggleConfirmPasswordIcon.classList.add("fa-eye-slash");
-    } else {
-        confirmPasswordInput.type = "password";
-        toggleConfirmPasswordIcon.classList.remove("fa-eye-slash");
-        toggleConfirmPasswordIcon.classList.add("fa-eye");
-    }
-}
-
-function toggleLoginPasswordVisibility() {
-    var passwordInput = document.getElementById("loginPasswordInput");
-    var togglePasswordIcon = document.getElementById("toggleLoginPassword");
-
-    if(passwordInput.type == "password") {
-        passwordInput.type = "text";
-        togglePasswordIcon.classList.remove("fa-eye");
-        togglePasswordIcon.classList.add("fa-eye-slash");
-    } else {
-        passwordInput.type = "password";
-        togglePasswordIcon.classList.remove("fa-eye-slash");
-        togglePasswordIcon.classList.add("fa-eye");
-    }
-}
-
+// function togglePasswordVisibility() {
+//     var passwordInput = document.getElementsByClassName("passwordInput")[0];
+//     var togglePasswordIcon = document.getElementsByClassName("togglePassword")[0];
+//
+//     if (passwordInput.type === "password") {
+//         passwordInput.type = "text";
+//         togglePasswordIcon.classList.remove("fa-eye");
+//         togglePasswordIcon.classList.add("fa-eye-slash");
+//     } else {
+//         passwordInput.type = "password";
+//         togglePasswordIcon.classList.remove("fa-eye-slash");
+//         togglePasswordIcon.classList.add("fa-eye");
+//     }
+// }
+//
+// function toggleConfirmPasswordVisibility() {
+//     var confirmPasswordInput = document.getElementsByClassName("confirmPasswordInput")[0];
+//     var toggleConfirmPasswordIcon = document.getElementsByClassName("toggleConfirmPassword")[0];
+//
+//     if (confirmPasswordInput.type === "password") {
+//         confirmPasswordInput.type = "text";
+//         toggleConfirmPasswordIcon.classList.remove("fa-eye");
+//         toggleConfirmPasswordIcon.classList.add("fa-eye-slash");
+//     } else {
+//         confirmPasswordInput.type = "password";
+//         toggleConfirmPasswordIcon.classList.remove("fa-eye-slash");
+//         toggleConfirmPasswordIcon.classList.add("fa-eye");
+//     }
+// }
+//
+// function toggleLoginPasswordVisibility() {
+//     var passwordInput = document.getElementById("loginPasswordInput");
+//     var togglePasswordIcon = document.getElementById("toggleLoginPassword");
+//
+//     if(passwordInput.type == "password") {
+//         passwordInput.type = "text";
+//         togglePasswordIcon.classList.remove("fa-eye");
+//         togglePasswordIcon.classList.add("fa-eye-slash");
+//     } else {
+//         passwordInput.type = "password";
+//         togglePasswordIcon.classList.remove("fa-eye-slash");
+//         togglePasswordIcon.classList.add("fa-eye");
+//     }
+// }
+//
 
 
 

@@ -91,3 +91,86 @@
 								</div>
 
 							</fieldset>
+
+<!-- this is the editProfile form -->
+<section class="mid-container">
+		<h1>Edit Profile</h1>
+		<form:form action="/user/edit/${ userToEdit.id }" method="post" modelAttribute="userToEdit">
+			<form:hidden path="id"/>
+			<form:hidden path="profilePicture" id="profilePicture"/>
+			<input type="hidden" name="_method" value="put"  />
+			<div class="login-row">
+				<div class="col-25">
+					<form:label path="firstName"> First Name:</form:label>
+				</div>
+				<div class="col-75">
+					<form:input type="text" path="firstName" class="form-control" />
+					<form:errors path="firstName" class="login-errors" />
+				</div>
+			</div>
+			<div class="login-row">
+				<div class="col-25">
+					<form:label path="lastName"> Last Name:</form:label>
+				</div>
+				<div class="col-75">
+					<form:input type="text" path="lastName" class="form-control" />
+					<form:errors path="lastName" class="login-errors" />
+				</div>
+			</div>
+			<div class="login-row">
+				<div class="col-25">
+					<form:label path="username"> Username:</form:label>
+				</div>
+				<div class="col-75">
+					<form:input type="text" path="username" class="form-control" />
+					<form:errors path="username" class="login-errors" />
+				</div>
+			</div>
+			<div class="login-row">
+				<div class="col-25">
+					<form:label path="email"> Email: </form:label>
+				</div>
+				<div class="col-75">
+					<form:input type="text" path="email" class="form-control" />
+					<form:errors path="email" class="login-errors" />
+				</div>
+			</div>
+			<div class="login-row">
+				<div class="col-25">
+					<form:label path="profilePicture"> Profile Picture: </form:label>
+				</div>
+				<div class="col-75">
+					<form:input id="chooseBtn" type="button" path="profilePicture" class="form-control" value="Choose ..."/>
+					<form:errors path="profilePicture" class="login-errors" />
+				</div>
+			</div>
+			<div id="iconModal" class="modal">
+				<div class="modal-content" >
+					<span class="close">&times;</span>
+					<div class="icon-grid" >
+						<div class="icon" data-icon="fa-heart-pulse"> <i class="fa-solid fa-heart-pulse"></i></div>
+						<div class="icon" data-icon="fa-staff-snake"> <i class="fa-solid fa-staff-snake"></i></div>
+						<div class="icon" data-icon="fa-kit-medical"> <i class="fa-solid fa-kit-medical"></i> </div>
+						<div class="icon" data-icon="fa-biohazard"> <i class="fa-solid fa-biohazard"></i> </div>
+						<div class="icon" data-icon="fa-circle-radiation"> <i class="fa-solid fa-circle-radiation"></i> </div>
+						<div class="icon" data-icon="fa-head-side-cough"> <i class="fa-solid fa-head-side-cough"></i> </div>
+						<div class="icon" data-icon="fa-skull"> <i class="fa-solid fa-skull"></i> </div>
+						<div class="icon" data-icon="fa-poop"> <i class="fa-solid fa-poop"></i> </div>
+						<div class="icon" data-icon="fa-syringe"> <i class="fa-solid fa-syringe"></i> </div>
+						<div class="icon" data-icon="fa-lungs"> <i class="fa-solid fa-lungs"></i> </div>
+						<div class="icon" data-icon="fa-thermometer"> <i class="fa-solid fa-thermometer"></i> </div>
+						<div class="icon" data-icon="fa-stethoscope"> <i class="fa-solid fa-stethoscope"></i> </div>
+						<div class="icon" data-icon="fa-user-doctor"> <i class="fa-solid fa-user-doctor"></i> </div>
+						<div class="icon" data-icon="fa-user-nurse"> <i class="fa-solid fa-user-nurse"></i> </div>
+						<div class="icon" data-icon="fa-virus-covid"> <i class="fa-solid fa-virus-covid"></i> </div>
+						<div class="icon" data-icon="fa-truck-medical"> <i class="fa-solid fa-truck-medical"></i> </div>
+						<div class="icon" data-icon=""> Default (initials) </div>
+					</div>
+				</div>
+			</div>
+			<div class="login-row">
+				<input type="submit" value="Update Profile" />
+				<a href="/dashboard" class="cancel-btn">Cancel</a>
+			</div>
+		</form:form>
+	</section>
