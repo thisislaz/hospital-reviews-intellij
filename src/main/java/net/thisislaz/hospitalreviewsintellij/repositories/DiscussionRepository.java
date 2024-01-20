@@ -14,7 +14,7 @@ public interface DiscussionRepository extends CrudRepository<Discussion, Long> {
 
     Optional<Discussion> findById(Long discussionId);
 
-    List<Discussion> findTop5ByOrderByCreatedAtDesc();
+    List<Discussion> findTop6ByOrderByCreatedAtDesc();
 
     List<Discussion> findByTitle(String title);
 

@@ -67,10 +67,11 @@ public class MainController {
 
         //when rendering the page initially
         model.addAttribute("userReviews", reviewService.getReviewsByUserIdWithLimit(userId, 0, 4));
+        Map<Long, String> discussionDateMap = discussionService.formatDiscussionCreatedAtDates(discussionService.getMostRecentDiscussions());
 
-        //this is adding the 5 most recent threads
+        //this is adding the 6 most recent threads
         model.addAttribute("recentDiscussions", discussionService.getMostRecentDiscussions());
-
+        model.addAttribute("discussionDateMap", discussionDateMap);
         return "views/dashboard";
     }
 

@@ -65,7 +65,7 @@ public class DiscussionService {
     }
 
     public List<Discussion> getMostRecentDiscussions() {
-        return discussionRepository.findTop5ByOrderByCreatedAtDesc();
+        return discussionRepository.findTop6ByOrderByCreatedAtDesc();
     }
 
     public List<Discussion> findByDiscussionTitle(String discussionTitle) {
