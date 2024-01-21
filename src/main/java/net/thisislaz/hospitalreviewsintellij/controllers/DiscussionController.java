@@ -68,13 +68,14 @@ public class DiscussionController {
     @GetMapping("/allDiscussions/{discussionId}")
     public String viewDiscussion(@PathVariable Long discussionId, @ModelAttribute("commented") Comment comment , Model model) {
         Optional<Discussion> discussion = discussionService.getDiscussionById(discussionId);
-
+        List<Discussion> discussions = discussionService.getAllDiscussions();
 
         if(discussion.isPresent()) {
             List<Comment> comments = discussionService.getCommentsByDiscussion(discussion.get());
             List<String> fortmmatedDates = StringUtils.formattedCommentDates(comments);
             List<String> formattedCommentTimes = StringUtils.fortmattedCommentTimes(comments);
             String formattedDiscussionDate = StringUtils.fortmattedDiscussionCreateAtDate( discussion.get());
+            Map<Long, String> discussionDateMap = discussionService.formatDiscussionCreatedAtDates(discussions) ;
 
             for (int i =0; i<comments.size();i++) {
                 comments.get(i).setFortmattedDate(fortmmatedDates.get(i));
@@ -83,6 +84,7 @@ public class DiscussionController {
             model.addAttribute("discussion", discussion.get());
             model.addAttribute("comments", comments);
             model.addAttribute("discussionObjectWithFormattedDate",formattedDiscussionDate);
+            model.addAttribute("discussionDateMap", discussionDateMap);
 
             return "views/discussionDetails";
         } else {
@@ -91,7 +93,11 @@ public class DiscussionController {
     }
 
     @GetMapping("/newComment")
-    public String newCommentPage(@ModelAttribute("comment") Comment comment, @RequestParam Long discussionId, Model model) {
+    public String newCommentPage(@ModelAttribute("comment") Comment comment, @RequestParam Long discussionId, Model model, HttpSession session) {
+        Long loggedinUser = (Long) session.getAttribute("userId");
+        if(loggedinUser == null) {
+            return "redirect:/discussion/allDiscussions";
+        }
 
         Optional<Discussion> optionalDiscussion = discussionService.getDiscussionById(discussionId);
         Discussion discussion = optionalDiscussion.get();
