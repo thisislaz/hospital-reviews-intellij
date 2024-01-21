@@ -198,6 +198,42 @@
 	</nav>
 </header>
 		<main>
+			<div x-data="{ showDeleteModal: false, deleteCommentId: null }"
+				 @delete-comment.window="showDeleteModal = true; deleteCommentId = $event.detail.commentId;"
+				 class="fixed inset-0 z-10 overflow-y-auto"
+				 aria-labelledby="modal-title"
+				 role="dialog"
+				 aria-modal="true"
+				 x-show="showDeleteModal">
+
+				<!-- Modal backdrop -->
+				<div class="flex items-end justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:block sm:p-0">
+					<div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
+
+					<!-- Modal panel -->
+					<div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
+						<div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+							<div class="sm:flex sm:items-start">
+								<div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
+									<h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-title">
+										Are you sure you want to delete this comment?
+									</h3>
+								</div>
+							</div>
+						</div>
+						<div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+							<button type="button" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm"
+									@click="showDeleteModal = false; $dispatch('confirm-delete', { commentId: deleteCommentId })">
+								Delete
+							</button>
+							<button type="button" class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:w-auto sm:text-sm"
+									@click="showDeleteModal = false">
+								Cancel
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>
 			<section class="bg-white dark:bg-gray-900 pt-12">
 				<article class="max-w-2xl px-6 pt-24 py-8 mx-auto space-y-12 dark:bg-gray-800 dark:text-gray-50 rounded-md">
 					<div class="w-full mx-auto space-y-4 text-center">
@@ -219,6 +255,7 @@
 							<c:out value="${discussion.description}"></c:out>
 						</p>
 					</div>
+
 					<div class="pt-12 border-t dark:border-gray-700 ">
 						<c:choose>
 							<c:when test="${empty comments}">
@@ -255,7 +292,7 @@
 												</c:choose>
 												<div class="block md:flex items-center center-container">
 													<a type="button" class="block md:mx-2 lg:mx-2 my-2 py-2 md:py-2 md:px-2 px-4 font-semibold rounded dark:dark:bg-violet-400 dark:dark:text-gray-900 duration-300 hover:bg-violet-300" href="/discussion/${ discussion.id }/comment/edit/${ comment.id }" >Edit comment</a>
-													<a type="button" class="block py-2 px-4 md:py-2 md:px-2 font-semibold rounded dark:dark:bg-violet-400 dark:dark:text-gray-900 duration-300 hover:bg-violet-300" href="javascript:void(0);" onclick="confirmCommentDelete(${ discussion.id },${comment.id})">Delete comment</a>
+													<a type="button" class="block py-2 px-4 md:py-2 md:px-2 font-semibold rounded dark:dark:bg-violet-400 dark:dark:text-gray-900 duration-300 hover:bg-violet-300" href="javascript:void(0);" @click="console.log('Delete clicked, dispatching event', ${comment.id}); $dispatch('delete-comment', { commentId: ${comment.id} })">Delete comment</a>
 												</div>
 											</c:when>
 											<c:otherwise>

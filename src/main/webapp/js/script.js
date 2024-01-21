@@ -1,3 +1,30 @@
+document.addEventListener('DOMContentLoaded', () => {
+    window.addEventListener('confirm-delete', function (e) {
+        var commentId = e.detail.commentId; // Corrected to access commentId directly
+        console.log('Deleting comment with ID:', commentId); // Optional: for debugging
+
+        // Perform your delete action here, such as making an AJAX call
+        deleteComment(commentId);
+    });
+});
+
+function deleteComment(commentId) {
+    // Example AJAX call to delete the comment
+    fetch('/path/to/delete/comment/' + commentId, {
+        method: 'DELETE',
+        // Additional options like headers, body, etc. depending on your backend requirements
+    })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Comment deleted:', data);
+            // Additional logic on successful deletion (e.g., updating the UI)
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+            // Error handling logic
+        });
+}
+
 // script.js
 document.addEventListener('DOMContentLoaded', () => {
     window.setIcon = function(iconName) {
