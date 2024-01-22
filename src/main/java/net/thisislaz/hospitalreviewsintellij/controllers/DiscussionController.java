@@ -98,29 +98,37 @@ public class DiscussionController {
         if(loggedinUser == null) {
             return "redirect:/discussion/allDiscussions";
         }
-
+        List<Discussion> discussions = discussionService.getAllDiscussions();
+        Map<Long, String> discussionDateMap = discussionService.formatDiscussionCreatedAtDates(discussions) ;
         Optional<Discussion> optionalDiscussion = discussionService.getDiscussionById(discussionId);
         Discussion discussion = optionalDiscussion.get();
 
         model.addAttribute("discussion", discussion);
+        model.addAttribute("discussionDateMap", discussionDateMap);
 
         return "views/createComment";
     }
 
     @PostMapping("/comment")
-    public String createComment(@Valid @ModelAttribute("comment") Comment comment, BindingResult result, @RequestParam("discussionId") Long discussionId) {
+    public String createComment(@Valid @ModelAttribute("comment") Comment comment, BindingResult result, @RequestParam("discussionId") Long discussionId, Model model) {
 
         if(result.hasErrors()) {
-            return "redirect:/discussionDetails";
+            List<Discussion> discussions = discussionService.getAllDiscussions();
+            Map<Long, String> discussionDateMap = discussionService.formatDiscussionCreatedAtDates(discussions) ;
+            Optional<Discussion> optionalDiscussion = discussionService.getDiscussionById(discussionId);
+            Discussion discussion = optionalDiscussion.get();
+            // Handle the situation when there are errors
+            model.addAttribute("discussion", discussion);
+            model.addAttribute("discussionDateMap", discussionDateMap);
+            model.addAttribute("discussionId", discussionId);
+            return "views/createComment"; // Replace with your form view name
         }
 
         Optional<Discussion> optionalDiscussion = discussionService.getDiscussionById(discussionId);
-
         if(optionalDiscussion.isPresent()) {
             Discussion d = optionalDiscussion.get();
             comment.setDiscussion(d);
         }
-
         discussionService.createComment(comment);
 
         return "redirect:/discussion/allDiscussions/" + discussionId;
@@ -166,6 +174,27 @@ public class DiscussionController {
                                      @Valid @ModelAttribute("comment")Comment comment,
                                      BindingResult result, HttpSession session, Model model) {
         if (result.hasErrors()) {
+            List<Discussion> discussions = discussionService.getAllDiscussions();
+            Map<Long, String> discussionDateMap = discussionService.formatDiscussionCreatedAtDates(discussions) ;
+            Optional<Discussion> optionalDiscussion = discussionService.getDiscussionById(discussionId);
+            Discussion discussion = optionalDiscussion.get();
+            List<Comment> comments = discussionService.getCommentsByOptionalDiscussion(discussionService.getDiscussionById(discussionId));
+            Long loggedinUser = (Long) session.getAttribute("userId");
+
+            Comment commentToEdit = null;
+
+            for (Comment c : comments) {
+                if(c.getId().equals(commentId) && c.getAuthor().getId().equals(loggedinUser)) {
+                    commentToEdit = c;
+                    break;
+                }
+            }
+            // Handle the situation when there are errors
+            model.addAttribute("discussion", discussion);
+            model.addAttribute("discussionDateMap", discussionDateMap);
+            model.addAttribute("discussionId", discussionId);
+            model.addAttribute("comment", commentToEdit);
+
             return "views/editComment";
         }
 
