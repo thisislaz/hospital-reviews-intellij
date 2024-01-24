@@ -6,7 +6,7 @@
 <%@ page isErrorPage="true" %>
   
 <!DOCTYPE html>
-<html class="dark">
+<html >
 <head>
 	<meta charset="ISO-8859-1" name="viewport" content="width=device-width initial-scale=1.0">
 	<title>NurseBulletin</title>
@@ -204,18 +204,18 @@
 				You can search for hospital reviews by review criteria. First, choose a search option, then type in its value.
 				A table of search results will appear at the bottom of the page, if any reviews match your search criteria.
 			</p>
-			<section class="flex flex-col mt-8 space-y-3 sm:space-y-0 sm:flex-row sm:justify-center sm:-mx-2 center-form specific-edit">
-					<form action="/review/allReviews" method="get" >
-						<select name="searchType" class="md:inline md:w-80 lg:inline lg:w-80 block w-full px-2 mb-3 py-2 text-gray-700 bg-white border rounded-md sm:mx-2 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40" >
+			<section  class="flex flex-col mt-8 space-y-3 sm:space-y-0 sm:flex-row sm:justify-center sm:-mx-2 center-form">
+					<form:form action="/review/allReviews" method="get" class="items-center flex flex-col mt-8 space-y-3 sm:space-y-0 sm:flex-row sm:justify-center sm:-mx-2 center-form search-reviews-form">
+						<select name="searchType" class="md:inline md:w-80 lg:inline lg:w-80 block w-full px-2 py-2 text-gray-700 bg-white border rounded-md sm:mx-2 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40" >
 							<option value="" selected disabled  >Choose from...</option>
 							<option value="state">Search by State Abbreviation</option>
 							<option value="hospitalName">Search by Hospital Name</option>
 							<option value="city">Search by City</option>
 							<option value="recent" >Most Recent</option>
 						</select>
-						<input id="search-review-input" type="text" name="searchValue" class="md:inline md:w-80 lg:inline lg:w-80 block w-full px-2 py-2 text-gray-700 bg-white border rounded-md sm:mx-2 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40" placeholder="Enter search value...">
-						<input id="search-review-submit" class=" block w-full cursor-pointer my-6 px-4 py-2 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-700 rounded-md sm:mx-2 hover:bg-blue-600 focus:outline-none focus:bg-blue-600" type="submit" value="Search" >
-					</form>
+						<input id="search-review-input" type="text" name="searchValue" class="md:inline md:w-80 lg:inline lg:w-80 block w-full px-2 mb-3 py-2 text-gray-700 bg-white border rounded-md sm:mx-2 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40" placeholder="Enter search value...">
+						<input id="search-review-submit" class="block md:inline md:mx-2 lg:mx-2 my-2 py-2 px-4 font-semibold rounded dark:dark:bg-violet-400 dark:dark:text-gray-900 duration-300 hover:bg-violet-300 hover:cursor-pointer" type="submit" value="Search" >
+					</form:form>
 			</section>
 			<!-- Results Section -->
 			<span class="relative flex justify-center ">

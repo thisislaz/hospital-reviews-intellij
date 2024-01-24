@@ -8,7 +8,7 @@
 <%@ page isErrorPage="true" %>
   
 <!DOCTYPE html>
-<html class="dark">
+<html >
 <!-- header -->
 
 <head>
@@ -259,45 +259,55 @@
 					</div>
 				</div>
 				<div class="relative items-center w-full mx-auto pb-12">
-					<section class="h-max p-6 dark:dark:bg-gray-800 dark:dark:text-gray-100">
-						<div class="relative h-96 rounded-lg md:h-96 flex flex-col gap-6 overflow-scroll overflow-x-auto [&::-webkit-scrollbar]:w-2
-						[&::-webkit-scrollbar-track]:rounded-full
-						[&::-webkit-scrollbar-track]:bg-gray-100
-						[&::-webkit-scrollbar-thumb]:rounded-full
-						[&::-webkit-scrollbar-thumb]:bg-gray-300
-						dark:[&::-webkit-scrollbar-track]:bg-slate-700
-						dark:[&::-webkit-scrollbar-thumb]:bg-slate-500">
-							<c:forEach var="eachReview" items="${ reviews }" varStatus="status">
-								<div class="container flex flex-col w-full max-w-lg p-6 mx-auto divide-y rounded-md dark:divide-gray-700 dark:bg-gray-900 dark:text-gray-100">
-									<div class="flex justify-between p-4">
-										<span class="text-xl font-thin"> <c:out value="${eachReview.hospital.hospitalName}"></c:out> - <c:out value="${eachReview.hospital.city}, ${eachReview.hospital.state}"></c:out> </span>
-									</div>
-									<div class="flex justify-between p-4">
-										<div class="flex space-x-4 items-center">
-											<h4 class="font-bold text-xl font-light text-white">
-												@<span class="text-violet-400"><c:out value="${fn:toLowerCase(eachReview.author.username)}"></c:out></span>
-											</h4>
+					<section class="h-max p-4 dark:dark:bg-gray-800 dark:dark:text-gray-100 flex justify-center">
+						<c:choose>
+							<c:when test="${not empty reviews}">
+								<div class=" md:bg-gray-700 md:w-1/2 relative h-96 rounded-lg md:h-96 flex flex-col gap-6 py-6 overflow-scroll overflow-x-auto [&::-webkit-scrollbar]:w-2
+							[&::-webkit-scrollbar-track]:rounded-full
+							[&::-webkit-scrollbar-track]:bg-gray-100
+							[&::-webkit-scrollbar-thumb]:rounded-full
+							[&::-webkit-scrollbar-thumb]:bg-gray-300
+							dark:[&::-webkit-scrollbar-track]:bg-slate-700
+							dark:[&::-webkit-scrollbar-thumb]:bg-slate-500">
+									<c:forEach var="eachReview" items="${ reviews }" varStatus="status">
+										<div class="container flex flex-col w-full max-w-lg p-6 mx-auto divide-y rounded-md dark:divide-gray-700 dark:bg-gray-900 dark:text-gray-100">
+											<div class="flex justify-between p-4">
+												<span class="text-xl font-thin"> <c:out value="${eachReview.hospital.hospitalName}"></c:out> - <c:out value="${eachReview.hospital.city}, ${eachReview.hospital.state}"></c:out> </span>
+											</div>
+											<div class="flex justify-between p-4">
+												<div class="flex space-x-4 items-center">
+													<h4 class="font-bold text-xl font-light text-white">
+														@<span class="text-violet-400"><c:out value="${fn:toLowerCase(eachReview.author.username)}"></c:out></span>
+													</h4>
+												</div>
+												<div class="flex items-center space-x-2 dark:text-yellow-500 ">
+													<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="w-5 h-5 fill-current">
+														<path d="M494,198.671a40.536,40.536,0,0,0-32.174-27.592L345.917,152.242,292.185,47.828a40.7,40.7,0,0,0-72.37,0L166.083,152.242,50.176,171.079a40.7,40.7,0,0,0-22.364,68.827l82.7,83.368-17.9,116.055a40.672,40.672,0,0,0,58.548,42.538L256,428.977l104.843,52.89a40.69,40.69,0,0,0,58.548-42.538l-17.9-116.055,82.7-83.368A40.538,40.538,0,0,0,494,198.671Zm-32.53,18.7L367.4,312.2l20.364,132.01a8.671,8.671,0,0,1-12.509,9.088L256,393.136,136.744,453.3a8.671,8.671,0,0,1-12.509-9.088L144.6,312.2,50.531,217.37a8.7,8.7,0,0,1,4.778-14.706L187.15,181.238,248.269,62.471a8.694,8.694,0,0,1,15.462,0L324.85,181.238l131.841,21.426A8.7,8.7,0,0,1,461.469,217.37Z"></path>
+													</svg>
+													<span class="text-xl font-bold" > <c:out value="${eachReview.rating}"></c:out> </span>
+												</div>
+											</div>
+											<div class="p-4 space-y-2 text-md dark:text-gray-400">
+												<p ><b class="text-white">Unit:</b> <c:out value="${ eachReview.unitWorkedAt }"></c:out> </p>
+												<p><b class="text-white">Summary:</b> <q> <c:out value="${ eachReview.content }"></c:out></q> </p>
+												<p><b class="text-white">Posted:</b> <c:out value="${ eachReview.formattedDate }"></c:out> </p>
+											</div>
+											<a class="inline px-6 py-2 ml-3 md:w-1/2  lg:w-1/3 font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-600 rounded-lg hover:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80" href="/review/view/<c:out value="${eachReview.id}"></c:out> " >View Review</a>
 										</div>
-										<div class="flex items-center space-x-2 dark:text-yellow-500 ">
-											<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="w-5 h-5 fill-current">
-												<path d="M494,198.671a40.536,40.536,0,0,0-32.174-27.592L345.917,152.242,292.185,47.828a40.7,40.7,0,0,0-72.37,0L166.083,152.242,50.176,171.079a40.7,40.7,0,0,0-22.364,68.827l82.7,83.368-17.9,116.055a40.672,40.672,0,0,0,58.548,42.538L256,428.977l104.843,52.89a40.69,40.69,0,0,0,58.548-42.538l-17.9-116.055,82.7-83.368A40.538,40.538,0,0,0,494,198.671Zm-32.53,18.7L367.4,312.2l20.364,132.01a8.671,8.671,0,0,1-12.509,9.088L256,393.136,136.744,453.3a8.671,8.671,0,0,1-12.509-9.088L144.6,312.2,50.531,217.37a8.7,8.7,0,0,1,4.778-14.706L187.15,181.238,248.269,62.471a8.694,8.694,0,0,1,15.462,0L324.85,181.238l131.841,21.426A8.7,8.7,0,0,1,461.469,217.37Z"></path>
-											</svg>
-											<span class="text-xl font-bold" > <c:out value="${eachReview.managementRating}"></c:out> </span>
-										</div>
-									</div>
-									<div class="p-4 space-y-2 text-sm dark:text-gray-400">
-										<p ><b class="text-white">Unit:</b> <c:out value="${ eachReview.unitWorkedAt }"></c:out> </p>
-										<p><b class="text-white">Summary:</b> <q> <c:out value="${ eachReview.content }"></c:out></q> </p>
-										<p><b class="text-white">Posted:</b> <c:out value="${ eachReview.formattedDate }"></c:out> </p>
-									</div>
-									<a class="inline px-6 py-2 ml-3 md:w-1/2  lg:w-1/3 font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-600 rounded-lg hover:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80" href="/review/view/<c:out value="${eachReview.id}"></c:out> " >View Review</a>
+									</c:forEach>
 								</div>
-							</c:forEach>
-						</div>
+							</c:when>
+							<c:otherwise>
+								<div class="md:flex md:flex-col items-center justify-center">
+									<h5 class="mb-4">Currently, there are no reviews available for this hospital.</h5>
+									<a class="w-full md:w-fit md:inline md:mx-2 lg:mx-2 my-2 py-2 px-4 font-semibold rounded dark:dark:bg-violet-400 dark:dark:text-gray-900 duration-300 hover:bg-violet-300 hover:cursor-pointer" href="/review/new" >Click here to be the first</a>
+
+								</div>
+							</c:otherwise>
+						</c:choose>
 					</section>
 				</div>
 			</div>
-
 			</div>
 		</section>
 	</section>
@@ -356,8 +366,7 @@
 				</div>
 			</div>
 		</footer>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>
-<script src="${pageContext.request.contextPath}../node_modules/flowbite/dist/flowbite.min.js"></script>
+
 <script src="${pageContext.request.contextPath}../node_modules/preline/dist/preline.js"></script>
 <script src="/js/script.js"></script>
 <script src="https://kit.fontawesome.com/eb2c2d28d2.js" crossorigin="anonymous"></script>
