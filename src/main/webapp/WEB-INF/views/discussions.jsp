@@ -203,6 +203,7 @@
 					<div class="max-w-4xl mx-auto text-center">
 						<div class="flex justify-between text-center">
 							<h1 class="flex items-center whitespace-nowrap text-4xl dark:dark:text-violet-400 pb-2 mb-2 px-2">Create New Discussion</h1>
+
 						</div>
 					</div>
 					<hr>
@@ -217,23 +218,26 @@
 									<!-- Assuming you have a list of categories available as `categoriesList` -->
 									<form:options items="${categoriesList}" itemValue="id" itemLabel="name" />
 								</form:select>
+								<form:errors path="category" class="ml-2 text-red-600"/>
 							</div>
 
 							<div >
 								<form:label path="title" class="block mb-2 text-md text-gray-600 dark:text-gray-200" >Title:</form:label>
 								<form:input path="title" placeholder="Title..." type="text" class="mb-2 md:inline md:w-80 lg:inline lg:w-80 block w-full px-2 py-2 text-gray-700 bg-white border rounded-md sm:mx-2 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40" />
-								<form:errors path="title" />
+								<form:errors path="title" class="ml-2 text-red-600" />
 							</div>
 							<div >
 								<form:label path="description" class="block mb-2 text-md text-gray-600 dark:text-gray-200">Description: </form:label>
 								<form:textarea rows="5" placeholder="What is this dicussion about?" path="description" id="reviewContent" class="md:inline md:w-80 lg:inline lg:w-80 block w-full px-2 py-2 text-gray-700 bg-white border rounded-md sm:mx-2 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40" />
 								<span id="charCount" class="mx-2">0</span><span>/ 500 characters</span>
-								<form:errors path="description" />
+								<form:errors path="description"  class="ml-2 text-red-600"/>
 							</div>
 
 							<form:hidden path="author" value="${ userId }" />
-
-							<input type="submit" class="block md:mx-2 lg:mx-2 my-2 py-2 px-4 font-semibold rounded dark:dark:bg-violet-400 dark:dark:text-gray-900 duration-300 hover:cursor-pointer hover:bg-violet-300" value="Start Discussion" />
+							<div class="flex justify-between items-center">
+								<input type="submit" class="block md:mx-2 lg:mx-2 my-2 py-2 px-4 font-semibold rounded dark:dark:bg-violet-400 dark:dark:text-gray-900 duration-300 hover:cursor-pointer hover:bg-violet-300" value="Start Discussion" />
+								<span class="text-gray-400 text-sm">*Make sure to <a href="/user/login" class="text-blue-400 transition-colors duration-300 transform hover:text-blue-500 focus:underline focus:ring focus:ring-blue-300 focus:ring-opacity-80">log in</a> first.</span>
+							</div>
 
 						</form:form>
 					</div>

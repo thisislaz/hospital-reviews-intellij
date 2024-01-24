@@ -56,8 +56,31 @@ public class DiscussionController {
     }
 
     @PostMapping("/allDiscussions")
-    public String createDiscussion(Discussion discussion, HttpSession session) {
-        if(session.getAttribute("userId") == null) {
+    public String createDiscussion(@Valid @ModelAttribute("allDiscussions") Discussion discussion, BindingResult result, HttpSession session, Model model) {
+
+        if (result.hasErrors()) {
+            List<Discussion> discussions = discussionService.getAllDiscussions();
+            List<Category> categories = categoryService.getAllCategories();
+            Map<Long, CommentDetails> latestCommentDetails = discussionService.getLatestCommentDetails(discussions);
+            Map<Long, String> discussionDateMap = discussionService.formatDiscussionCreatedAtDates(discussions) ;
+
+            model.addAttribute("discussions", discussions);
+            model.addAttribute("categoriesList", categories);
+            model.addAttribute("latestCommentDetails", latestCommentDetails );
+            model.addAttribute("discussionDateMap", discussionDateMap);
+            return "views/discussions";
+
+        } else if(session.getAttribute("userId") == null) {
+
+            List<Discussion> discussions = discussionService.getAllDiscussions();
+            List<Category> categories = categoryService.getAllCategories();
+            Map<Long, CommentDetails> latestCommentDetails = discussionService.getLatestCommentDetails(discussions);
+            Map<Long, String> discussionDateMap = discussionService.formatDiscussionCreatedAtDates(discussions) ;
+
+            model.addAttribute("discussions", discussions);
+            model.addAttribute("categoriesList", categories);
+            model.addAttribute("latestCommentDetails", latestCommentDetails );
+            model.addAttribute("discussionDateMap", discussionDateMap);
             return "redirect:/discussion/allDiscussions";
         }
         discussionService.createDiscussion(discussion);
