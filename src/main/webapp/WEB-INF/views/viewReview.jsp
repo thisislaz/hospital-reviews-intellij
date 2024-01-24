@@ -6,7 +6,7 @@
 <%@ page isErrorPage="true" %>
   
 <!DOCTYPE html>
-<html>
+<html class="dark">
 <!-- header -->
 
 <head>
@@ -272,6 +272,8 @@
 <!-- footer -->
 
 <!-- ========== END MAIN CONTENT ========== -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>
+<script src="${pageContext.request.contextPath}../node_modules/flowbite/dist/flowbite.min.js"></script>
 <script src="${pageContext.request.contextPath}../node_modules/preline/dist/preline.js"></script>
 <script src="/js/script.js"></script>
 <script src="https://kit.fontawesome.com/eb2c2d28d2.js" crossorigin="anonymous"></script>

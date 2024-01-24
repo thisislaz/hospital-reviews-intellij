@@ -7,7 +7,7 @@
 <%@ page isErrorPage="true" %>
 
 <!DOCTYPE html>
-<html>
+<html class="dark">
 <!-- header -->
 
 <head>
@@ -213,6 +213,7 @@
 
 				</div>
 			</div>
+
 			<div class="flex flex-col col-span-12 p-6 divide-y lg:col-span-6 lg:p-10 dark:divide-gray-700">
 				<div class="pt-6 pb-4 space-y-2">
 					<h1 class="text-3xl font-bold dark:dark:text-violet-400">Hospitals you have reviewed</h1>
@@ -609,7 +610,7 @@
 								<c:out value="${discussion.description}"></c:out>
 							</dd>
 							<dd class="mt-2 dark:text-gray-400">
-								@<span class="dark:dark:text-violet-400">
+								@<span class="dark:dark:text-violet-400 -ml-1">
 									<c:out value="${discussion.author.username}"></c:out>
 								</span>  |
 								<span class="text-xs text-gray-600 dark:text-gray-300 ">

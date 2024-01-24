@@ -2,16 +2,15 @@
 /** @type {import('tailwindcss').Config} */
 
 module.exports = {
+    darkMode: 'class',
+
   content: [
       "./src/main/webapp/WEB-INF/views/**/*.{jsp,js}",
       "./src/main/webapp/js/**/*.js",
       "./node_modules/preline/dist/*.js",
+      "./node_modules/flowbite/**/*.js"
 
   ],
-
-  daisyui: {
-    themes: [""],
-  },
   theme: {
       screens: {
           'sm': '640px',
@@ -40,5 +39,6 @@ module.exports = {
       require("daisyui"),
       require('@tailwindcss/forms'),
       require('preline/plugin'),
+      require('flowbite/plugin')
   ],
 }

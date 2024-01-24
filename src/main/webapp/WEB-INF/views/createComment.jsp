@@ -6,7 +6,7 @@
 <%@ page isErrorPage="true" %>
   
 <!DOCTYPE html>
-<html>
+<html class="dark">
 <!-- header -->
 
 <head>
