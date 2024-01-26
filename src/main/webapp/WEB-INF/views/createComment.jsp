@@ -219,8 +219,8 @@
 					<c:out value="${discussion.description}"></c:out>
 				</p>
 			</div>
-			<div class="flex flex-col items-center my-4 shadow-md rounded-lg dark:bg-gray-700 w-full max-w-md mx-auto px-6 py-4">
-				<form:form method="post" action="/discussion/comment?discussionId=${discussion.id}" modelAttribute="comment">
+			<div class="flex flex-col items-center my-4 shadow-md rounded-lg dark:bg-gray-700 w-full mx-auto px-0 py-4">
+				<form:form method="post" action="/discussion/comment?discussionId=${discussion.id}" modelAttribute="comment" class="w-full px-6 items-center md:flex md:flex-col md:justify-center">
 					<div>
 						<form:label path="content" class="block px-2 mb-2 text-md text-gray-600 dark:text-gray-200" >Comment: </form:label>
 						<form:textarea path="content" rows="5" id="reviewContent" class="md:inline md:w-80 lg:inline lg:w-80 block w-full px-2 py-2 text-gray-700 bg-white border rounded-md sm:mx-2 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40" />

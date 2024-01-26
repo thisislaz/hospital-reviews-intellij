@@ -219,8 +219,8 @@
 						<c:out value="${discussion.description}"></c:out>
 					</p>
 				</div>
-			    <div class="flex flex-col items-center my-4 shadow-md rounded-lg dark:bg-gray-700 w-full max-w-md mx-auto px-6 py-4">
-					<form:form method="put" action="/discussion/${discussion.id}/comment/edit/${comment.id}" modelAttribute="comment">
+			    <div class="flex flex-col items-center my-4 shadow-md rounded-lg dark:bg-gray-700 w-full mx-auto px-0 md:px-6 py-4">
+					<form:form method="put" action="/discussion/${discussion.id}/comment/edit/${comment.id}" modelAttribute="comment" class="w-full px-6 items-center md:flex md:flex-col md:justify-center">
 					<input type="hidden" name="_method" value="put" />
 						<div>
 							<form:label path="content" class="block px-2 mb-2 text-md text-gray-600 dark:text-gray-200" >Comment: </form:label>

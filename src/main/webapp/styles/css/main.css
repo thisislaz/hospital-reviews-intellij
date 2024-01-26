@@ -975,6 +975,36 @@ select {
   }
 }
 
+.alert {
+  display: grid;
+  width: 100%;
+  grid-auto-flow: row;
+  align-content: flex-start;
+  align-items: center;
+  justify-items: center;
+  gap: 1rem;
+  text-align: center;
+  border-radius: var(--rounded-box, 1rem);
+  border-width: 1px;
+  --tw-border-opacity: 1;
+  border-color: var(--fallback-b2,oklch(var(--b2)/var(--tw-border-opacity)));
+  padding: 1rem;
+  --tw-text-opacity: 1;
+  color: var(--fallback-bc,oklch(var(--bc)/var(--tw-text-opacity)));
+  --alert-bg: var(--fallback-b2,oklch(var(--b2)/1));
+  --alert-bg-mix: var(--fallback-b1,oklch(var(--b1)/1));
+  background-color: var(--alert-bg);
+}
+
+@media (min-width: 640px) {
+  .alert {
+    grid-auto-flow: column;
+    grid-template-columns: auto minmax(auto,1fr);
+    justify-items: start;
+    text-align: start;
+  }
+}
+
 .avatar.placeholder > div {
   display: flex;
   align-items: center;
@@ -1093,13 +1123,27 @@ select {
   display: inline-block;
 }
 
+.\!dropdown {
+  position: relative !important;
+  display: inline-block !important;
+}
+
 .dropdown > *:not(summary):focus {
   outline: 2px solid transparent;
   outline-offset: 2px;
 }
 
+.\!dropdown > *:not(summary):focus {
+  outline: 2px solid transparent !important;
+  outline-offset: 2px !important;
+}
+
 .dropdown .dropdown-content {
   position: absolute;
+}
+
+.\!dropdown .dropdown-content {
+  position: absolute !important;
 }
 
 .dropdown:is(:not(details)) .dropdown-content {
@@ -1115,6 +1159,21 @@ select {
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
   transition-duration: 200ms;
+}
+
+.\!dropdown:is(:not(details)) .dropdown-content {
+  visibility: hidden !important;
+  opacity: 0 !important;
+  transform-origin: top !important;
+  --tw-scale-x: .95 !important;
+  --tw-scale-y: .95 !important;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y)) !important;
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-backdrop-filter !important;
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter !important;
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-backdrop-filter !important;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1) !important;
+  transition-timing-function: cubic-bezier(0, 0, 0.2, 1) !important;
+  transition-duration: 200ms !important;
 }
 
 .dropdown-end .dropdown-content {
@@ -1164,10 +1223,22 @@ select {
   opacity: 1;
 }
 
+.\!dropdown.dropdown-open .dropdown-content,
+.\!dropdown:not(.dropdown-hover):focus .dropdown-content,
+.\!dropdown:focus-within .dropdown-content {
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
 @media (hover: hover) {
   .dropdown.dropdown-hover:hover .dropdown-content {
     visibility: visible;
     opacity: 1;
+  }
+
+  .\!dropdown.dropdown-hover:hover .dropdown-content {
+    visibility: visible !important;
+    opacity: 1 !important;
   }
 
   .btm-nav > *.disabled:hover,
@@ -1184,6 +1255,12 @@ select {
     --tw-scale-x: 1;
     --tw-scale-y: 1;
     transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+  }
+
+  .\!dropdown.dropdown-hover:hover .dropdown-content {
+    --tw-scale-x: 1 !important;
+    --tw-scale-y: 1 !important;
+    transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y)) !important;
   }
 
   :where(.menu li:not(.menu-title):not(.disabled) > *:not(ul):not(details):not(.menu-title)):not(.active):hover, :where(.menu li:not(.menu-title):not(.disabled) > details > summary:not(.menu-title)):not(.active):hover {
@@ -1208,6 +1285,10 @@ select {
 
 .dropdown:is(details) summary::-webkit-details-marker {
   display: none;
+}
+
+.\!dropdown:is(details) summary::-webkit-details-marker {
+  display: none !important;
 }
 
 .footer {
@@ -1300,6 +1381,12 @@ select {
   .join *:first-child:not(:last-child) .dropdown .join-item {
   border-start-end-radius: inherit;
   border-end-end-radius: inherit;
+}
+
+.join .\!dropdown .join-item:first-child:not(:last-child),
+  .join *:first-child:not(:last-child) .\!dropdown .join-item {
+  border-start-end-radius: inherit !important;
+  border-end-end-radius: inherit !important;
 }
 
 .join :where(.join-item:first-child:not(:last-child)),
@@ -1770,6 +1857,14 @@ details.collapse summary::-webkit-details-marker {
   --tw-scale-x: 1;
   --tw-scale-y: 1;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.\!dropdown.dropdown-open .dropdown-content,
+.\!dropdown:focus .dropdown-content,
+.\!dropdown:focus-within .dropdown-content {
+  --tw-scale-x: 1 !important;
+  --tw-scale-y: 1 !important;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y)) !important;
 }
 
 .input input:focus {
@@ -3484,6 +3579,11 @@ details.collapse summary::-webkit-details-marker {
   padding-bottom: 2rem;
 }
 
+.px-0 {
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
 .pb-12 {
   padding-bottom: 3rem;
 }
@@ -4365,8 +4465,20 @@ details.collapse summary::-webkit-details-marker {
     flex-direction: column;
   }
 
+  .md\:items-center {
+    align-items: center;
+  }
+
+  .md\:justify-start {
+    justify-content: flex-start;
+  }
+
   .md\:justify-end {
     justify-content: flex-end;
+  }
+
+  .md\:justify-center {
+    justify-content: center;
   }
 
   .md\:justify-between {
@@ -4447,6 +4559,10 @@ details.collapse summary::-webkit-details-marker {
   .md\:py-4 {
     padding-top: 1rem;
     padding-bottom: 1rem;
+  }
+
+  .md\:text-start {
+    text-align: start;
   }
 
   .md\:text-end {

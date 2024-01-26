@@ -300,7 +300,7 @@
 							<c:otherwise>
 								<div class="md:flex md:flex-col items-center justify-center">
 									<h5 class="mb-4">Currently, there are no reviews available for this hospital.</h5>
-									<a class="w-full md:w-fit md:inline md:mx-2 lg:mx-2 my-2 py-2 px-4 font-semibold rounded dark:dark:bg-violet-400 dark:dark:text-gray-900 duration-300 hover:bg-violet-300 hover:cursor-pointer" href="/review/new" >Click here to be the first</a>
+									<a class="w-full md:w-fit md:inline md:mx-2 lg:mx-2 my-2 py-2 px-4 font-semibold rounded dark:dark:bg-violet-400 dark:dark:text-gray-900 duration-300 hover:bg-violet-300 hover:cursor-pointer" href="/review/new?hospitalName=<c:out value="${hospital.hospitalName}"></c:out>" >Click here to be the first</a>
 
 								</div>
 							</c:otherwise>

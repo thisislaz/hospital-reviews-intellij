@@ -1,27 +1,32 @@
-document.addEventListener('DOMContentLoaded', () => {
-    window.addEventListener('confirm-delete', function (e) {
-        var commentId = e.detail.commentId; // Corrected to access commentId directly
-        console.log('Deleting comment with ID:', commentId); // Optional: for debugging
+function dispatchDeleteEvent(commentId, discussionId) {
+    window.dispatchEvent(new CustomEvent('delete-comment', {
+        detail: { commentId: commentId, discussionId: discussionId }
+    }));
+}
 
+document.addEventListener('DOMContentLoaded', () => {
+    window.addEventListener('delete-comment', function (e) {
+        const commentId = e.detail.commentId; // Corrected to access commentId directly
+        const discussionId = e.detail.discussionId;
         // Perform your delete action here, such as making an AJAX call
-        deleteComment(commentId);
+        deleteComment(commentId,discussionId);
     });
 });
 
-function deleteComment(commentId) {
-    // Example AJAX call to delete the comment
-    fetch('/path/to/delete/comment/' + commentId, {
-        method: 'DELETE',
+function deleteComment(commentId, discussionId) {
+    fetch(`/discussion/${discussionId}/comment/delete/${commentId}`, {
+        method: 'delete',
         // Additional options like headers, body, etc. depending on your backend requirements
     })
-        .then(response => response.json())
+        .then(response => {
+            return response.json(); // or response.text() if the response is not in JSON format
+        })
         .then(data => {
-            console.log('Comment deleted:', data);
-            // Additional logic on successful deletion (e.g., updating the UI)
+            console.log('comment deleted: ',data);
+            window.location.reload(); // Reload the page to reflect changes
         })
         .catch((error) => {
             console.error('Error:', error);
-            // Error handling logic
         });
 }
 
@@ -34,8 +39,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         // Update the display text with the chosen icon
         document.getElementById('chosenIconDisplay').innerText = iconName;
-
-
         // Close the modal
         let modalComponent = document.getElementById('modalContainer');
         if (modalComponent) {
@@ -46,38 +49,38 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
-
-document.addEventListener('DOMContentLoaded', function () {
-    var hamburger = document.querySelector('.hamburger');
-    var navList = document.querySelector('.nav-list');
-
-    hamburger.addEventListener('click', function () {
-        // Toggle the display of the menu
-        if (navList.style.display === "block") {
-            navList.style.display = "none";
-        } else {
-            navList.style.display = "block";
-        }
-    });
-});
-
-document.addEventListener('DOMContentLoaded', function() {
-    var dropdownBtn = document.getElementById('dropdownBtn');
-    var dropdownContent = document.querySelector('.dropdown .dropdown-content');
-
-    dropdownBtn.addEventListener('click', function(event) {
-        // Toggle dropdown display
-        dropdownContent.style.display = dropdownContent.style.display === 'block' ? 'none' : 'block';
-        event.stopPropagation();
-    });
-
-    // Close dropdown when clicking outside
-    document.addEventListener('click', function(event) {
-        if (event.target !== dropdownBtn && dropdownContent.style.display === 'block') {
-            dropdownContent.style.display = 'none';
-        }
-    });
-});
+//
+// document.addEventListener('DOMContentLoaded', function () {
+//     var hamburger = document.querySelector('.hamburger');
+//     var navList = document.querySelector('.nav-list');
+//
+//     hamburger.addEventListener('click', function () {
+//         // Toggle the display of the menu
+//         if (navList.style.display === "block") {
+//             navList.style.display = "none";
+//         } else {
+//             navList.style.display = "block";
+//         }
+//     });
+// });
+//
+// document.addEventListener('DOMContentLoaded', function() {
+//     var dropdownBtn = document.getElementById('dropdownBtn');
+//     var dropdownContent = document.querySelector('.dropdown .dropdown-content');
+//
+//     dropdownBtn.addEventListener('click', function(event) {
+//         // Toggle dropdown display
+//         dropdownContent.style.display = dropdownContent.style.display === 'block' ? 'none' : 'block';
+//         event.stopPropagation();
+//     });
+//
+//     // Close dropdown when clicking outside
+//     document.addEventListener('click', function(event) {
+//         if (event.target !== dropdownBtn && dropdownContent.style.display === 'block') {
+//             dropdownContent.style.display = 'none';
+//         }
+//     });
+// });
 
 const backgroundImages = [
     '/assets/bottom-highrises.jpg',
@@ -99,33 +102,33 @@ const backgroundImages = [
     '/assets/surgical-nurse.jpg'
 ]
 
-function changeBackgoundImage() {
-    const imageUrl = backgroundImages[Math.floor(Math.random() * backgroundImages.length)];
-    const element = document.getElementById("dark-picture");
-    element.style.backgroundImage = `url("${imageUrl}")`;
-}
+// function changeBackgoundImage() {
+//     const imageUrl = backgroundImages[Math.floor(Math.random() * backgroundImages.length)];
+//     const element = document.getElementById("dark-picture");
+//     element.style.backgroundImage = `url("${imageUrl}")`;
+// }
 
-window,addEventListener('load', changeBackgoundImage);
+// window,addEventListener('load', changeBackgoundImage);
 
 // this is handling the modal for the "?" that shows what the password requires
-document.addEventListener('DOMContentLoaded', function() {
-    var passwordField = document.getElementById('passwordField');
-    var pwModal = document.getElementById('pw-modal');
-
-    passwordField.addEventListener('mouseover', function(event) {
-        var fieldRect = passwordField.getBoundingClientRect();
-        var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-        var scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
-
-        pwModal.style.display = 'block';
-        pwModal.style.left = fieldRect.right + scrollLeft + 'px'; // Adjusted for scroll
-        pwModal.style.top = fieldRect.top + scrollTop + 'px'; // Adjusted for scroll
-    });
-
-    passwordField.addEventListener('mouseout', function() {
-        pwModal.style.display = 'none';
-    });
-});
+// document.addEventListener('DOMContentLoaded', function() {
+//     var passwordField = document.getElementById('passwordField');
+//     var pwModal = document.getElementById('pw-modal');
+//
+//     passwordField.addEventListener('mouseover', function(event) {
+//         var fieldRect = passwordField.getBoundingClientRect();
+//         var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+//         var scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
+//
+//         pwModal.style.display = 'block';
+//         pwModal.style.left = fieldRect.right + scrollLeft + 'px'; // Adjusted for scroll
+//         pwModal.style.top = fieldRect.top + scrollTop + 'px'; // Adjusted for scroll
+//     });
+//
+//     passwordField.addEventListener('mouseout', function() {
+//         pwModal.style.display = 'none';
+//     });
+// });
 
 /*
 
@@ -133,81 +136,92 @@ this next function is handling the delte modal for the user's own review.
 specificly in the dashboard.jsp
 
 */
-document.addEventListener('DOMContentLoaded', () => {
-    // Get the modal and the elements inside it that we need to manipulate
-    const deleteModal = document.getElementById('confirmModal');
-    const deleteForm = document.getElementById('deleteForm');
-    const span = deleteModal.querySelector('.close');
-
-    // Function to open the delete confirmation modal
-    window.confirmReviewDelete = function(reviewId) {
-        // Set the action attribute of the form with the reviewId
-        deleteForm.action = `review/delete/${reviewId}`;
-        // Show the modal
-        deleteModal.style.display = 'block';
-    };
-
-    // Function to open the delete confirmation modal
-    window.confirmCommentDelete = function(discussionId, commentId) {
-        // Set the action attribute of the form with the reviewId
-        deleteForm.action = `/discussion/${discussionId}/comment/delete/${commentId}`;
-        // Show the modal
-        deleteModal.style.display = 'block';
-    };
-
-    window.confirmDiscussionDelete = function(discussionId) {
-        deleteForm.action = `/discussion/delete/${discussionId}`;
-        deleteModal.style.display = 'block';
-    }
-
-    // Close the modal when the user clicks on (x)
-    span.onclick = function() {
-        deleteModal.style.display = "none";
-    };
-
-    // Close the modal when the user clicks anywhere outside of the modal
-    window.onclick = function(event) {
-        if (event.target == deleteModal) {
-            deleteModal.style.display = "none";
-        }
-    };
-});
+// document.addEventListener('DOMContentLoaded', () => {
+//     // Get the modal and the elements inside it that we need to manipulate
+//     const deleteModal = document.getElementById('confirmModal');
+//     const deleteForm = document.getElementById('deleteForm');
+//     const span = deleteModal.querySelector('.close');
+//
+//     // Function to open the delete confirmation modal
+//     window.confirmReviewDelete = function(reviewId) {
+//         // Set the action attribute of the form with the reviewId
+//         deleteForm.action = `review/delete/${reviewId}`;
+//         // Show the modal
+//         deleteModal.style.display = 'block';
+//     };
+//
+//     // Function to open the delete confirmation modal
+//     window.confirmCommentDelete = function(discussionId, commentId) {
+//         // Set the action attribute of the form with the reviewId
+//         deleteForm.action = `/discussion/${discussionId}/comment/delete/${commentId}`;
+//         // Show the modal
+//         deleteModal.style.display = 'block';
+//     };
+//
+//     window.confirmDiscussionDelete = function(discussionId) {
+//         deleteForm.action = `/discussion/delete/${discussionId}`;
+//         deleteModal.style.display = 'block';
+//     }
+//
+//     // Close the modal when the user clicks on (x)
+//     span.onclick = function() {
+//         deleteModal.style.display = "none";
+//     };
+//
+//     // Close the modal when the user clicks anywhere outside of the modal
+//     window.onclick = function(event) {
+//         if (event.target == deleteModal) {
+//             deleteModal.style.display = "none";
+//         }
+//     };
+// });
 
 document.addEventListener("DOMContentLoaded", function() {
-
-    // Reference to the dropdown and the second form
+    // Reference to the dropdown and the forms
     var dropdown = document.getElementById('searchTypeDropdown');
     var selectedCategoryForm = document.getElementById('selectedCategory');
     var defaultForm = document.getElementById('defaultForm');
 
-    // Initially hide the second form
-    selectedCategoryForm.style.display = 'none';
-
-    // Event listener for change on dropdown
-    dropdown.addEventListener('change', function() {
-        if (this.value === 'category') {
-            // If 'category' is selected, show second form, hide the first
-            selectedCategoryForm.style.display = 'block';
-            defaultForm.style.display = 'none';
-        } else {
-            // Otherwise, hide second form, show the first
-            selectedCategoryForm.style.display = 'none';
-            defaultForm.style.display = 'block';
-
-            // Update the selected value in the first form's dropdown
-            defaultForm.querySelector('#searchTypeDropdown').value = this.value;
-        }
-    });
-
-    // Additional event listener for the dropdown in the second form
-    selectedCategoryForm.querySelector('#searchTypeDropdown').addEventListener('change', function() {
-        // If a new value is selected, hide second form, show the first
+    // Check if the elements exist
+    if(dropdown && selectedCategoryForm && defaultForm) {
+        // Initially hide the second form
         selectedCategoryForm.style.display = 'none';
-        defaultForm.style.display = 'block';
 
-        // Update the selected value in the first form's dropdown
-        defaultForm.querySelector('#searchTypeDropdown').value = this.value;
-    });
+        // Event listener for change on dropdown
+        dropdown.addEventListener('change', function() {
+            if (this.value === 'category') {
+                // If 'category' is selected, show second form, hide the first
+                selectedCategoryForm.style.display = 'block';
+                defaultForm.style.display = 'none';
+            } else {
+                // Otherwise, hide second form, show the first
+                selectedCategoryForm.style.display = 'none';
+                defaultForm.style.display = 'block';
+
+                // Update the selected value in the first form's dropdown
+                var defaultDropdown = defaultForm.querySelector('#searchTypeDropdown');
+                if(defaultDropdown) {
+                    defaultDropdown.value = this.value;
+                }
+            }
+        });
+
+        // Additional event listener for the dropdown in the second form
+        var selectedCategoryDropdown = selectedCategoryForm.querySelector('#searchTypeDropdown');
+        if(selectedCategoryDropdown) {
+            selectedCategoryDropdown.addEventListener('change', function() {
+                // If a new value is selected, hide second form, show the first
+                selectedCategoryForm.style.display = 'none';
+                defaultForm.style.display = 'block';
+
+                // Update the selected value in the first form's dropdown
+                var defaultDropdown = defaultForm.querySelector('#searchTypeDropdown');
+                if(defaultDropdown) {
+                    defaultDropdown.value = this.value;
+                }
+            });
+        }
+    }
 });
 
 
@@ -330,90 +344,90 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 
-// this is for the hospitals detail page
-// this is also handling the carousel functionality
-document.addEventListener('DOMContentLoaded', function() {
+// // this is for the hospitals detail page
+// // this is also handling the carousel functionality
+// document.addEventListener('DOMContentLoaded', function() {
+//
+//     let currentSlide = 0;
+//     const slides = document.querySelectorAll('.carousel-item');
+//     const totalSlides = slides.length;
+//
+//     function moveSlides(direction) {
+//         slides[currentSlide].style.display = 'none';
+//         currentSlide = (currentSlide + direction + totalSlides) % totalSlides;
+//         slides[currentSlide].style.display = 'block';
+//     }
+//
+//     // Initialize the carousel
+//     if (totalSlides > 0) {
+//         slides.forEach(slide => slide.style.display = 'none');
+//         slides[0].style.display = 'block';
+//
+//         const prevButton = document.querySelector('.prev-btn');
+//         const nextButton = document.querySelector('.next-btn');
+//
+//         if (prevButton && nextButton) {  // Added check
+//             prevButton.addEventListener('click', () => moveSlides(-1));
+//             nextButton.addEventListener('click', () => moveSlides(1));
+//         }
+//     } else {
+//         console.log('no slides');
+//     }
+//
+// });
 
-    let currentSlide = 0;
-    const slides = document.querySelectorAll('.carousel-item');
-    const totalSlides = slides.length;
+// document.addEventListener("DOMContentLoaded", function() {
+//     let currentSlide = 0;
+//     const slideItems = document.querySelectorAll('.carousel-item');
+//     const totalSlides = slideItems.length;
+//     const slideDisplay = document.querySelector('.slide-number-display');
+//
+//     document.querySelector('.next-btn').addEventListener('click', function() {
+//         slideItems[currentSlide].classList.remove('active-slide'); // remove active class from current slide
+//         currentSlide = (currentSlide + 1) % totalSlides; // increment slide or reset if at end
+//         slideItems[currentSlide].classList.add('active-slide'); // add active class to new current slide
+//         updateSlideDisplay();
+//     });
+//
+//     document.querySelector('.prev-btn').addEventListener('click', function() {
+//         slideItems[currentSlide].classList.remove('active-slide'); // remove active class from current slide
+//         currentSlide = (currentSlide - 1 + totalSlides) % totalSlides; // decrement slide or set to last if at start
+//         slideItems[currentSlide].classList.add('active-slide'); // add active class to new current slide
+//         updateSlideDisplay();
+//     });
+//
+//     function updateSlideDisplay() {
+//         slideDisplay.innerText = `${currentSlide + 1}/${totalSlides}`;
+//     }
+// });
 
-    function moveSlides(direction) {
-        slides[currentSlide].style.display = 'none';
-        currentSlide = (currentSlide + direction + totalSlides) % totalSlides;
-        slides[currentSlide].style.display = 'block';
-    }
-
-    // Initialize the carousel
-    if (totalSlides > 0) {
-        slides.forEach(slide => slide.style.display = 'none');
-        slides[0].style.display = 'block';
-
-        const prevButton = document.querySelector('.prev-btn');
-        const nextButton = document.querySelector('.next-btn');
-
-        if (prevButton && nextButton) {  // Added check
-            prevButton.addEventListener('click', () => moveSlides(-1));
-            nextButton.addEventListener('click', () => moveSlides(1));
-        }
-    } else {
-        console.log('no slides');
-    }
-
-});
-
-document.addEventListener("DOMContentLoaded", function() {
-    let currentSlide = 0;
-    const slideItems = document.querySelectorAll('.carousel-item');
-    const totalSlides = slideItems.length;
-    const slideDisplay = document.querySelector('.slide-number-display');
-
-    document.querySelector('.next-btn').addEventListener('click', function() {
-        slideItems[currentSlide].classList.remove('active-slide'); // remove active class from current slide
-        currentSlide = (currentSlide + 1) % totalSlides; // increment slide or reset if at end
-        slideItems[currentSlide].classList.add('active-slide'); // add active class to new current slide
-        updateSlideDisplay();
-    });
-
-    document.querySelector('.prev-btn').addEventListener('click', function() {
-        slideItems[currentSlide].classList.remove('active-slide'); // remove active class from current slide
-        currentSlide = (currentSlide - 1 + totalSlides) % totalSlides; // decrement slide or set to last if at start
-        slideItems[currentSlide].classList.add('active-slide'); // add active class to new current slide
-        updateSlideDisplay();
-    });
-
-    function updateSlideDisplay() {
-        slideDisplay.innerText = `${currentSlide + 1}/${totalSlides}`;
-    }
-});
-
-const chooseBtn = document.getElementById('chooseBtn');
-const iconModal = document.getElementById('iconModal');
-const closeBtn = iconModal.querySelector('.close');
-const icons = iconModal.querySelectorAll('.icon');
-
-chooseBtn.addEventListener('click', () => {
-    iconModal.style.display = 'block';
-});
-
-closeBtn.addEventListener('click', () => {
-    iconModal.style.display = 'none';
-});
-
-icons.forEach(icon => {
-    icon.addEventListener('click', (e) => {
-        // this will get the 'data-icon' attribute value
-        const selectedIconClass = e.currentTarget.dataset.icon;
-
-
-        //setting the 'profilePicture' value
-        // if 'data-icon' is empty (the default option), it sets an empty string
-        document.getElementById('profilePicture').value = selectedIconClass;
-
-
-        iconModal.style.display = 'none';
-    });
-});
+// const chooseBtn = document.getElementById('chooseBtn');
+// const iconModal = document.getElementById('iconModal');
+// const closeBtn = iconModal.querySelector('.close');
+// const icons = iconModal.querySelectorAll('.icon');
+//
+// chooseBtn.addEventListener('click', () => {
+//     iconModal.style.display = 'block';
+// });
+//
+// closeBtn.addEventListener('click', () => {
+//     iconModal.style.display = 'none';
+// });
+//
+// icons.forEach(icon => {
+//     icon.addEventListener('click', (e) => {
+//         // this will get the 'data-icon' attribute value
+//         const selectedIconClass = e.currentTarget.dataset.icon;
+//
+//
+//         //setting the 'profilePicture' value
+//         // if 'data-icon' is empty (the default option), it sets an empty string
+//         document.getElementById('profilePicture').value = selectedIconClass;
+//
+//
+//         iconModal.style.display = 'none';
+//     });
+// });
 
 // function togglePasswordVisibility() {
 //     var passwordInput = document.getElementsByClassName("passwordInput")[0];
