@@ -51,7 +51,6 @@ public class ReviewController {
     @PostMapping("/new")
     public String processNewReview(@Valid @ModelAttribute("review") Review review, BindingResult result
     ) {
-
         if(result.hasErrors()) {
             return "views/createReview";
         }

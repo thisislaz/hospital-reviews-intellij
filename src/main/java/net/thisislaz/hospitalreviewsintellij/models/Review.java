@@ -88,6 +88,7 @@ public class Review {
 
     // this is so the name does not get stored in the db
     @Transient
+    @NotNull(message = "Type in the full name of the hospital or select from the list.")
     private String hospitalName;
 
     @ManyToOne(fetch = FetchType.LAZY)

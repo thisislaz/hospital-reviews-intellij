@@ -8,14 +8,7 @@ import java.util.Optional;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.service.annotation.DeleteExchange;
 
 import jakarta.servlet.http.HttpSession;
@@ -234,10 +227,10 @@ public class DiscussionController {
         commentToEdit.setContent(comment.getContent());
         discussionService.updateComment(commentToEdit);
 
-        return "redirect:/discussion/allDiscussions/{discussionId}";
+        return "redirect:/discussion/allDiscussions/"+discussionId;
     }
 
-    @DeleteMapping("/{discussionId}/comment/delete/{commentId}")
+    @RequestMapping(value = "/{discussionId}/comment/delete/{commentId}", method = RequestMethod.DELETE)
     public String deleteComment(@PathVariable("discussionId")Long discussionId,
                                 @PathVariable("commentId")Long commentId, HttpSession session) {
 
@@ -247,10 +240,10 @@ public class DiscussionController {
         Optional<Comment> commentToDelete = discussionService.findByCommentId(commentId);
         discussionService.deleteCommentFromDiscussion(commentToDelete);
 
-        return "redirect:/discussion/allDiscussions/{discussionId}";
+        return "redirect:/discussion/allDiscussions/"+discussionId;
     }
 
-    @DeleteMapping("/delete/{discussionId}")
+    @RequestMapping(value ="/delete/{discussionId}", method = RequestMethod.DELETE)
     public String deleteDiscussion(@PathVariable("discussionId")Long discussionId, HttpSession session) {
 
         if(!session.getAttribute("userId").equals(discussionService.getDiscussionById(discussionId).get().getAuthor().getId())) {

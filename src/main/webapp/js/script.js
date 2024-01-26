@@ -21,10 +21,6 @@ function deleteComment(commentId, discussionId) {
         .then(response => {
             return response.json(); // or response.text() if the response is not in JSON format
         })
-        .then(data => {
-            console.log('comment deleted: ',data);
-            window.location.reload(); // Reload the page to reflect changes
-        })
         .catch((error) => {
             console.error('Error:', error);
         });
@@ -307,6 +303,7 @@ if (hospitalInput) {
         }
     });
 }
+
 
 
 document.addEventListener("DOMContentLoaded", function() {

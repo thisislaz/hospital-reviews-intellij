@@ -198,109 +198,162 @@
 		</div>
 	</nav>
 </header>
-	<main class="center-form">
-        <section class="mid-container">
-            <h1>Edit Review</h1>
-            <form:form method="put" action="/review/edit/${review.id}" modelAttribute="review">
-                <div>
-                    <form:label path="hospital">Hospitals:</form:label>
-					<c:choose>
-						<c:when test="${ not empty review.hospital.id }">
-							<form:input class="hospital-input" type="text" id="hospitalName" list="hospitalList" path="hospitalName" value="${ review.hospital.hospitalName }"/>
-						</c:when>
-						<c:otherwise>
-							<form:input class="hospital-input" type="text" id="hospitalName" list="hospitalList" path="hospitalName" placeholder="Search for hospitals..." />
-							<form:errors path="hospitalName"/>
-						</c:otherwise>
-					</c:choose>
-					<datalist id="hospitalList" >
-					    <c:forEach items="${hospitals}" var="hospital">
-					       <option value="${hospital.hospitalName} - ${ hospital.city }, ${hospital.state}" data-id="${hospital.id}" data-hospital-name="${ hospital.hospitalName }"></option>
-					    </c:forEach>
-					</datalist>
-					<form:hidden path="hospital.id" id="hospitalId" />
-			        <form:errors path="hospitalName" class="error"/>
-                </div>
-                <div>
-                    <form:label path="title">Review Title:</form:label>
-                    <form:input type="text" path="title" value="${review.title}"/>
-                    <form:errors path="title" />
-                </div>
-                <div>
-                    <form:label path="unitWorkedAt">Unit:</form:label>
-                    <form:input type="text" path="unitWorkedAt" value="${review.unitWorkedAt}"/>
-                    <form:errors path="unitWorkedAt" />
-                </div>
-                <div>
-                    <form:label path="rating">Rating:</form:label>
-                    <form:select path="rating">
-                         <c:forEach var="i" begin="1" end="5">
-				            <c:choose>
-				                <c:when test="${i == review.rating}">
-				                    <form:option value="${i}" selected="selected">${i}</form:option>
-				                </c:when>
-				                <c:otherwise>
-				                    <form:option value="${i}">${i}</form:option>
-				                </c:otherwise>
-				            </c:choose>
-				       	 </c:forEach>
-                    </form:select>
-                    <form:errors path="rating" />
-                </div>
-                <div>
-                    <form:label path="patientRatio">Nurse to Patient Ratio:</form:label>
-                    <form:select path="patientRatio">
-                        <form:option value="1:1 - 1:2" >1:1 - 1:2</form:option>
-                        <form:option value="1:3 - 1:5" >1:3 - 1:5</form:option>
-                        <form:option value="1:6 - 1:8" >1:6 - 1:8</form:option>
-                        <form:option value="> 1:8">> 1:8</form:option>
-                    </form:select>
-                    <form:errors path="patientRatio" />
-                </div>
-                <div>
-                    <form:label path="chartingSystem">Charting system used:</form:label>
-                    <form:input type="text" path="chartingSystem" value="${review.chartingSystem}"/>
-                    <form:errors path="chartingSystem" />
-                </div>
-                <div>
-                    <form:label path="wouldReturn">Would you return:</form:label>
-                    <form:select path="wouldReturn">
-                        <form:option value="yes" >Yes</form:option>
-                        <form:option value="no" >No</form:option>
-                        <form:option value="maybe" >Maybe</form:option>
-                    </form:select>
-                    <form:errors path="wouldReturn" />
-                </div>
-                <div>
-                    <form:label path="managementRating">How would you rate management:</form:label>
-                    <form:select path="managementRating">
-                        <c:forEach var="i" begin="1" end="5">
-                        	<c:choose>
-                        		<c:when test="${ i == review.managementRating }">
-									<form:option value="${i}" selected="selected">${i}</form:option>                        			
-                        		</c:when>
-                        		<c:otherwise>
-                        			<form:option value="${ i }">${ i }</form:option>
-                        		</c:otherwise>
-                        	</c:choose>
-                        </c:forEach>
-                    </form:select>
-                    <form:errors path="managementRating" />
-                </div>
-                <div>
-                    <form:label path="content">Comments: <em>(Limit is 500 characters)</em> </form:label>
-                    <form:textarea path="content" rows="5" cols="30"></form:textarea>
-                    
-                    <form:errors path="content" />
-                </div>
+	<main>
+        <section class="bg-white dark:bg-gray-900">
+			<div class="container flex flex-col items-center justify-center min-h-screen px-6 mx-auto py-12">
+				<div class="w-full max-w-md p-10 rounded-md">
+					<div class="flex justify-center mx-auto whitespace-nowrap">
+						<a class=" px-3 py-2 text-white text-2xl transition-colors duration-300 transform rounded-md lg:mt-0 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700" href="/">
+							<img class="w-22 h-22 sm:h-8 " src="/assets/nursebulletin-transparent.png" alt="">
+						</a>
+					</div>
+					<div class="flex items-center justify-center mt-6">
+						<p class="w-1/2 pb-4 font-medium text-center text-violet-400 capitalize border-b dark:border-gray-400 dark:text-violet-500">
+							Edit Review
+						</p>
+					</div>
+				</div>
+				<form:form method="put" action="/review/edit/${review.id}" modelAttribute="review" class="w-full max-w-md dark:bg-gray-800 p-10 rounded-md">
+					<div class="relative flex flex-col text-left ">
+						<div class="text-white">
+							<form:label path="hospital">Hospitals:</form:label>
+						</div>
+						<c:choose>
+							<c:when test="${ not empty review.hospital.id }">
+								<form:input type="text" id="hospitalName" list="hospitalList" path="hospitalName" value="${ review.hospital.hospitalName }"
+											class="block w-full px-4 py-2 mt-2 text-gray-500 placeholder-gray-500 bg-white border rounded-lg dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring focus:ring-blue-300"
+								/>
+							</c:when>
+							<c:otherwise>
+								<form:input class="hospital-input" type="text" id="hospitalName" list="hospitalList" path="hospitalName" placeholder="Search for hospitals..." />
+								<form:errors path="hospitalName" class="text-red-500"/>
+							</c:otherwise>
+						</c:choose>
+						<datalist id="hospitalList" >
+							<c:forEach items="${hospitals}" var="hospital">
+							   <option value="${hospital.hospitalName} - ${ hospital.city }, ${hospital.state}" data-id="${hospital.id}" data-hospital-name="${ hospital.hospitalName }"></option>
+							</c:forEach>
+						</datalist>
+						<form:hidden path="hospital.id" id="hospitalId" />
+						<form:errors path="hospitalName" class="error text-red-500"/>
+					</div>
+					<div class="relative flex flex-col text-left mt-6">
+						<div class="text-white">
+							<form:label path="title">Review Title</form:label>
+						</div>
+						<form:input type="text" path="title" value="${review.title}"
+									class="block w-full px-4 py-2 mt-2 text-gray-500 placeholder-gray-500 bg-white border rounded-lg dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring focus:ring-blue-300"
+						/>
+						<form:errors path="title" class="text-red-500"/>
+					</div>
+					<div class="relative flex flex-col text-left mt-6">
+						<div class="text-white">
+							<form:label path="unitWorkedAt">Unit</form:label>
+						</div>
+						<form:input type="text" path="unitWorkedAt" value="${review.unitWorkedAt}"
+									class="block w-full px-4 py-2 mt-2 text-gray-500 placeholder-gray-500 bg-white border rounded-lg dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring focus:ring-blue-300"
+						/>
+						<form:errors path="unitWorkedAt" class="text-red-500"/>
+					</div>
+					<div class="relative flex flex-col text-left mt-6">
+						<div class="text-white">
+							<form:label path="rating">Rating</form:label>
+						</div>
+						<form:select path="rating"
+									 class="block w-full px-4 py-2 mt-2 text-gray-500 placeholder-gray-500 bg-white border rounded-lg dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring focus:ring-blue-300"
+						>
+							 <c:forEach var="i" begin="1" end="5">
+								<c:choose>
+									<c:when test="${i == review.rating}">
+										<form:option value="${i}" selected="selected">${i}</form:option>
+									</c:when>
+									<c:otherwise>
+										<form:option value="${i}">${i}</form:option>
+									</c:otherwise>
+								</c:choose>
+							 </c:forEach>
+						</form:select>
+						<form:errors path="rating" class="text-red-500"/>
+					</div>
+					<div>
+						<div class="relative flex flex-col text-left text-white">
+							<form:label path="patientRatio">Nurse to Patient Ratio</form:label>
+						</div>
+						<div class="text-white">
+							<form:select path="patientRatio"
+										 class="block w-full px-4 py-2 mt-2 text-gray-500 placeholder-gray-500 bg-white border rounded-lg dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring focus:ring-blue-300"
+							>
+								<form:option value="1:1 - 1:2" >1:1 - 1:2</form:option>
+								<form:option value="1:3 - 1:5" >1:3 - 1:5</form:option>
+								<form:option value="1:6 - 1:8" >1:6 - 1:8</form:option>
+								<form:option value="> 1:8">> 1:8</form:option>
+							</form:select>
+							<form:errors path="patientRatio" class="text-red-500"/>
+						</div>
+					</div>
+					<div class="relative flex flex-col text-left mt-6">
+						<div class="text-white">
+							<form:label path="chartingSystem">Charting system used</form:label>
+						</div>
+						<form:input type="text" path="chartingSystem"
+									class="block w-full px-4 py-2 mt-2 text-gray-500 placeholder-gray-700 bg-white border rounded-lg dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring focus:ring-blue-300"
+									value="${review.chartingSystem}"/>
+						<form:errors path="chartingSystem" class="text-red-500"/>
+					</div>
+					<div class="relative flex flex-col text-left mt-6">
+						<div class="text-white">
+							<form:label path="wouldReturn">Would you return</form:label>
+						</div>
+						<form:select path="wouldReturn"
+									 class="block w-full px-4 py-2 mt-2 text-gray-500 placeholder-gray-500 bg-white border rounded-lg dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring focus:ring-blue-300"
 
-                <form:hidden path="id" value="${review.id}" />
+						>
+							<form:option value="yes" >Yes</form:option>
+							<form:option value="no" >No</form:option>
+							<form:option value="maybe" >Maybe</form:option>
+						</form:select>
+						<form:errors path="wouldReturn" class="text-red-500"/>
+					</div>
+					<div class="relative flex flex-col text-left mt-6">
+						<div class="text-white">
+							<form:label path="managementRating">How would you rate management</form:label>
+						</div>
+						<form:select path="managementRating"
+									 class="block w-full px-4 py-2 mt-2 text-gray-500 placeholder-gray-500 bg-white border rounded-lg dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring focus:ring-blue-300"
+						>
+							<c:forEach var="i" begin="1" end="5">
+								<c:choose>
+									<c:when test="${ i == review.managementRating }">
+										<form:option value="${i}" selected="selected">${i}</form:option>
+									</c:when>
+									<c:otherwise>
+										<form:option value="${ i }">${ i }</form:option>
+									</c:otherwise>
+								</c:choose>
+							</c:forEach>
+						</form:select>
+						<form:errors path="managementRating" class="text-red-500"/>
+					</div>
+					<div class="relative flex flex-col text-left mt-6">
+						<div class="text-white">
+							<form:label path="content">How was your experience</form:label>
+						</div>
+						<form:textarea path="content" rows="5" cols="30"
+									   class="block w-full px-2 py-2 mt-2 text-gray-500 placeholder-gray-500 bg-white border rounded-lg dark:bg-gray-900 dark:border-gray-600 dark:placeholder-gray-400 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring focus:ring-blue-300"
+						/>
 
-                <br>
-                <div class="login-row">
-                    <input type="submit" value="Edit Review" />
-                </div>
-            </form:form>
+						<form:errors path="content" class="text-red-500"/>
+					</div>
+					<form:hidden path="id" value="${review.id}" />
+
+					<br>
+					<div class="login-row">
+						<input type="submit" value="Edit review"
+							   class="block md:mx-2 lg:mx-2 my-2 py-2 px-4 font-semibold rounded dark:dark:bg-violet-400 dark:dark:text-gray-900 duration-300 hover:cursor-pointer hover:bg-violet-300"
+						/>
+					</div>
+				</form:form>
+			</div>
         </section>
     </main>
 <!-- footer -->

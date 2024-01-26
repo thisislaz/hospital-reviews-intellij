@@ -187,7 +187,9 @@ public class ReviewService {
 
         // Group the reviews by hospital, count them
         Map<Hospital, Long> reviewCounts = allReviews.stream()
+                .filter(review -> review.getHospital() != null)
                 .collect(Collectors.groupingBy(Review::getHospital, Collectors.counting()));
+
 
         // Sort the map by review count in descending order
         return reviewCounts.entrySet().stream()

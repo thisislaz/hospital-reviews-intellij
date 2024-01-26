@@ -213,7 +213,7 @@
 					</div>
 				</div>
 
-				<form:form method="post" action="/review/new" modelAttribute="review" class="w-1/2 dark:bg-gray-800 p-10 rounded-md mt-12 space-y-10 sm:space-y-0 sm:grid sm:grid-cols-2 sm:gap-x-6 sm:gap-y-12 lg:grid-cols-2 lg:gap-x-8">
+				<form:form method="post" action="/review/new" modelAttribute="review" class="w-full max-w-md dark:bg-gray-800 p-10 rounded-md">
 
 					<div class="relative flex flex-col text-left ">
 						<div class="text-white">

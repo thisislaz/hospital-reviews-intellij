@@ -307,9 +307,12 @@
 												<b>Summary: </b>"${ review.content }"
 											</p>
 											<div class="block md:flex items-center justify-between mt-4">
-												<p class="block text-left">
-													<b>Created:</b> ${ review.getFormattedDate() }
-												</p>
+												<div class="flex flex-row gap-4">
+													<p class="block text-left">
+														<b>Created:</b> ${ review.getFormattedDate() }
+													</p>
+													<a href="/review/edit/${review.id}" class="dark:text-violet-400 transition-colors hover:dark:text-blue-500 hover:underline duration-300 transform focus:underline focus:ring focus:ring-blue-300 focus:ring-opacity-80">Edit</a>
+												</div>
 												<div class="block md:flex items-center center-container">
 													<a type="button" class="block md:mx-2 lg:mx-2 my-2 py-2 px-4 font-semibold rounded dark:dark:bg-violet-400 dark:dark:text-gray-900 duration-300 hover:bg-violet-300" href="/review/view/${review.id}" >More Info</a>
 													<a type="button" class="block py-2 px-4 font-semibold rounded dark:dark:bg-violet-400 dark:dark:text-gray-900 duration-300 hover:bg-violet-300" href="/hospitals/view/${review.hospital.id }">Hospital Info</a>
