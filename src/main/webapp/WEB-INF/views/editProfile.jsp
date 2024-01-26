@@ -203,7 +203,7 @@
 			<form:form action="/user/edit/${ userToEdit.id }" method="post" modelAttribute="userToEdit" class="w-full max-w-md dark:bg-gray-800 p-10 rounded-md">
 				<form:hidden path="id"/>
 				<form:hidden path="profilePicture" id="profilePicture"/>
-				<input type="hidden" name="_method" value="put"  />
+				<input type="hidden" name="_method" value="put" />
 
 				<div class="flex justify-center mx-auto">
 					<a class=" px-3 py-2 text-white text-2xl transition-colors duration-300 transform rounded-md lg:mt-0 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700" href="/">
@@ -221,7 +221,7 @@
 					</div>
 					<div >
 						<form:input type="text" path="firstName" class="block w-full px-4 py-2 mt-2 text-gray-500 placeholder-gray-500 bg-white border rounded-lg dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring focus:ring-blue-300" placeholder="First Name" aria-label="First Name" />
-						<form:errors path="firstName" class="login-errors" />
+						<form:errors path="firstName" class="text-red-500" />
 					</div>
 				</div>
 				<div class="relative flex flex-col text-left mt-6">
@@ -230,7 +230,7 @@
 					</div>
 					<div >
 						<form:input type="text" path="lastName" class="block w-full px-4 py-2 mt-2 text-gray-500 placeholder-gray-500 bg-white border rounded-lg dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring focus:ring-blue-300" placeholder="Last Name" aria-label="Last Name" />
-						<form:errors path="lastName" class="login-errors" />
+						<form:errors path="lastName" class="text-red-500" />
 					</div>
 				</div>
 				<div class="relative flex flex-col text-left mt-6">
@@ -239,7 +239,7 @@
 					</div>
 					<div class="col-75">
 						<form:input type="text" path="username" class="block w-full px-4 py-2 mt-2 text-gray-500 placeholder-gray-500 bg-white border rounded-lg dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring focus:ring-blue-300" placeholder="Username" aria-label="Username" />
-						<form:errors path="username" class="login-errors" />
+						<form:errors path="username" class="text-red-500" />
 					</div>
 				</div>
 				<div class="relative flex flex-col text-left mt-6">
@@ -248,7 +248,7 @@
 					</div>
 					<div class="col-75">
 						<form:input type="text" path="email" class="block w-full px-4 py-2 mt-2 text-gray-500 placeholder-gray-500 bg-white border rounded-lg dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring focus:ring-blue-300" placeholder="Email" aria-label="Email" />
-						<form:errors path="email" class="login-errors" />
+						<form:errors path="email" class="text-red-500" />
 					</div>
 				</div>
 				<div class="relative flex flex-col text-left mt-6">
@@ -263,7 +263,7 @@
 						>
 							Choose...
 						</a>
-						<form:errors path="profilePicture" class="login-errors" />
+
 						<!-- popup modal -->
 						<div x-ref="modal"
 							 x-show="isOpen"
@@ -326,6 +326,7 @@
 								</div>
 							</div>
 						</div>
+
 					</div>
 				</div>
 

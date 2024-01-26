@@ -2,6 +2,7 @@ package net.thisislaz.hospitalreviewsintellij.controllers;
 
 
 
+import net.thisislaz.hospitalreviewsintellij.validation.OnUpdate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -151,7 +152,7 @@ public class UserController {
     }
 
     @PutMapping("/edit/{id}")
-    public String processEditUser(@PathVariable("id") Long id, @ModelAttribute("userToEdit") User editedUser, BindingResult result, HttpSession session) {
+    public String processEditUser(@PathVariable("id") Long id, @Validated(OnUpdate.class) @ModelAttribute("userToEdit") User editedUser, BindingResult result, HttpSession session) {
         Long userId = (Long) session.getAttribute("userId");
 
         if(userId == null ) {
@@ -160,7 +161,14 @@ public class UserController {
             return "redirect:/dashboard";
         }
 
+        //now we are manually triggering validation
+        validator.validate(editedUser, result);
+        if (result.hasErrors()) {
+            return "views/editProfile";
+        }
+
         User user = userService.getUser(userId);
+
         // this is capitalizing the first name of the user
         String cappedString = StringUtils.capitalizeWords(user.getFirstName());
         user.setFirstName(cappedString);
@@ -169,7 +177,7 @@ public class UserController {
         String cappedLastName = StringUtils.capitalizeWords(user.getLastName());
         user.setLastName(cappedLastName);
 
-        //setting the password equal to the pw in the db 
+        //setting the password equal to the pw in the db
         User dbUser = userService.getUser(userId);
 
         //checking if the username is already in db
@@ -177,20 +185,20 @@ public class UserController {
         User checkEmail = userService.getUser(editedUser.getEmail()) ;
         if (checkUsername != null && editedUser.getId() != checkUsername.getId()) {
             result.rejectValue("username", "Unique", "Username is already registered!");
+            if (result.hasErrors()) {
+                return "views/editProfile";
+            }
         }
         if(checkEmail != null && editedUser.getId() != checkEmail.getId()) {
             result.rejectValue("email", "Unique", "Email is already registered!");
+            if (result.hasErrors()) {
+                return "views/editProfile";
+            }
         }
 
         editedUser.setPassword(dbUser.getPassword());
         editedUser.setConfirm(dbUser.getPassword());
 
-        //now we are manually triggering validation
-        validator.validate(editedUser, result);
-
-        if (result.hasErrors()) {
-            return "views/editProfile";
-        }
         User updatedUser = userService.updateUser(editedUser);
         //update the session with the new edited user info
         session.setAttribute("cappedFirstNameUser", updatedUser);

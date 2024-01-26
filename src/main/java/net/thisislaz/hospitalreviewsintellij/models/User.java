@@ -6,6 +6,7 @@ import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import net.thisislaz.hospitalreviewsintellij.validation.OnCreate;
+import net.thisislaz.hospitalreviewsintellij.validation.OnUpdate;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -18,12 +19,12 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull(message="First name is required!",groups = OnCreate.class)
-    @Size(min=1, max=40, message="First name must be less than 40 characters",groups = OnCreate.class)
+    @NotNull(message="First name is required!",groups = {OnCreate.class, OnUpdate.class})
+    @Size(min=1, max=40, message="First name must be less than 40 characters",groups = {OnCreate.class, OnUpdate.class})
     private String firstName;
 
-    @NotNull(message="Last name is required!",groups = OnCreate.class)
-    @Size(min=1, max=40, message="Last name must be less than 40 characters",groups = OnCreate.class)
+    @NotNull(message="Last name is required!",groups = {OnCreate.class, OnUpdate.class})
+    @Size(min=1, max=40, message="Last name must be less than 40 characters",groups = {OnCreate.class, OnUpdate.class})
     private String lastName;
 
     @NotEmpty(message="Email is required!",groups = OnCreate.class)

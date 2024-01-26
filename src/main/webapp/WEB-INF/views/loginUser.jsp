@@ -236,7 +236,7 @@
 							<div>
 								<label for="email" class="block mb-2 text-sm text-gray-600 dark:text-gray-200">Email Address</label>
 								<form:input path="email" type="email" name="email" id="email" placeholder="example@example.com" class="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40 invalid:border-red-500" />
-								<form:errors class="ml-2 text-white" path="email" />
+								<form:errors class="ml-2 text-red-500" path="email" />
 							</div>
 
 							<div class="mt-6">
@@ -246,7 +246,7 @@
 								</div>
 
 								<form:input path="password" type="password" name="password" id="password" placeholder="Your Password" class="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
-								<form:errors path="password" class="ml-2 text-white" />
+								<form:errors path="password" class="ml-2 text-red-500" />
 							</div>
 							<div class="mt-6">
 								<button class="w-full px-4 py-2 tracking-wide text-white transition-colors duration-300 transform bg-blue-500 rounded-lg hover:bg-blue-400 focus:outline-none focus:bg-blue-400 focus:ring focus:ring-blue-300 focus:ring-opacity-50">
