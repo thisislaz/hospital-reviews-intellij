@@ -203,7 +203,7 @@
 				<div class="min-h-screen lg:w-1/3"></div>
 				<div class="hidden w-3/4 min-h-screen bg-gray-100 dark:bg-gray-700 lg:block mt-1"></div>
 
-				<div class="container flex flex-col justify-center w-full min-h-screen px-6 py-10 mx-auto lg:absolute lg:inset-x-0">
+				<div class="container flex flex-col justify-center w-full min-h-screen px-6 py-10 pb-20 mx-auto lg:absolute lg:inset-x-0">
 					<!-- top half -->
 					<div class="flex flex-col md:flex-row md:justify-between">
 						<h1 class="text-2xl font-semibold text-gray-800 capitalize lg:text-3xl dark:text-white">
